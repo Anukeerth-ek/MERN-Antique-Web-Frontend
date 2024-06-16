@@ -1,0 +1,27 @@
+import React, { useContext } from 'react'
+import { AuthContext } from '../contexts/AuthProvider'
+import { useLocation, useNavigate } from 'react-router-dom'
+
+const Logout = () => {
+   
+   const {logout} = useContext(AuthContext)
+   const location = useLocation()
+   const navigate = useNavigate()
+   const from = location.state?.from?.pathname || '/';
+ const handleLogout = ()=> {
+        logout().then(()=> {
+            alert('Logout successfully')
+            navigate(from, {replace:true})
+        }).catch((error)=> {
+            
+        })
+ }
+
+  return (
+    <div className='h-screen bg-blue-200 flex items-center justify-center '>
+        <button className='bg-red-600 scale-110 text-white px-6 py-2 rounded-md hover:scale-100 duration-300 ' onClick={handleLogout}>Logout</button>
+    </div>
+  )
+}
+
+export default Logout
