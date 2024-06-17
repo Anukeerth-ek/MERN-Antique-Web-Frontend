@@ -29,10 +29,10 @@ export const navLinks = [
           link: "Sell your Antiques",
           path: "/admin/dashboard",
      },
-     {
-          link: "Blog",
-          path: "/blog",
-     },
+     // {
+     //      link: "Blog",
+     //      path: "/blog",
+     // },
 ];
 
 export const bannerSection = [

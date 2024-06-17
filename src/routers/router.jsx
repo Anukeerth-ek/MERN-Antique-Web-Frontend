@@ -14,6 +14,7 @@ import Signup from "../components/Signup";
 import Login from "../components/Login";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import Logout from "../components/Logout";
+import Cart from "../components/cart/Cart";
 
 const router = createBrowserRouter([
      {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
                },
                {
                     path: "/art/:id",
-                    element: <SingleArt />,
+                    element: <Cart />,
                     loader:({params})=> fetch(`https://antique-web.onrender.com/art/${params.id}`)
                },
           ],

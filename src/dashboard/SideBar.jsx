@@ -36,7 +36,7 @@ const SideBar = () => {
                               return (
                                    <Link to={item.path} key={index}>
                                         <p className={`text-gray-600 ml-2 text-xs font-semibold mb-2 ${closeSidebar ? ' invisible' : 'visible'}`}>{item.showFirstTitle && <span>OVERVIEW</span>}</p>
-                                        <p className={`text-gray-600 ml-2 text-xs font-semibold mb-2 `}>{item.showSecondTitle && <span className={`${closeSidebar ? 'invisible' : 'visible'}`}>ACCOUNTS</span>}</p>
+                                        <p className={`text-gray-600 ml-2 text-xs font-semibold mb-2  `}>{item.showSecondTitle && <span className={`${closeSidebar ? 'invisible' : 'visible '}`}>ACCOUNTS</span>}</p>
 
                                         <li
                                              className={`flex items-center gap-3 mb-[5px] cursor-pointer hover:bg-gray-200 rounded-md ${closeSidebar ? 'pl-1 pr-1 py-3' : 'pl-2 pr-8 py-2 '}  ${

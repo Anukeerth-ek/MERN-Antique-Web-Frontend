@@ -11,6 +11,7 @@ import { CiMenuFries } from "react-icons/ci";
 import { GiTireIronCross } from "react-icons/gi";
 import { BsSearch } from "react-icons/bs";
 import { GiNightVision } from "react-icons/gi";
+import { GiShoppingCart } from "react-icons/gi";
 
 const Navbar = () => {
      //________ STATES __________
@@ -84,6 +85,9 @@ const Navbar = () => {
                                    </button>
                               </div>
                          </Link>
+                         
+                         {/* cart icons */}
+                         <GiShoppingCart className="text-2xl"/>
                          {user && (
                               <div>
                                    <img  src={user ? user.photoURL : ""} className="w-7 rounded-full cursor-pointer"/>
@@ -102,6 +106,7 @@ const Navbar = () => {
                                    {isMenuOpen ? <GiTireIronCross /> : <CiMenuFries />}
                               </button>
                          </div>
+
                     </div>
                </nav>
           </header>
