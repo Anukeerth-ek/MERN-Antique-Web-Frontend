@@ -41,17 +41,16 @@ const Navbar = () => {
           <header>
                <nav>
                     <div className="flex justify-between items-center  md:text-black px-2 md:px-10 lg:px-15 py-4 flex-wrap border-b-2 ">
+                        {/* Name */}
                          <Link to="/">
                               {" "}
                               <h3 className=" text-2xl  text-blue-600 flex">
                                    Antique
-                                   <span className=" ml-1 relative font-semibold text-2xl text-black ">
-                                        Vision
-                                   </span>{" "}
+                                   <span className=" ml-1 relative font-semibold text-2xl text-black ">Vision</span>{" "}
                                    <GiNightVision className="absolute left-28 md:left-36 top-1" />{" "}
                               </h3>
                          </Link>
-
+                         {/* Input bar */}
                          <Link to="/shop">
                               <div className="flex justify-between items-center border-none outline-none md:border md:border-black w-0 md:w-96  duration-300 lg:w-[480px] focus:lg:w-[600px] h-9 rounded-2xl">
                                    <input
@@ -61,8 +60,8 @@ const Navbar = () => {
                                    <BsSearch className=" relative right-6 text-lg " />
                               </div>
                          </Link>
-
-                         <BsSearch className=" relative  text-lg md:hidden" />  {/* This is for mobile responsive search icon */}
+                         <BsSearch className=" relative  text-lg md:hidden" />{" "}
+                         {/* This is for mobile responsive search icon */}
                          <div className={`${isMenuOpen ? "" : "hidden"} lg:inline`}>
                               <ul className="flex flex-col absolute right-3 lg:right-0 top-6 md:text-md lg:top-0 bg-white py-3 px-5 md:px-3 lg:p-0 gap-8 lg:flex lg:flex-row lg:relative">
                                    {navLinks.map(({ link, path }) => (
@@ -70,30 +69,34 @@ const Navbar = () => {
                                              to={path}
                                              key={path}
                                              activeclassname="text-red-500 underline" // This class will be applied when NavLink is active
-                                             className={({ isActive }) => (isActive ? "text-blue-700 " : "")}
+                                             className={({ isActive }) => (isActive ? "text-blue-700 scale-105" : "")}
                                         >
                                              <li className="hover:scale-95 scale-100 duration-300">{link}</li>
                                         </NavLink>
                                    ))}
                               </ul>
                          </div>
-
+                         {/* Login button */}
                          <Link to="/login">
                               <div className="border px-5 md:px-12 py-1 md:py-2 bg-white text-black md:text-white  md:bg-blue-600 md:hover:bg-transparent cursor-pointer border-blue-700 md:hover:border-blue-600 md:hover:bg-blue-700 md:hover:text-blue-600  rounded-lg md:block">
                                    <button className="transition-all duration-500 hover:custom-ease-class cursor-pointer ">
-                                       {user ? 'Log out' : "Login"}
+                                        {user ? "Log out" : "Login"}
                                    </button>
                               </div>
                          </Link>
-                         
                          {/* cart icons */}
-                         <GiShoppingCart className="text-2xl"/>
+                        <Link to="/art/:id">
+                        <div>
+                              <GiShoppingCart className="text-2xl cursor-pointer" />
+                         </div>
+                         </Link>
+                         {/* user icon (it will show only if user has logged in)*/}
                          {user && (
                               <div>
-                                   <img  src={user ? user.photoURL : ""} className="w-7 rounded-full cursor-pointer"/>
+                                   <img src={user ? user.photoURL : ""} className="w-7 rounded-full cursor-pointer" />
                               </div>
                          )}
-
+                         {/* Hamburger for mobile view */}
                          <div className="block md:block lg:hidden">
                               <button
                                    onClick={toggleMenu}
@@ -106,7 +109,6 @@ const Navbar = () => {
                                    {isMenuOpen ? <GiTireIronCross /> : <CiMenuFries />}
                               </button>
                          </div>
-
                     </div>
                </nav>
           </header>

@@ -15,6 +15,8 @@ import Login from "../components/Login";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import Logout from "../components/Logout";
 import Cart from "../components/cart/Cart";
+import CategorizedAntiques from "../components/categorized/CategorizedAntiques";
+import { fetchAntiqueByCategory } from "../home/FetchAntiqueByCategory";
 
 const router = createBrowserRouter([
      {
@@ -39,9 +41,14 @@ const router = createBrowserRouter([
                },
                {
                     path: "/art/:id",
-                    element: <Cart />,
+                    element: <SingleArt/>,
                     loader:({params})=> fetch(`https://antique-web.onrender.com/art/${params.id}`)
                },
+               {
+                    path: "/all-arts/:category",
+                    element: <CategorizedAntiques />,
+                    loader: fetchAntiqueByCategory,
+                  },
           ],
      },
      {

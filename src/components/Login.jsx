@@ -69,7 +69,7 @@ const Login = () => {
               placeholder="********"
          />
          <button className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">
-              Sign Up
+              Login
          </button>
          <div className="flex flex-col  mt-6 justify-center text-xs">
          {error ? <p className="text-red-600 text-base">Email or password is incorrect!!</p> : ''}

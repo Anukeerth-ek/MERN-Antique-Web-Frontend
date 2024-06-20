@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Animation styles for forwards type only */
+@view-transition {
+    navigation: auto;
+  }

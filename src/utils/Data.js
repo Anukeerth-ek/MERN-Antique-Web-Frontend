@@ -38,12 +38,12 @@ export const navLinks = [
 export const bannerSection = [
      {
           image: "https://media.timeout.com/images/105795964/image.jpg",
-          title: "Original Arts",
+          title: "Wall Arts",
           wordBreak: false,
      },
      {
           image: image1,
-          title: "Jewelery",
+          title: "Jewelry",
           wordBreak: false,
      },
      {
@@ -68,8 +68,8 @@ export const bannerSection = [
      },
      {
           image: "https://m.media-amazon.com/images/I/71D7xsZcxkL._AC_UL480_FMwebp_QL65_.jpg",
-          title: "Musical",
-          wordBreak: false,
+          title: "Musical Instruments",
+          wordBreak: true,
      },
      {
           image: "https://ii1.pepperfry.com/media/catalog/product/b/r/494x544/brass-antique-dial-black-hut-style-telephone-showpiece-by-exim-d-cor-brass-antique-dial-black-hut-st-lm1stz.jpg",

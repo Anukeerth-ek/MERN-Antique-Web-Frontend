@@ -3,6 +3,8 @@ import { useLoaderData } from 'react-router-dom'
 
 const SingleArt = () => {
     const {_id, image, title, description} = useLoaderData()
+    
+    console.log(image)
   return (
     <div>
         <img src={image}/>
