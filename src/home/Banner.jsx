@@ -15,11 +15,11 @@ const Banner = () => {
                                    <Link to={`/all-arts/${item.title}`}  key={index}>
                                         <li
                                             
-                                             className={`text-semibold text-lg ${item.wordBreak ? "break-words" : ""}`}
+                                             className={`text-semibold text-lg  ${item.wordBreak ? "break-words" : ""}`}
                                         >
                                              <img
                                                   src={item.image}
-                                                  className="rounded-[70%] object-cover h-[110px] w-[110px]"
+                                                  className="rounded-[70%] object-cover h-[110px] w-[110px] mx-auto "
                                              />
                                              {item.title.split(".").map((sentence, index, array) => (
                                                   <React.Fragment key={index}>

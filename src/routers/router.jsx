@@ -4,7 +4,6 @@ import Home from "../home/Home";
 import Shop from "../shop/Shop";
 import About from "../components/About";
 import Blog from "../components/Blog";
-import SingleArt from "../shop/SingleArt";
 import DashBoardLayout from "../dashboard/DashBoardLayout";
 import UploadAntiques from "../dashboard/UploadAntiques";
 import DashBoard from "../dashboard/DashBoard";
@@ -14,9 +13,10 @@ import Signup from "../components/Signup";
 import Login from "../components/Login";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import Logout from "../components/Logout";
-import Cart from "../components/cart/Cart";
+
 import CategorizedAntiques from "../components/categorized/CategorizedAntiques";
 import { fetchAntiqueByCategory } from "../home/FetchAntiqueByCategory";
+import ProductDetailsPage from "../ProductDetailsPage/ProductDetailsPage";
 
 const router = createBrowserRouter([
      {
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
                },
                {
                     path: "/art/:id",
-                    element: <SingleArt/>,
+                    element: <ProductDetailsPage/>,
                     loader:({params})=> fetch(`https://antique-web.onrender.com/art/${params.id}`)
                },
                {

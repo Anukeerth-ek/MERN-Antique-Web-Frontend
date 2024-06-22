@@ -1,6 +1,6 @@
 import Banner from "./Banner"
-import BestSellerArts from "./BestSellerArts"
 import FavAntiques from "./FavAntiques"
+import FreshRecommendation from "./FreshRecommendation"
 import MoreAntiques from "./MoreAntiques"
 import PromoBanner from "./PromoBanner"
 
@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div>
       <Banner/>
-      <BestSellerArts/>
+      <FreshRecommendation/>
       <FavAntiques/>
       <MoreAntiques/>
       <PromoBanner/>

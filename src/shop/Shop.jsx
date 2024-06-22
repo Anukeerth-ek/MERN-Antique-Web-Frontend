@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import ArtCard from "../components/ArtCard";
+import { CiHeart } from "react-icons/ci";
 const Shop = () => {
      const [arts, setArts] = useState([]);
      useEffect(() => {
@@ -9,23 +10,23 @@ const Shop = () => {
                .then((data) => setArts(data));
      });
      return (
-          <div className="px-10">
-               <h2 className="text-5xl font-bold text-center">All Items</h2>
-               <div className="grid gap-5 my-8 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1">
+          <div className="px-3 md:px-10 bg-gray-100">
+               <h2 className="text-3xl md:text-5xl font-bold text-center">ALL ITEMS</h2>
+               <div className="grid gap-3 my-8 lg:grid-cols-4 sm:grid-cols-2 md:grid-row-3 grid-cols-1">
                     {arts.map((item, index) => {
                          
                          return (
-                              <Link to="/admin/dashboard" key={index}>
-                                   <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-700  text-blue-950">
+                              <Link to={`/art/${item._id}`} key={index}>
+                                   <div class="w-full px-3 py-2 max-w-sm bg-white border border-gray-100 rounded-lg shadow dark:bg-white group text-blue-950">
                                         <a href="#">
-                                             <div className="min-w-[250px] md:w-full flex-wrap">
+                                        <div className="min-w-[250px] md:w-[300px] lg:w-full ">
                                                   <img
                                                        src={item.image}
-                                                       className="w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover duration-1000 rounded-lg"
+                                                       className="w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-300 rounded-lg "
                                                   />
                                              </div>
                                         </a>
-                                        <div class="px-5 pb-5">
+                                        <div class=" pb-5">
                                              <a href="#">
                                                   <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">
                                                        {item.title}
@@ -92,13 +93,11 @@ const Shop = () => {
                                                   </p>
                                                   {/* </div> */}
                                              </div>
-                                             <div class="flex items-center justify-between">
-                                                  <a
-                                                       href="#"
-                                                       class="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                                  >
+                                             <div className="flex justify-between items-center mt-4 pb-2">
+                                                  <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
+                                                  <button className="py-[5px] w-[85%] border border-gray-900 rounded-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300" >
                                                        Add to cart
-                                                  </a>
+                                                  </button>
                                              </div>
                                         </div>
                                    </div>
@@ -107,6 +106,7 @@ const Shop = () => {
                     })}
                </div>
           </div>
+      
      );
 };
 

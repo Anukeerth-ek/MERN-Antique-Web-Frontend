@@ -78,7 +78,7 @@ const Navbar = () => {
                          </div>
                          {/* Login button */}
                          <Link to="/login">
-                              <div className="border px-5 md:px-12 py-1 md:py-2 bg-white text-black md:text-white  md:bg-blue-600 md:hover:bg-transparent cursor-pointer border-blue-700 md:hover:border-blue-600 md:hover:bg-blue-700 md:hover:text-blue-600  rounded-lg md:block">
+                              <div className="border px-5 md:px-12 py-1 md:py-2 bg-white md:text-blue-700  cursor-pointer border-blue-700 md:hover:border-blue-500 md:hover:bg-blue-700 md:hover:text-white  rounded-lg md:block">
                                    <button className="transition-all duration-500 hover:custom-ease-class cursor-pointer ">
                                         {user ? "Log out" : "Login"}
                                    </button>

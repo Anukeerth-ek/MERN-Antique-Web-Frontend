@@ -9,9 +9,15 @@ import { Pagination } from "swiper/modules";
 import { AiFillCaretDown } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
-import { WiStars } from "react-icons/wi";
+
 
 const ArtCard = ({ arts, headline }) => {
+
+     // Lets handle cart section
+     const handleCart = (...item)=> {
+          
+          alert(item)
+     }
    
      return (
           <div className="mx-4 lg:mx-20">
@@ -26,13 +32,15 @@ const ArtCard = ({ arts, headline }) => {
                          </button>
                     </div>
                </div>
-               <div>
+               <div >
                     <Swiper
                          slidesPerView={1}
                          spaceBetween={10}
+                         
                          pagination={{
                               clickable: true,
                          }}
+                     
                          breakpoints={{
                               640: {
                                    slidesPerView: 2,
@@ -52,12 +60,12 @@ const ArtCard = ({ arts, headline }) => {
                     >
                          {arts.map((items) => (
                               <SwiperSlide key={items._id}>
-                                   <div className="px-3 bg-white py-2 border-black w-auto">
+                                   <div className="px-3 py-2 bg-white border-gray-200 w-auto group ">
                                         <Link to={`/art/${items._id}`}>
-                                             <div className="min-w-[250px] md:w-full flex-wrap">
+                                             <div className="min-w-[250px] md:w-full ">
                                                   <img
                                                        src={items.image}
-                                                       className="w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover duration-1000 rounded-lg"
+                                                       className="w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg "
                                                   />
                                              </div>
 
@@ -74,9 +82,9 @@ const ArtCard = ({ arts, headline }) => {
                                                        </p>
                                                   ))}
                                              </p>
-                                             <div className="flex justify-between items-center py-3">
-                                                  <CiHeart className="bg-black text-white text-3xl p-[2px]" />
-                                                  <button className="py-1 px-[100px] md:px-[10px] lg:px-[65px] border border-gray-900 ">
+                                             <div className="flex justify-between items-center mt-4 pb-2">
+                                                  <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
+                                                  <button className="py-[5px] w-[85%] border border-gray-900 rounded-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300" >
                                                        Add to cart
                                                   </button>
                                              </div>

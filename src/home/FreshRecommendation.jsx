@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import ArtCard from "../components/ArtCard"
-
-const BestSellerArts = () => {
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+const FreshRecommendation = () => {
     const [arts, setArts] = useState([])
    
     useEffect(()=> {
@@ -10,9 +11,11 @@ const BestSellerArts = () => {
 
   return (
     <div className="bg-gray-100 py-4">
+       
       <ArtCard arts={arts} headline="Fresh recommendations"/>
+     
     </div>
   )
 }
 
-export default BestSellerArts
+export default FreshRecommendation
