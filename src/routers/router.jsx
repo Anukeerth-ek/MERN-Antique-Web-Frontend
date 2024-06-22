@@ -13,10 +13,10 @@ import Signup from "../components/Signup";
 import Login from "../components/Login";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import Logout from "../components/Logout";
-
 import CategorizedAntiques from "../components/categorized/CategorizedAntiques";
 import { fetchAntiqueByCategory } from "../home/FetchAntiqueByCategory";
 import ProductDetailsPage from "../ProductDetailsPage/ProductDetailsPage";
+import Cart from "../ProductDetailsPage/Cart";
 
 const router = createBrowserRouter([
      {
@@ -38,6 +38,11 @@ const router = createBrowserRouter([
                {
                     path: "/blog",
                     element: <Blog />,
+               },
+               {
+                    path: "/antique/cart/:id",
+                    element: <Cart />,
+                    loader:({params})=> fetch(`https://antique-web.onrender.com/art/${params.id}`)
                },
                {
                     path: "/art/:id",

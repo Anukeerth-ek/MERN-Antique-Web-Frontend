@@ -71,15 +71,15 @@ const Navbar = () => {
                                              activeclassname="text-red-500 underline" // This class will be applied when NavLink is active
                                              className={({ isActive }) => (isActive ? "text-blue-700 scale-105" : "")}
                                         >
-                                             <li className="hover:scale-95 scale-100 duration-300">{link}</li>
+                                             <li className="hover:-translate-y-2 duration-300">{link}</li>
                                         </NavLink>
                                    ))}
                               </ul>
                          </div>
                          {/* Login button */}
                          <Link to="/login">
-                              <div className="border px-5 md:px-12 py-1 md:py-2 bg-white md:text-blue-700  cursor-pointer border-blue-700 md:hover:border-blue-500 md:hover:bg-blue-700 md:hover:text-white  rounded-lg md:block">
-                                   <button className="transition-all duration-500 hover:custom-ease-class cursor-pointer ">
+                              <div className="border px-5 md:px-12 py-1 md:py-2 bg-white md:text-blue-600  cursor-pointer  duration-500 border-blue-700 md:hover:border-blue-500 md:hover:bg-blue-700 md:hover:text-white  rounded-lg md:block">
+                                   <button className="  cursor-pointer ">
                                         {user ? "Log out" : "Login"}
                                    </button>
                               </div>

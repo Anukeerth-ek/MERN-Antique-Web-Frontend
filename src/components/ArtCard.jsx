@@ -10,19 +10,20 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 
+import { useNavigate } from "react-router-dom";
 
 const ArtCard = ({ arts, headline }) => {
+     // Redirect to cart page when active
+     const navigate = useNavigate();
+     const handleRedirectToCart = (itemId) => {
+          navigate(`/antique/cart/${itemId}`);
+     };
 
-     // Lets handle cart section
-     const handleCart = (...item)=> {
-          
-          alert(item)
-     }
-   
      return (
           <div className="mx-4 lg:mx-20">
                <div className="flex justify-between mb-4 ">
-                    <h2 className="text-xl lg:text-2xl font-semibold">{headline}
+                    <h2 className="text-xl lg:text-2xl font-semibold">
+                         {headline}
                          {/* < WiStars className=" text-amber-400 text-4xl"/> */}
                     </h2>
                     <div>
@@ -32,15 +33,13 @@ const ArtCard = ({ arts, headline }) => {
                          </button>
                     </div>
                </div>
-               <div >
+               <div>
                     <Swiper
                          slidesPerView={1}
                          spaceBetween={10}
-                         
                          pagination={{
                               clickable: true,
                          }}
-                     
                          breakpoints={{
                               640: {
                                    slidesPerView: 2,
@@ -77,18 +76,24 @@ const ArtCard = ({ arts, headline }) => {
                                              </div>
                                              <p className="flex flex-wrap mt-2 gap-1  ">
                                                   {items.categories.map((category, index) => (
-                                                       <p className="bg-gray-200 px-2 rounded-2xl gap-4 text-gray-600" key={index}>
+                                                       <p
+                                                            className="bg-gray-200 px-2 rounded-2xl gap-4 text-gray-600"
+                                                            key={index}
+                                                       >
                                                             {category}
                                                        </p>
                                                   ))}
                                              </p>
-                                             <div className="flex justify-between items-center mt-4 pb-2">
-                                                  <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
-                                                  <button className="py-[5px] w-[85%] border border-gray-900 rounded-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300" >
-                                                       Add to cart
-                                                  </button>
-                                             </div>
                                         </Link>
+                                        <div className="flex justify-between items-center mt-4 pb-2">
+                                             <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
+                                             <button
+                                                  className="py-[5px] w-[85%] border border-gray-900 rounded-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300"
+                                                  onClick={() => handleRedirectToCart(items._id)}
+                                             >
+                                                  Add to cart
+                                             </button>
+                                        </div>
                                    </div>
                               </SwiperSlide>
                          ))}
