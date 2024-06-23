@@ -2,10 +2,13 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import googleIcon from "../assets/google-icon.png";
+import { ThreeDots } from "react-loader-spinner";
 
 const Signup = () => {
      const { createUser, loginWithGoogle } = useContext(AuthContext);
      const [error, setError] = useState("error");
+     const [showLoader, setShowLoader] = useState(false)
+     const [checkPasswordStrength, setCheckPasswordStrength] = useState()
 
      const location = useLocation();
      const navigate = useNavigate();
@@ -22,8 +25,12 @@ const Signup = () => {
           createUser(email, password)
                .then((userCredential) => {
                     const user = userCredential.user;
-                    alert("Sign up Successfully!");
-                    navigate(from, { replace: true });
+                    console.log("from signup by me", user)
+                
+                    setTimeout(() => {
+                         navigate(from, { replace: true });
+                    }, 1800);
+                    setShowLoader(true)
                })
                .catch((error) => {
                     const errorCode = error.code;
@@ -37,7 +44,7 @@ const Signup = () => {
     const handleRegister = ()=> {
       loginWithGoogle().then((result)=> {
         const user = result.user;
-        alert("Sign up successfully!")
+   
         navigate(from, { replace: true });
         
       }).catch((error) => {
@@ -46,7 +53,13 @@ const Signup = () => {
         setError(errorMessage);
    });
     }
+//    lets check passwords strength
 
+const [checkPasswordInputValue, setCheckPasswordInputValue] = useState(false)
+const handlePasswordStrength = (event)=> {
+     setCheckPasswordInputValue(true)
+     setCheckPasswordStrength(event.target.value)
+     }
      return (
           <div className="flex flex-col items-center justify-center mt-28">
                <h1 className="font-bold text-2xl">Sign Up</h1>
@@ -79,9 +92,20 @@ const Signup = () => {
                          type="password"
                          name="password"
                          id="password"
+                         onChange={(event)=> handlePasswordStrength(event)}
                     />
+                    {checkPasswordInputValue ? checkPasswordStrength.length < 8 ? <p className="text-red-500"> Your Password is too weak</p> : <p className="text-green-500"> Your Password is strong</p> : ''}
                     <button className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">
-                         Sign Up
+                         {showLoader ? <ThreeDots
+                                                     visible={true}
+                                                     height="20"
+                                                     width="50"
+                                                     color="white"
+                                                     radius="6"
+                                                     ariaLabel="three-dots-loading"
+                                                     wrapperStyle={{}}
+                                                     wrapperClass=""
+                                                     /> : 'Sign Up'}
                     </button>
                     <div className="flex flex-col  mt-6 justify-center text-xs">
                        

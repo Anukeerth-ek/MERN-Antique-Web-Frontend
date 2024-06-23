@@ -38,16 +38,23 @@ const Cart = () => {
      // lets decrease cart value
      const handleDecreaseProduct = () => {
           setQuantity((prev) => prev - 1);
-          if (quantity <= 0) {
-               setQuantity(0);
+          if (quantity <= 1) {
+               setQuantity(1);
                alert("Item can't be empty");
+          }
+
+          if(totalProductPrice >= price) {
+               setTotalProductPrice(totalProductPrice - price)
+          }
+          else {
+               alert("Something went wrong")
           }
      };
      
      // lets increase cart value
      const handleIncreaseProduct = () => {
           setQuantity((prev) => prev + 1);
-          setTotalProductPrice(totalProductPrice * quantity);
+          setTotalProductPrice(price * (quantity + 1) );
      };
 
      return (
@@ -83,21 +90,21 @@ const Cart = () => {
                               </thead>
                               <tbody className=" border-b-2 border-t-2">
                                    <tr>
-                                        <td scope="row" class="px-6  font-medium whitespace-nowrap w-28">
+                                        <td scope="row" class="px-6 py-2  font-medium whitespace-nowrap w-28 ">
                                              <img src={image} className="w-full " />
                                         </td>
                                         <td class="px-6 py-4">{title}</td>
                                         <td class="px-6 py-4">${price}</td>
                                         <td class="px-6 py-4">{quantity}</td>
-                                        <td class="px-6 py-4">{totalProductPrice}</td>
+                                        <td class="px-6 py-4">${totalProductPrice}</td>
                                         <td class="px-6 py-4">
                                              <button
                                                   className={`border border-black px-2 py-2 mr-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300 ${
-                                                       quantity === 0
+                                                       quantity === 1
                                                             ? "cursor-not-allowed hover:bg-gray-200 hover:border-gray-200"
                                                             : ""
                                                   }`}
-                                                  disabled={quantity === 0}
+                                                  disabled={quantity === 1}
                                                   onClick={() => handleDecreaseProduct()}
                                              >
                                                   <FaMinus />

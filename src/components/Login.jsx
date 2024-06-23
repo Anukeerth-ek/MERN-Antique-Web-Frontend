@@ -3,9 +3,11 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import googleIcon from "../assets/google-icon.png";
+import { ThreeDots } from "react-loader-spinner";
 const Login = () => {
     const { login, loginWithGoogle } = useContext(AuthContext);
     const [error, setError] = useState("");
+    const [showLoader, setShowLoader] = useState(false)
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,8 +23,12 @@ const Login = () => {
 
         login(email, password).then((userCredential)=> {
             const user = userCredential.user;
-            alert("Login Successfull")
-            navigate(from, {replace: true})
+  
+
+            setTimeout(() => {
+               navigate(from, {replace: true})
+            }, 1800);
+            setShowLoader(true)
         }).catch((error)=> {
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -44,6 +50,8 @@ const Login = () => {
        setError(errorMessage);
   });
    }
+
+
   return (
     <div className="flex flex-col items-center justify-center mt-28">
     <h1 className="font-bold text-2xl">Welcome Back</h1>
@@ -67,9 +75,19 @@ const Login = () => {
               name="password"
               id="password"
               placeholder="********"
+              
          />
          <button className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">
-              Login
+               {showLoader ?  <ThreeDots
+                                                     visible={true}
+                                                     height="20"
+                                                     width="50"
+                                                     color="white"
+                                                     radius="6"
+                                                     ariaLabel="three-dots-loading"
+                                                     wrapperStyle={{}}
+                                                     wrapperClass=""
+                                                     /> : 'Login'}
          </button>
          <div className="flex flex-col  mt-6 justify-center text-xs">
          {error ? <p className="text-red-600 text-base">Email or password is incorrect!!</p> : ''}

@@ -12,16 +12,26 @@ import { CiHeart } from "react-icons/ci";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
+import { Oval, ThreeDots } from "react-loader-spinner";
+import { FaCentercode } from "react-icons/fa";
 
 const ArtCard = ({ arts, headline }) => {
      // Redirect to cart page when active
      const navigate = useNavigate();
-     const [changeTextOfButton, setChangeTextOfButton] = useState(false)
+
+     const [showSpinner, setShowSpinner] = useState(false);
+     const [spinnerBtnId, setSpinnerBtnId] = useState()
+
      const handleRedirectToCart = (itemId) => {
-          navigate(`/antique/cart/${itemId}`);
+          setTimeout(() => {
+               navigate(`/antique/cart/${itemId}`);
+          }, 1800);
+          setSpinnerBtnId(itemId)
+          setShowSpinner(true);
      };
-// check wheather user is logged in or not
-const { user, loading } = useContext(AuthContext);
+
+     // check wheather user is logged in or not
+     const { user, loading } = useContext(AuthContext);
      return (
           <div className="mx-4 lg:mx-20">
                <div className="flex justify-between mb-4 ">
@@ -88,13 +98,28 @@ const { user, loading } = useContext(AuthContext);
                                                   ))}
                                              </p>
                                         </Link>
-                                        <div className="flex justify-between items-center mt-4 pb-2">
+                                        <div className="flex justify-between items-center mt-4 mb-2">
                                              <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
                                              <button
-                                                  className="py-[5px] w-[85%] border border-gray-900 rounded-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300"
-                                                  onClick={ ()  =>  user ? handleRedirectToCart(items._id) : navigate('/login')}
+                                                  className={`py-[5px] flex justify-center items-center w-[85%] border border-gray-900 rounded-sm ${spinnerBtnId == items._id && 'bg-blue-600 border-blue-600 rounded-lg' } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}
+                                                  onClick={() =>
+                                                       user ? handleRedirectToCart(items._id) : navigate("/login")
+                                                  }
                                              >
-                                                  {changeTextOfButton ? 'Added to cart' : 'Add to cart'}
+                                                  {showSpinner && spinnerBtnId == items._id ? (
+                                                     <ThreeDots
+                                                     visible={true}
+                                                     height="20"
+                                                     width="50"
+                                                     color="white"
+                                                     radius="6"
+                                                     ariaLabel="three-dots-loading"
+                                                     wrapperStyle={{}}
+                                                     wrapperClass=""
+                                                     />
+                                                  ) : (
+                                                       "Add to cart"
+                                                  )}
                                              </button>
                                         </div>
                                    </div>

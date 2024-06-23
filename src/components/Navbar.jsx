@@ -37,11 +37,17 @@ const Navbar = () => {
           return window.addEventListener("scroll", handleScroll);
      }, []);
 
+     const authenticationPath = {
+          loginPath : "/login",
+          logoutPath: "/logout",
+     };
+  
+
      return (
           <header>
                <nav>
                     <div className="flex justify-between items-center  md:text-black px-2 md:px-10 lg:px-15 py-4 flex-wrap border-b-2 ">
-                        {/* Name */}
+                         {/* Name */}
                          <Link to="/">
                               {" "}
                               <h3 className=" text-2xl  text-blue-600 flex">
@@ -71,24 +77,24 @@ const Navbar = () => {
                                              activeclassname="text-red-500 underline" // This class will be applied when NavLink is active
                                              className={({ isActive }) => (isActive ? "text-blue-700 scale-105" : "")}
                                         >
-                                             <li className="hover:text-blue-700 hover:-translate-y-2 hover:scale-95 duration-500 ">{link}</li>
+                                             <li className="hover:text-blue-700 hover:-translate-y-2 hover:scale-95 duration-500 ">
+                                                  {link}
+                                             </li>
                                         </NavLink>
                                    ))}
                               </ul>
                          </div>
                          {/* Login button */}
-                         <Link to="/login">
+                         <Link to={user ? authenticationPath.logoutPath : authenticationPath.loginPath}>
                               <div className="border px-5 md:px-12 py-1 md:py-2 bg-white md:text-blue-600  cursor-pointer  duration-500 border-blue-700 md:hover:border-blue-500 md:hover:bg-blue-700 md:hover:text-white  rounded-lg md:block">
-                                   <button className="  cursor-pointer ">
-                                        {user ? "Log out" : "Login"}
-                                   </button>
+                                   <button className="  cursor-pointer ">{user ? "Logout" : "Login"}</button>
                               </div>
                          </Link>
                          {/* cart icons */}
-                        <Link to="/art/:id">
-                        <div>
-                              <GiShoppingCart className="text-2xl cursor-pointer" />
-                         </div>
+                         <Link to="/art/:id">
+                              <div>
+                                   <GiShoppingCart className="text-2xl cursor-pointer" />
+                              </div>
                          </Link>
                          {/* user icon (it will show only if user has logged in)*/}
                          {user && (
