@@ -11,7 +11,7 @@ const MoreAntiques = () => {
     }, [])
 
   return (
-    <div className="bg-gray-100 mb-6 md:mb-10 py-4">
+    <div className="bg-gray-100 mb-6 py-4">
     <ArtCard arts={arts} headline="Best Antiques"/>
  
   </div>

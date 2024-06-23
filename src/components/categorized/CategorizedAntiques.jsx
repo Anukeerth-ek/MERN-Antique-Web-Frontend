@@ -4,12 +4,12 @@ import ArtCard from '../ArtCard';
 
 const CategorizedAntiques = () => {
   const artworks = useLoaderData();
-  console.log(artworks);
+const headline = artworks[0].categories.toString()
   
   return (
     <div className='mt-4'>
       
-      <ArtCard arts={artworks} headline={"Categorized Antiques"}/>
+      <ArtCard arts={artworks} headline={headline}/>
     </div>
   );
 };

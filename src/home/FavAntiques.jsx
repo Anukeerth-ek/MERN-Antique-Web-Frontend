@@ -6,16 +6,17 @@ const FavAntiques = () => {
       
 
      return (
-          <div className="px-4 lg:px-24 py-5 my-6 md:my-12 flex flex-col md:flex-row justify-between items-center md:gap-12 bg-gray-100">
+          <div className="px-4 lg:px-24 py-5 my-6 flex flex-col md:flex-row justify-between items-center md:gap-12 bg-gray-100">
                <div className="md:w-1/2">
                     <img src={"https://img.freepik.com/free-photo/view-vintage-objects-still-life_23-2150348530.jpg"} />
                </div>
 
-               <div className="md:w-1/2 space-y-6">
+          
+                    <div className="md:w-1/2 space-y-6 px-3">
                     <h2 className="text-5xl font-bold my-2 md:w-3/4 leading-snug">
                          Find your Favourite<span className='text-blue-700'> Antiques Here!!</span>
                     </h2>
-                    <p className=" text-lg md:w-5/6">
+                    <p className=" text-base md:text-lg md:w-5/6">
                         {favouriteAntiqueDescription.description}
                     </p>
 
@@ -33,8 +34,8 @@ const FavAntiques = () => {
                               <p className="text-base">Weekly visits</p>
                          </div>
                     </div>
-                    <Link to="/shop" className='flex justify-center md:block'>
-                     <button className='border mt-8 bg-blue-700 py-3 px-10 rounded-md text-white transition-all duration-500 hover:custom-ease-class hover:bg-transparent hover:text-black hover:border hover:border-blue-700'>Explore more</button>
+                    <Link to="/shop" className=' flex justify-center md:flex-none md:justify-normal'>
+                     <button className='border mt-5 bg-blue-700 py-3 px-10 rounded-md text-white transition-all duration-500 hover:custom-ease-class hover:bg-transparent hover:text-black hover:border hover:border-blue-700'>Explore more</button>
                     </Link>
                </div>
           </div>

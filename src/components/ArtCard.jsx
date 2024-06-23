@@ -42,7 +42,7 @@ const ArtCard = ({ arts, headline }) => {
      return (
           <div className="mx-4 lg:mx-20">
                <div className="flex justify-between mb-4 ">
-                    <h2 className="text-xl lg:text-2xl font-semibold">{headline}</h2>
+                    <h2 className="text-xl lg:text-[28px] font-semibold">{headline}</h2>
                     <div>
                          <button>
                               <AiFillCaretDown />
@@ -51,7 +51,7 @@ const ArtCard = ({ arts, headline }) => {
                </div>
                <div>
            
-                    {showShimmer ?  <ShimmerSimpleGallery card imageHeight={240} col={4} row={1} caption /> :   <Swiper
+                    {showShimmer ?  <ShimmerSimpleGallery card imageHeight={242} col={4} row={1} caption /> :   <Swiper
                          slidesPerView={1}
                          spaceBetween={10}
                          pagination={{
@@ -103,7 +103,7 @@ const ArtCard = ({ arts, headline }) => {
                                              </p>
                                         </Link>
                                         <div className="flex justify-between items-center mt-4 mb-2">
-                                             <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
+                                             <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300" />
                                              <button
                                                   className={`py-[5px] flex justify-center items-center w-[85%] border border-gray-900 rounded-sm ${
                                                        spinnerBtnId == items._id && "bg-blue-600 border-blue-600 rounded-lg"

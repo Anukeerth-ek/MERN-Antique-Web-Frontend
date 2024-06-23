@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import ArtCard from "../components/ArtCard";
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import { ShimmerSimpleGallery } from "react-shimmer-effects";
+import { BsShop } from "react-icons/bs";
 const Shop = () => {
      const [arts, setArts] = useState([]);
      const [showShimmer, setShowShimmer] = useState(true)
@@ -23,11 +25,11 @@ const Shop = () => {
           if(arts && arts.length > 0) {
                setShowShimmer(false)
           }
-     }, [])
+     }, [arts])
      return (
           <div className="px-3 md:px-10 bg-gray-100">
-               <h2 className="text-3xl md:text-5xl font-bold text-center">ALL ITEMS</h2>
-               <div className="grid gap-3 my-8 lg:grid-cols-4 sm:grid-cols-2 md:grid-row-3 grid-cols-1">
+               <h2 className="text-3xl pt-2 md:pt-2 md:text-4xl font-bold flex justify-center ">INVENTORY<span className="ml-2"> < BsShop/></span></h2>
+             {showShimmer ? <ShimmerSimpleGallery card imageHeight={240} col={4} row={5} caption /> :   <div className="grid gap-3 mb-8 mt-4 lg:grid-cols-4 sm:grid-cols-2 md:grid-row-3 grid-cols-1">
                     {arts.map((item, index) => {
                          
                          return (
@@ -42,12 +44,12 @@ const Shop = () => {
                                              </div>
                                         </a>
                                         <div class=" pb-5">
-                                             <a href="#">
-                                                  <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">
+                                       
+                                                  <h5 class="text-xl font-semibold tracking-tight text-gray-900 mt-0 md:mt-2">
                                                        {item.title}
                                                   </h5>
-                                             </a>
-                                             <div class="flex items-center justify-between mt-2.5 mb-5">
+                                           
+                                             <div class="flex items-center justify-between mt-2.5 mb-4">
                                                   <div class="flex items-center text-[#FFD700] space-x-1 rtl:space-x-reverse">
                                                    
                                                        <FaStar/>
@@ -74,7 +76,7 @@ const Shop = () => {
                               </Link>
                          );
                     })}
-               </div>
+               </div>}
           </div>
       
      );
