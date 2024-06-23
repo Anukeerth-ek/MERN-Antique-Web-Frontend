@@ -5,17 +5,25 @@ import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 const Shop = () => {
      const [arts, setArts] = useState([]);
+     const [showShimmer, setShowShimmer] = useState(true)
+
+     
      useEffect(() => {
           fetch("https://antique-web.onrender.com/all-arts")
-               .then((res) => res.json())
-               .then((data) => setArts(data));
+          .then((res) => res.json())
+          .then((data) => setArts(data));
      });
-
+     
      const navigate = useNavigate();
      const handleRedirectToCart = (event, itemId) => {
           event.preventDefault()
           navigate(`/antique/cart/${itemId}`);
      };
+     useEffect(() => {
+          if(arts && arts.length > 0) {
+               setShowShimmer(false)
+          }
+     }, [])
      return (
           <div className="px-3 md:px-10 bg-gray-100">
                <h2 className="text-3xl md:text-5xl font-bold text-center">ALL ITEMS</h2>

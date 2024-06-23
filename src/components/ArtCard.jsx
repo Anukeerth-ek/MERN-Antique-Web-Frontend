@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -13,20 +13,27 @@ import { CiHeart } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Oval, ThreeDots } from "react-loader-spinner";
-import { FaCentercode } from "react-icons/fa";
+import { ShimmerPostItem, ShimmerPostList, ShimmerSimpleGallery } from "react-shimmer-effects";
 
 const ArtCard = ({ arts, headline }) => {
      // Redirect to cart page when active
      const navigate = useNavigate();
 
      const [showSpinner, setShowSpinner] = useState(false);
-     const [spinnerBtnId, setSpinnerBtnId] = useState()
+     const [spinnerBtnId, setSpinnerBtnId] = useState();
+     const [showShimmer, setShowShimmer] = useState(true)
+
+     useEffect(()=> {
+          if(arts && arts.length > 0) {
+               setShowShimmer(false)
+          }
+     }, [arts])
 
      const handleRedirectToCart = (itemId) => {
           setTimeout(() => {
                navigate(`/antique/cart/${itemId}`);
           }, 1800);
-          setSpinnerBtnId(itemId)
+          setSpinnerBtnId(itemId);
           setShowSpinner(true);
      };
 
@@ -35,19 +42,16 @@ const ArtCard = ({ arts, headline }) => {
      return (
           <div className="mx-4 lg:mx-20">
                <div className="flex justify-between mb-4 ">
-                    <h2 className="text-xl lg:text-2xl font-semibold">
-                         {headline}
-                         {/* < WiStars className=" text-amber-400 text-4xl"/> */}
-                    </h2>
+                    <h2 className="text-xl lg:text-2xl font-semibold">{headline}</h2>
                     <div>
                          <button>
-                              {" "}
                               <AiFillCaretDown />
                          </button>
                     </div>
                </div>
                <div>
-                    <Swiper
+           
+                    {showShimmer ?  <ShimmerSimpleGallery card imageHeight={240} col={4} row={1} caption /> :   <Swiper
                          slidesPerView={1}
                          spaceBetween={10}
                          pagination={{
@@ -70,7 +74,7 @@ const ArtCard = ({ arts, headline }) => {
                          modules={[Pagination]}
                          className="mySwiper"
                     >
-                         {arts.map((items) => (
+                         {arts?.map((items) => (
                               <SwiperSlide key={items._id}>
                                    <div className="px-3 py-2 bg-white border-gray-200 w-auto group ">
                                         <Link to={`/art/${items._id}`}>
@@ -88,7 +92,7 @@ const ArtCard = ({ arts, headline }) => {
                                                   <p className="font-semibold text-lg ">${items.price} </p>
                                              </div>
                                              <p className="flex flex-wrap mt-2 gap-1  ">
-                                                  {items.categories.map((category, index) => (
+                                                  {items?.categories?.map((category, index) => (
                                                        <p
                                                             className="bg-gray-200 px-2 rounded-2xl gap-4 text-gray-600"
                                                             key={index}
@@ -101,22 +105,24 @@ const ArtCard = ({ arts, headline }) => {
                                         <div className="flex justify-between items-center mt-4 mb-2">
                                              <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
                                              <button
-                                                  className={`py-[5px] flex justify-center items-center w-[85%] border border-gray-900 rounded-sm ${spinnerBtnId == items._id && 'bg-blue-600 border-blue-600 rounded-lg' } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}
+                                                  className={`py-[5px] flex justify-center items-center w-[85%] border border-gray-900 rounded-sm ${
+                                                       spinnerBtnId == items._id && "bg-blue-600 border-blue-600 rounded-lg"
+                                                  } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}
                                                   onClick={() =>
                                                        user ? handleRedirectToCart(items._id) : navigate("/login")
                                                   }
                                              >
                                                   {showSpinner && spinnerBtnId == items._id ? (
-                                                     <ThreeDots
-                                                     visible={true}
-                                                     height="20"
-                                                     width="50"
-                                                     color="white"
-                                                     radius="6"
-                                                     ariaLabel="three-dots-loading"
-                                                     wrapperStyle={{}}
-                                                     wrapperClass=""
-                                                     />
+                                                       <ThreeDots
+                                                            visible={true}
+                                                            height="20"
+                                                            width="50"
+                                                            color="white"
+                                                            radius="6"
+                                                            ariaLabel="three-dots-loading"
+                                                            wrapperStyle={{}}
+                                                            wrapperClass=""
+                                                       />
                                                   ) : (
                                                        "Add to cart"
                                                   )}
@@ -125,7 +131,8 @@ const ArtCard = ({ arts, headline }) => {
                                    </div>
                               </SwiperSlide>
                          ))}
-                    </Swiper>
+                    </Swiper>}
+                  
                </div>
           </div>
      );
