@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -11,14 +11,17 @@ import { Link } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const ArtCard = ({ arts, headline }) => {
      // Redirect to cart page when active
      const navigate = useNavigate();
+     const [changeTextOfButton, setChangeTextOfButton] = useState(false)
      const handleRedirectToCart = (itemId) => {
           navigate(`/antique/cart/${itemId}`);
      };
-
+// check wheather user is logged in or not
+const { user, loading } = useContext(AuthContext);
      return (
           <div className="mx-4 lg:mx-20">
                <div className="flex justify-between mb-4 ">
@@ -89,9 +92,9 @@ const ArtCard = ({ arts, headline }) => {
                                              <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
                                              <button
                                                   className="py-[5px] w-[85%] border border-gray-900 rounded-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300"
-                                                  onClick={() => handleRedirectToCart(items._id)}
+                                                  onClick={ ()  =>  user ? handleRedirectToCart(items._id) : navigate('/login')}
                                              >
-                                                  Add to cart
+                                                  {changeTextOfButton ? 'Added to cart' : 'Add to cart'}
                                              </button>
                                         </div>
                                    </div>

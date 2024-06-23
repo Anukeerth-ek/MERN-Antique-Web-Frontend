@@ -1,15 +1,18 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 import { IoHome } from "react-icons/io5";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import { FaStar } from "react-icons/fa6";
 import Dimensions from "./Dimensions";
+import { AuthContext } from "../contexts/AuthProvider";
+import { useContext } from "react";
 
 const ProductDetailsPage = () => {
      const { _id, image, title, description, seller, offer, price, materials, dimensions, categories } = useLoaderData();
+     const { user, loading } = useContext(AuthContext);
 
-     const cartBreadCrumbs = [
+     const productDetailBreadCrumbs = [
           {
                path: "/",
                link: "Home",
@@ -26,12 +29,16 @@ const ProductDetailsPage = () => {
                icon: MdKeyboardArrowRight,
           },
      ];
-
+     const navigate = useNavigate();
+     const handleRedirectToCart = (event, itemId) => {
+          event.preventDefault()
+          navigate(`/antique/cart/${itemId}`);
+     };
      return (
           <section>
                <div className=" mx-20 mt-5 ">
-                    <ol class="inline-flex items-center    cursor-pointer">
-                         {cartBreadCrumbs.map((item, index) => (
+                    <ol class="inline-flex items-center cursor-pointer">
+                         {productDetailBreadCrumbs.map((item, index) => (
                               <Link to={item.path}>
                                    <li
                                         className="flex items-center font-medium text-gray-700 hover:text-blue-600 md:ms-1 dark:text-gray-400 dark:hover:text-black"
@@ -80,7 +87,7 @@ const ProductDetailsPage = () => {
                                    <Dimensions dimensions={dimensions} />
                               </div>
                               <div className="mt-10">
-                                   <button className="bg-blue-600 py-2 px-16 rounded-md text-white">Add to cart</button>
+                                   <button className="bg-blue-600 py-2 px-16 rounded-md text-white" onClick={(event)=> user ? handleRedirectToCart(event, _id) : navigate('/login')}>Add to cart</button>
                               </div>
 
                               <ul className="inline-flex mt-6">

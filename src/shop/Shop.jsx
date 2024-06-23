@@ -11,11 +11,11 @@ const Shop = () => {
                .then((data) => setArts(data));
      });
 
-     const navigate = useNavigate()
-     const handleCartRedirect = (event)=> {
+     const navigate = useNavigate();
+     const handleRedirectToCart = (event, itemId) => {
           event.preventDefault()
-          navigate('/cart')
-     }
+          navigate(`/antique/cart/${itemId}`);
+     };
      return (
           <div className="px-3 md:px-10 bg-gray-100">
                <h2 className="text-3xl md:text-5xl font-bold text-center">ALL ITEMS</h2>
@@ -57,7 +57,7 @@ const Shop = () => {
                                              </div>
                                              <div className="flex justify-between items-center mt-4 pb-2">
                                                   <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
-                                                  <button className="py-[5px] w-[85%] border border-gray-900 rounded-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300" onClick={(event)=> handleCartRedirect(event)} >
+                                                  <button className="py-[5px] w-[85%] border border-gray-900 rounded-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300" onClick={(event)=> handleRedirectToCart(event, item._id)} >
                                                        Add to cart
                                                   </button>
                                              </div>
