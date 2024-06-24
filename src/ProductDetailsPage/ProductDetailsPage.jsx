@@ -57,8 +57,8 @@ const ProductDetailsPage = () => {
                          </div>
                          <div className="md:w-1/2">
                               <h2 className="text-xl mt-3 md:mt-0 md:text-4xl font-semibold">{title}</h2>
-                             <div className="flex justify-between  md:block">
-                             <p className="inline-flex items-center mt-3 mb-3">
+                             <div className="flex justify-between md:flex md:flex-col md:justify-normal">
+                             <div className="inline-flex items-center mt-3 mb-3">
                                    {seller.rating ? (
                                         <>
                                              <FaStar className="text-[#FFD700]" /> <FaStar className="text-[#FFD700]" />{" "}
@@ -69,11 +69,11 @@ const ProductDetailsPage = () => {
                                         ""
                                    )}
                                    <span>(122)</span>
-                              </p>
-                              <p className="mt-3 md:mt-0 mb-3 md:mb-4  md:ml-0">
+                              </div>
+                              <div className="mt-3 md:mt-0 mb-3 md:mb-4  md:ml-0">
                                    <span className="mr-3 text-blue-500 text-xl font-medium">${price}</span>
                                    <span className=" text-blue-500 text-lg font-medium">{offer}%off</span>
-                              </p>
+                              </div>
                              </div>
                               <p>{description}</p>
                               <div className="flex  space-x-2 my-8">
@@ -88,7 +88,7 @@ const ProductDetailsPage = () => {
                                    <span>Dimensions:</span>
                                    <Dimensions dimensions={dimensions} />
                               </div>
-                              <div className="mt-10 flex justify-center md:block ">
+                              <div className="mt-10 flex justify-center md:flex-none md:justify-normal">
                                    <button className="bg-blue-600 hover:bg-blue-800 duration-300 py-2 px-16 rounded-md text-white" onClick={(event)=> user ? handleRedirectToCart(event, _id) : navigate('/login')}>Add to cart</button>
                               </div>
 

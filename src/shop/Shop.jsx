@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ArtCard from "../components/ArtCard";
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
 import { BsShop } from "react-icons/bs";
+import { AuthContext } from "../contexts/AuthProvider";
 const Shop = () => {
      const [arts, setArts] = useState([]);
      const [showShimmer, setShowShimmer] = useState(true)
-
+     const { user, loading } = useContext(AuthContext);
      
      useEffect(() => {
           fetch("https://antique-web.onrender.com/all-arts")
@@ -19,7 +20,12 @@ const Shop = () => {
      const navigate = useNavigate();
      const handleRedirectToCart = (event, itemId) => {
           event.preventDefault()
+         if(user) {
           navigate(`/antique/cart/${itemId}`);
+         }
+         else {
+          navigate('/login')
+         }
      };
      useEffect(() => {
           if(arts && arts.length > 0) {
