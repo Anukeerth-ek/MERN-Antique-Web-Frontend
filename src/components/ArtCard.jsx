@@ -103,7 +103,7 @@ const ArtCard = ({ arts, headline }) => {
                                              </p>
                                         </Link>
                                         <div className="flex justify-between items-center mt-4 mb-2">
-                                             <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300" />
+                                             <CiHeart className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300" />
                                              <button
                                                   className={`py-[5px] flex justify-center items-center w-[85%] border border-gray-900 rounded-sm ${
                                                        spinnerBtnId == items._id && "bg-blue-600 border-blue-600 rounded-lg"

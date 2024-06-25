@@ -80,7 +80,7 @@ const handlePasswordStrength = (event)=> {
                     </label>
                     <input
                          className="flex items-center h-12 px-4 w-full border-none bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"
-                         type="text"
+                         type="email"
                          name="email"
                          id="email"
                     />
