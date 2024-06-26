@@ -4,7 +4,7 @@ import { json } from 'react-router-dom';
 
 export const fetchAntiqueByCategory = async ({ params }) => {
   try {
-    const response = await fetch(`http://localhost:5000/all-arts/${params.category}`);
+    const response = await fetch(`https://antique-web.onrender.com/all-arts/${params.category}`);
   
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.statusText}`);
