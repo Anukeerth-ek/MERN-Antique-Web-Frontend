@@ -57,7 +57,7 @@ const Login = () => {
     <h1 className="font-bold text-2xl">Welcome Back</h1>
     <form className="flex flex-col bg-white rounded shadow-lg p-12 " action="" onSubmit={handleLogin}>
          <label className="font-semibold text-xs" htmlFor="usernameField">
-              Username or Email
+              Email
          </label>
          <input
               className="flex items-center h-12 px-4 w-full bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"

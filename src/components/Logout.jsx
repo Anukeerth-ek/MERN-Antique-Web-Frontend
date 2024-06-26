@@ -8,10 +8,10 @@ const Logout = () => {
      const location = useLocation();
      const navigate = useNavigate();
      const from = location.state?.from?.pathname || "/";
-     const handleLogout = () => {};
+  
      Swal.fire({
           title: "Confirm Logout",
-          text: "Are you sure want to log out?",
+          text: "Are you sure want to Log out?",
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
