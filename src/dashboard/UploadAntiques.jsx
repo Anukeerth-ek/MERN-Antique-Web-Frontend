@@ -77,7 +77,7 @@ const UploadAntiques = () => {
 
    
      return (
-          <div className="mt-10">
+          <div className="pt-10 bg-white px-4 duration-300 w-full">
                <h2 className="text-3xl font-bold  mb-5">Upload an Antique</h2>
                <form className="flex lg:w-[1100px] flex-col flex-wrap gap-4" onSubmit={handleAntiqueSubmission}>
                     {/* first category */}
@@ -90,7 +90,7 @@ const UploadAntiques = () => {
                                         id="title"
                                         required
                                         name="title"
-                                        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 bg-white border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                         placeholder="Title"
                                    />
                                    <label
@@ -112,7 +112,7 @@ const UploadAntiques = () => {
                                         required
                                         name="price"
                                         className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        placeholder="price "
+                                        placeholder="rate"
                                    />
                                    <label
                                         htmlFor="price"
@@ -135,7 +135,7 @@ const UploadAntiques = () => {
                                         required
                                         name="image"
                                         className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        placeholder="Image here"
+                                        placeholder="Image url"
                                    />
                                    <label
                                         htmlFor="image"
@@ -284,7 +284,7 @@ const UploadAntiques = () => {
                          </div>
                     </div>
 
-                    <button type="submit" className="mt-4 bg-blue-600 py-2 text-white">
+                    <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 py-2 text-white">
                          Upload
                     </button>
                </form>

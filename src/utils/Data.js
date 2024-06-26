@@ -27,7 +27,7 @@ export const navLinks = [
      },
      {
           link: "Sell your Antiques",
-          path: "/admin/dashboard",
+          path: "/admin/dashboard/upload",
      },
      // {
      //      link: "Blog",

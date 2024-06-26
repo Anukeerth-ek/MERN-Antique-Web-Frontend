@@ -15,7 +15,7 @@ const SideBar = () => {
 
      return (
           <aside>
-               <div className="duration-500">
+               <div className={`duration-500 ${closeSidebar ? ' w-28' : ''}`}>
                     <ul className="bg-white pt-10 pb-5 pr-5 pl-5 duration-500">
                               <div className=" flex justify-between items-center mb-6">
                          <Link to="/">
@@ -26,9 +26,9 @@ const SideBar = () => {
                                                   ? user.photoUrl
                                                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzpI-jRCBsbJuzXvVYUsqWM9Mketi1KxQh9bzrDMM7pvSlqHuuseLokmX3b2IP-PP5u2c&usqp=CAU"
                                         }
-                                        className="rounded-full w-10"
+                                        className={`rounded-full   ${closeSidebar ? 'max-w-10' : ' w-10 object-fill'}`}
                                    />
-                                   <h3 className={` text-base font-bold ${closeSidebar ? 'hidden' : 'block'}`}>Hi, {user?.displayName}</h3>
+                                   <h3 className={` text-base font-bold ${closeSidebar ? 'hidden' : 'block'}`}>Hi, {user?.email.split('@')[0]}</h3>
                                   </div>
                          </Link>
                                   { closeSidebar ?  <MdKeyboardArrowRight className=" text-2xl cursor-pointer" onClick={()=> setCloseSidebar(!closeSidebar)}/> : <MdOutlineKeyboardArrowLeft   className=" text-2xl cursor-pointer" onClick={()=> setCloseSidebar(!closeSidebar)}/>} 
@@ -44,7 +44,7 @@ const SideBar = () => {
                                                   item.marginBottom ? " mb-10   " : ""
                                              } ${item.marginTop ? " mt-2" : ""}`}
                                         >
-                                             <item.icons className=" text-xl" />
+                                             <item.icons className=" text-xl items-center" />
 
                                              <span className={`${closeSidebar ? 'hidden pl-2 pr-8 py-2 duration-500' : 'block'}`}>{item.title}</span>
                                         </li>

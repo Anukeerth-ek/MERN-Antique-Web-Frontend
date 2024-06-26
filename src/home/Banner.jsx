@@ -11,17 +11,17 @@ const Banner = () => {
                     </h1>
                     <div>
                          <ul className="flex flex-wrap justify-center text-center mt-[20px] gap-14 mb-2">
-                              {bannerSection.map((item, index) => (
+                              {bannerSection?.map((item, index) => (
                                    <Link to={`/all-arts/${item.title}`}  key={index}>
                                         <li
                                             
                                              className={`text-semibold text-lg group hover:text-blue-600 ${item.wordBreak ? "break-words" : ""}`} 
                                         >
                                              <img
-                                                  src={item.image}
+                                                  src={item?.image}
                                                   className="rounded-[70%] object-cover h-[110px] w-[110px] mx-auto group-hover:scale-110 duration-300"
                                              />
-                                             {item.title.split(".").map((sentence, index, array) => (
+                                             {item?.title?.split(".").map((sentence, index, array) => (
                                                   <React.Fragment key={index} >
                                                        {sentence}
                                                        {index < array.length - 1 ? "." : null}
