@@ -7,7 +7,8 @@ export const fetchAntiqueByCategory = async ({ params }) => {
     const response = await fetch(`https://antique-web.onrender.com/all-arts/${params.category}`);
   
     if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.statusText}`);
+      alert("item does not exist")
+      console.error(`Network response was not ok: ${response.statusText}`);
     }
     const data = await response.json();
     return json(data);
