@@ -66,7 +66,7 @@ const router = createBrowserRouter([
                },
                {
                     path:'/admin/dashboard/upload',
-                    element: <UploadAntiques/>
+                    element: <PrivateRoute><UploadAntiques/></PrivateRoute>
                },
                {
                     path:'/admin/dashboard/manage',
