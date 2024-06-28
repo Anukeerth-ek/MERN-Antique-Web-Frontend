@@ -14,8 +14,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Oval, ThreeDots } from "react-loader-spinner";
 import { ShimmerPostItem, ShimmerPostList, ShimmerSimpleGallery } from "react-shimmer-effects";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/AntiqueSlice";
 
 const ArtCard = ({ arts, headline }) => {
+
+     const dispatch = useDispatch()
      // Redirect to cart page when active
      const navigate = useNavigate();
 
@@ -29,9 +33,11 @@ const ArtCard = ({ arts, headline }) => {
           }
      }, [arts])
 
-     const handleRedirectToCart = (itemId) => {
+     const handleRedirectToCart = (itemId, image, title, price) => {
+          const item = { itemId, image, title, price };
+          dispatch(addToCart(item));
           setTimeout(() => {
-               navigate(`/antique/cart/${itemId}`);
+               navigate(`/cart`);
           }, 1800);
           setSpinnerBtnId(itemId);
           setShowSpinner(true);
@@ -109,7 +115,7 @@ const ArtCard = ({ arts, headline }) => {
                                                        spinnerBtnId == items._id && "bg-blue-600 border-blue-600 rounded-lg"
                                                   } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}
                                                   onClick={() =>
-                                                       user ? handleRedirectToCart(items._id) : navigate("/login")
+                                                       user ? handleRedirectToCart(items._id, items.image, items.title, items.price) : navigate("/login")
                                                   }
                                              >
                                                   {showSpinner && spinnerBtnId == items._id ? (

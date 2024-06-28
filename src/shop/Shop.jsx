@@ -6,10 +6,17 @@ import { FaStar } from "react-icons/fa";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
 import { BsShop } from "react-icons/bs";
 import { AuthContext } from "../contexts/AuthProvider";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/AntiqueSlice";
+import { ThreeDots } from "react-loader-spinner";
+
 const Shop = () => {
      const [arts, setArts] = useState([]);
      const [showShimmer, setShowShimmer] = useState(true)
      const { user, loading } = useContext(AuthContext);
+     const [spinnerBtnId, setSpinnerBtnId] = useState();
+     const [showSpinner, setShowSpinner] = useState(false);
+     const dispatch = useDispatch()
      
      useEffect(() => {
           fetch("https://antique-web.onrender.com/all-arts")
@@ -18,15 +25,18 @@ const Shop = () => {
      });
      
      const navigate = useNavigate();
-     const handleRedirectToCart = (event, itemId) => {
-          event.preventDefault()
-         if(user) {
-          navigate(`/antique/cart/${itemId}`);
-         }
-         else {
-          navigate('/login')
-         }
+
+     const handleRedirectToCart = ( itemId, image, title, price) => {
+     
+          const item = { itemId, image, title, price };
+          dispatch(addToCart(item));
+          setTimeout(() => {
+               navigate('/cart');
+          }, 1800);
+          setSpinnerBtnId(itemId);
+          setShowSpinner(true);
      };
+
      useEffect(() => {
           if(arts && arts.length > 0) {
                setShowShimmer(false)
@@ -39,8 +49,8 @@ const Shop = () => {
                     {arts.map((item, index) => {
                          
                          return (
-                              <Link to={`/art/${item._id}`} key={index}>
-                                   <div class="w-full px-3 py-2 max-w-sm bg-white border border-gray-100 rounded-lg shadow dark:bg-white group text-blue-950">
+                              <div class="w-full px-3 py-2 max-w-sm bg-white border border-gray-100 rounded-lg shadow dark:bg-white group text-blue-950">
+                                        <Link to={`/art/${item._id}`} key={index}>
                                         <a href="#">
                                         <div className="min-w-[250px] md:w-[300px] lg:w-full ">
                                                   <img
@@ -49,7 +59,7 @@ const Shop = () => {
                                                   />
                                              </div>
                                         </a>
-                                        <div class=" pb-5">
+                                        <div >
                                        
                                                   <h5 class="text-xl font-semibold tracking-tight text-gray-900 mt-0 md:mt-2">
                                                        {item.title}
@@ -71,15 +81,36 @@ const Shop = () => {
                                                   </p>
                                                 
                                              </div>
+                                             </div>
+                                                  </Link>
                                              <div className="flex justify-between items-center mt-4 pb-2">
                                                   <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
-                                                  <button className="py-[5px] w-[85%] border border-gray-900 rounded-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300" onClick={(event)=> handleRedirectToCart(event, item._id)} >
-                                                       Add to cart
-                                                  </button>
+                                                  <button
+                                                  className={`py-[5px] flex justify-center items-center w-[85%] border border-gray-900 rounded-sm ${
+                                                       spinnerBtnId == item._id && "bg-blue-600 border-blue-600 rounded-lg"
+                                                  } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}
+                                                  onClick={() =>
+                                                       user ? handleRedirectToCart(item._id, item.image, item.title, item.price) : navigate("/login")
+                                                  }
+                                             >
+                                                  {showSpinner && spinnerBtnId == item._id ? (
+                                                       <ThreeDots
+                                                            visible={true}
+                                                            height="20"
+                                                            width="50"
+                                                            color="white"
+                                                            radius="6"
+                                                            ariaLabel="three-dots-loading"
+                                                            wrapperStyle={{}}
+                                                            wrapperClass=""
+                                                       />
+                                                  ) : (
+                                                       "Add to cart"
+                                                  )}
+                                             </button>
                                              </div>
-                                        </div>
+                                       
                                    </div>
-                              </Link>
                          );
                     })}
                </div>}

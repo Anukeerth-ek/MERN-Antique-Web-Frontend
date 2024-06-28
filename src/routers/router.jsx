@@ -40,9 +40,9 @@ const router = createBrowserRouter([
                     element: <Blog />,
                },
                {
-                    path: "/antique/cart/:id",
+                    path: "/cart",
                     element: <Cart />,
-                    loader:({params})=> fetch(`https://antique-web.onrender.com/art/${params.id}`)
+             
                },
                {
                     path: "/art/:id",
