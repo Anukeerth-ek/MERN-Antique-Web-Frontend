@@ -91,7 +91,7 @@ const ArtCard = ({ arts, headline }) => {
                                                   />
                                              </div>
 
-                                             <div className="flex justify-between mt-2 ">
+                                             <div className="flex justify-between mt-1 ">
                                                   <p className=" font-medium md:text-base lg:text-lg">
                                                        {items.title.length > 21 ? items.title.slice(0, 21) : items.title}
                                                   </p>
@@ -108,10 +108,10 @@ const ArtCard = ({ arts, headline }) => {
                                                   ))}
                                              </p>
                                         </Link>
-                                        <div className="flex justify-between items-center mt-4 mb-2">
+                                        <div className="flex justify-between items-center mt-3 mb-2">
                                              <CiHeart className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300" />
                                              <button
-                                                  className={`py-[5px] flex justify-center items-center w-[85%] border border-gray-900 rounded-sm ${
+                                                  className={`py-[5px] flex justify-center items-center w-[87%] border border-gray-900 rounded-sm ${
                                                        spinnerBtnId == items._id && "bg-blue-600 border-blue-600 rounded-lg"
                                                   } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}
                                                   onClick={() =>
