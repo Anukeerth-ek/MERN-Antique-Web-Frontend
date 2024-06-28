@@ -35,6 +35,7 @@ const ArtCard = ({ arts, headline }) => {
 
      const handleRedirectToCart = (itemId, image, title, price) => {
           const item = { itemId, image, title, price };
+       
           dispatch(addToCart(item));
           setTimeout(() => {
                navigate(`/cart`);
