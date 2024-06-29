@@ -289,6 +289,7 @@ const UploadAntiques = () => {
                     </button>
                </form>
           </div>
+        
      );
 };
 

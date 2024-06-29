@@ -12,6 +12,7 @@ import { GiTireIronCross } from "react-icons/gi";
 import { BsSearch } from "react-icons/bs";
 import { GiNightVision } from "react-icons/gi";
 import { GiShoppingCart } from "react-icons/gi";
+import { FaRegCircleUser } from "react-icons/fa6";
 
 const Navbar = () => {
      //________ STATES __________
@@ -19,6 +20,7 @@ const Navbar = () => {
      const [isSticky, setIsSticky] = useState(false);
 
      const { user } = useContext(AuthContext);
+     console.log(user,"from nav")
 
      // _____ToggleMenu____
      const toggleMenu = () => {
@@ -69,15 +71,15 @@ const Navbar = () => {
                          <BsSearch className=" relative  text-lg md:hidden" />{" "}
                          {/* This is for mobile responsive search icon */}
                          <div className={`${isMenuOpen ? "" : "hidden"} lg:inline`}>
-                              <ul className="flex flex-col absolute right-3 lg:right-0 top-6 md:text-md lg:top-0 bg-white py-3 px-5 md:px-3 lg:p-0 gap-8 lg:flex lg:flex-row lg:relative">
+                              <ul className="flex flex-col absolute right-3 lg:right-0 top-6 md:text-md lg:top-0 bg-white py-3 px-5 md:px-3 lg:p-0 gap-6 lg:flex lg:flex-row lg:relative">
                                    {navLinks.map(({ link, path }) => (
                                         <NavLink
                                              to={path}
                                              key={path}
                                              activeclassname="text-red-500 underline" // This class will be applied when NavLink is active
-                                             className={({ isActive }) => (isActive ? "text-blue-700 scale-105" : "")}
+                                             className={({ isActive }) => (isActive ? "text-blue-700 " : "")}
                                         >
-                                             <li className="hover:text-blue-700 hover:-translate-y-1 hover:scale-95 duration-300 ">
+                                             <li className=" hover:text-blue-700 hover:bg-gray-300 px-1 py-[2px] rounded-sm duration-300 ">
                                                   {link}
                                              </li>
                                         </NavLink>
@@ -97,11 +99,7 @@ const Navbar = () => {
                               </div>
                          </Link>
                          {/* user icon (it will show only if user has logged in)*/}
-                         {user && (
-                              <div>
-                                   <img src={user ? user.photoURL : ""} className="w-7 rounded-full cursor-pointer" />
-                              </div>
-                         )}
+                         {user && user.photoURL ? <img src={user?.photoURL}/> : <span className=" text-2xl cursor-pointer"> <FaRegCircleUser /></span>}
                          {/* Hamburger for mobile view */}
                          <div className="block md:block lg:hidden">
                               <button
@@ -115,6 +113,8 @@ const Navbar = () => {
                                    {isMenuOpen ? <GiTireIronCross /> : <CiMenuFries />}
                               </button>
                          </div>
+
+                      
                     </div>
                </nav>
           </header>
