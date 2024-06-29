@@ -12,6 +12,9 @@ import { GrUpgrade } from "react-icons/gr";
 import { SiGoogledocs } from "react-icons/si";
 import { TbHelp } from "react-icons/tb";
 
+// icons for userdetailsinfo
+import { FaRegCircleUser } from "react-icons/fa6";
+
 export const navLinks = [
      {
           link: "Home",
@@ -175,3 +178,52 @@ export const promoDescription = {
      description:
           "Enjoy 30% off every product at Antique Vision, your premier destination for handcrafted antique treasures. Specializing in meticulously crafted pieces made by me, Antique Vision offers a curated selection that celebrates craftsmanship and heritage, perfect for collectors and enthusiasts alike.",
 };
+
+
+export const userDetailsLinks = [
+     {
+          link: "My Profile",
+          icon: FaRegCircleUser,
+          path: ''
+     },
+     {
+          link: "Supercoin Zone",
+          icon: FaRegCircleUser,
+          path: ''
+     },
+     {
+          link: "Antique Plus",
+          icon: FaRegCircleUser,
+          path: ''
+     },
+     {
+          link: "Orders",
+          icon: FaRegCircleUser,
+          path: ''
+     },
+     {
+          link: "Wishlist",
+          icon: FaRegCircleUser,
+          path: ''
+     },
+     {
+          link: "Coupons",
+          icon: FaRegCircleUser,
+          path: ''
+     },
+     {
+          link: "Gift Card",
+          icon: FaRegCircleUser,
+          path: ''
+     },
+     {
+          link: "Notifications",
+          icon: FaRegCircleUser,
+          path: ''
+     },
+     {
+          link: "Logout",
+          icon: FaRegCircleUser,
+          path: '/logout'
+     },
+]

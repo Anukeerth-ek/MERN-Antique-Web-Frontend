@@ -13,14 +13,16 @@ import { BsSearch } from "react-icons/bs";
 import { GiNightVision } from "react-icons/gi";
 import { GiShoppingCart } from "react-icons/gi";
 import { FaRegCircleUser } from "react-icons/fa6";
+import UserDetails from "./userDetails/UserDetails";
 
 const Navbar = () => {
      //________ STATES __________
      const [isMenuOpen, setIsMenuOpen] = useState(false);
      const [isSticky, setIsSticky] = useState(false);
+     const [showUserInfo, setShowUserInfo] = useState(false);
 
      const { user } = useContext(AuthContext);
-     console.log(user,"from nav")
+     console.log(user, "from nav");
 
      // _____ToggleMenu____
      const toggleMenu = () => {
@@ -40,10 +42,9 @@ const Navbar = () => {
      }, []);
 
      const authenticationPath = {
-          loginPath : "/login",
+          loginPath: "/login",
           logoutPath: "/logout",
      };
-  
 
      return (
           <header>
@@ -79,7 +80,7 @@ const Navbar = () => {
                                              activeclassname="text-red-500 underline" // This class will be applied when NavLink is active
                                              className={({ isActive }) => (isActive ? "text-blue-700 " : "")}
                                         >
-                                             <li className=" hover:text-blue-700 hover:bg-gray-300 px-1 py-[2px] rounded-sm duration-300 ">
+                                             <li className=" hover:text-blue-700 hover:bg-gray-200 px-1 py-[2px] rounded-sm duration-300 ">
                                                   {link}
                                              </li>
                                         </NavLink>
@@ -92,14 +93,33 @@ const Navbar = () => {
                                    <button className="  cursor-pointer ">{user ? "Logout" : "Login"}</button>
                               </div>
                          </Link>
+                         {/* user icon (it will show only if user has logged in)*/}
+                      {user && 
+                         <div
+                         className="relative"
+                         onClick={() => setShowUserInfo(!showUserInfo)}
+                     
+                    >
+                         {user && user.photoURL ? (
+                              <img src={user.photoURL} alt="User" className="w-8 h-8 rounded-full" />
+                         ) : (
+                              <span className="text-2xl cursor-pointer" title="Account">
+                                   <FaRegCircleUser />
+                                   
+                              </span>
+                         )}
+                         {showUserInfo && (
+                              <div className="absolute top-12 -right-16 bg-white shadow-lg rounded-lg z-10">
+                                   <UserDetails />
+                              </div>
+                         )}
+                    </div>}
                          {/* cart icons */}
-                         <Link to="/art/:id">
+                         <Link to="/cart">
                               <div>
                                    <GiShoppingCart className="text-2xl cursor-pointer" />
                               </div>
                          </Link>
-                         {/* user icon (it will show only if user has logged in)*/}
-                         {user && user.photoURL ? <img src={user?.photoURL}/> : <span className=" text-2xl cursor-pointer"> <FaRegCircleUser /></span>}
                          {/* Hamburger for mobile view */}
                          <div className="block md:block lg:hidden">
                               <button
@@ -113,8 +133,6 @@ const Navbar = () => {
                                    {isMenuOpen ? <GiTireIronCross /> : <CiMenuFries />}
                               </button>
                          </div>
-
-                      
                     </div>
                </nav>
           </header>
