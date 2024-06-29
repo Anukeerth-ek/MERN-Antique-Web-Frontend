@@ -14,6 +14,7 @@ import { GiNightVision } from "react-icons/gi";
 import { GiShoppingCart } from "react-icons/gi";
 import { FaRegCircleUser } from "react-icons/fa6";
 import UserDetails from "./userDetails/UserDetails";
+import { SearchContext } from "./SearchContext";
 
 const Navbar = () => {
      //________ STATES __________
@@ -46,6 +47,12 @@ const Navbar = () => {
           logoutPath: "/logout",
      };
 
+     // for handling the search
+     const { setSearchTerm } = useContext(SearchContext);
+     const handleSearchInput = (e)=> {
+          setSearchTerm(e.target.value)
+     }
+
      return (
           <header>
                <nav>
@@ -65,6 +72,7 @@ const Navbar = () => {
                                    <input
                                         className="hidden md:block pl-2 py-5 rounded-md w-0 h-0 md:w-full md:h-full text-md   bg-gray-200 lg:w-full "
                                         placeholder="Whats on your mind?..."
+                                        onChange={handleSearchInput}
                                    />
                                    <BsSearch className=" relative right-6 text-lg " />
                               </div>
