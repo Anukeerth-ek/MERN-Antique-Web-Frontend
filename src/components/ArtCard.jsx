@@ -16,6 +16,8 @@ import { Oval, ThreeDots } from "react-loader-spinner";
 import { ShimmerPostItem, ShimmerPostList, ShimmerSimpleGallery } from "react-shimmer-effects";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/AntiqueSlice";
+import { SearchContext } from "./SearchContext";
+
 
 const ArtCard = ({ arts, headline }) => {
 
@@ -46,6 +48,9 @@ const ArtCard = ({ arts, headline }) => {
 
      // check wheather user is logged in or not
      const { user, loading } = useContext(AuthContext);
+
+
+
      return (
           <div className="mx-4 lg:mx-20">
                <div className="flex justify-between mb-4 ">

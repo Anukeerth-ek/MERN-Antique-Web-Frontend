@@ -23,7 +23,6 @@ const Navbar = () => {
      const [showUserInfo, setShowUserInfo] = useState(false);
 
      const { user } = useContext(AuthContext);
-     console.log(user, "from nav");
 
      // _____ToggleMenu____
      const toggleMenu = () => {
@@ -46,12 +45,12 @@ const Navbar = () => {
           loginPath: "/login",
           logoutPath: "/logout",
      };
-
+console.log("from nav", SearchContext)
      // for handling the search
      const { setSearchTerm } = useContext(SearchContext);
-     const handleSearchInput = (e)=> {
-          setSearchTerm(e.target.value)
-     }
+     const handleSearchInput = (e) => {
+          setSearchTerm(e.target.value);
+     };
 
      return (
           <header>
@@ -102,26 +101,22 @@ const Navbar = () => {
                               </div>
                          </Link>
                          {/* user icon (it will show only if user has logged in)*/}
-                      {user && 
-                         <div
-                         className="relative"
-                         onClick={() => setShowUserInfo(!showUserInfo)}
-                     
-                    >
-                         {user && user.photoURL ? (
-                              <img src={user.photoURL} alt="User" className="w-8 h-8 rounded-full" />
-                         ) : (
-                              <span className="text-2xl cursor-pointer" title="Account">
-                                   <FaRegCircleUser />
-                                   
-                              </span>
-                         )}
-                         {showUserInfo && (
-                              <div className="absolute top-12 -right-16 bg-white shadow-lg rounded-lg z-10">
-                                   <UserDetails />
+                         {user && (
+                              <div className="relative" onClick={() => setShowUserInfo(!showUserInfo)}>
+                                   {user && user.photoURL ? (
+                                        <img src={user.photoURL} alt="User" className="w-8 h-8 rounded-full" />
+                                   ) : (
+                                        <span className="text-2xl cursor-pointer" title="Account">
+                                             <FaRegCircleUser />
+                                        </span>
+                                   )}
+                                   {showUserInfo && (
+                                        <div className="absolute top-12 -right-16 bg-white shadow-lg rounded-lg z-10">
+                                             <UserDetails />
+                                        </div>
+                                   )}
                               </div>
                          )}
-                    </div>}
                          {/* cart icons */}
                          <Link to="/cart">
                               <div>
