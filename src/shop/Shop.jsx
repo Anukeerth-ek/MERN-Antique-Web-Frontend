@@ -46,11 +46,14 @@ const Shop = () => {
      // for displaying the search items only
      const { searchTerm } = useContext(SearchContext);
 
+
      const filteredArts = arts.filter(
           (item) =>
                item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                item.categories.some((category) => category.toLowerCase().includes(searchTerm.toLowerCase()))
      );
+
+
      return (
           <div className="px-3 md:px-10 bg-gray-100">
                <h2 className="text-3xl pt-2 md:pt-2 md:text-4xl font-bold flex justify-center ">

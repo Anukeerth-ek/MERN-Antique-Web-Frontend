@@ -17,6 +17,7 @@ import CategorizedAntiques from "../components/categorized/CategorizedAntiques";
 import { fetchAntiqueByCategory } from "../home/FetchAntiqueByCategory";
 import ProductDetailsPage from "../ProductDetailsPage/ProductDetailsPage";
 import Cart from "../ProductDetailsPage/Cart";
+import WishList from "../components/WishList";
 
 const router = createBrowserRouter([
      {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
                {
                     path: "/blog",
                     element: <Blog />,
+               },
+               {
+                    path: "/wishlist",
+                    element: <WishList />,
                },
                {
                     path: "/cart",

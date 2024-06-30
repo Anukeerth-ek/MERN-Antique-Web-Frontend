@@ -15,6 +15,8 @@ import { GiShoppingCart } from "react-icons/gi";
 import { FaRegCircleUser } from "react-icons/fa6";
 import UserDetails from "./userDetails/UserDetails";
 import { SearchContext } from "./SearchContext";
+import { MdFavorite } from "react-icons/md";
+import { MdFavoriteBorder } from "react-icons/md";
 
 const Navbar = () => {
      //________ STATES __________
@@ -58,7 +60,7 @@ console.log("from nav", SearchContext)
                     <div className="flex justify-between items-center  md:text-black px-2 md:px-10 lg:px-15 py-4 flex-wrap border-b-2 ">
                          {/* Name */}
                          <Link to="/">
-                              {" "}
+                          
                               <h3 className=" text-2xl  text-blue-600 flex">
                                    Antique
                                    <span className=" ml-1 relative font-semibold text-2xl text-black ">Vision</span>{" "}
@@ -76,8 +78,8 @@ console.log("from nav", SearchContext)
                                    <BsSearch className=" relative right-6 text-lg " />
                               </div>
                          </Link>
-                         <BsSearch className=" relative  text-lg md:hidden" />{" "}
-                         {/* This is for mobile responsive search icon */}
+                         <BsSearch className=" relative  text-lg md:hidden" />      {/* This is for mobile responsive search icon */}
+                    
                          <div className={`${isMenuOpen ? "" : "hidden"} lg:inline`}>
                               <ul className="flex flex-col absolute right-3 lg:right-0 top-6 md:text-md lg:top-0 bg-white py-3 px-5 md:px-3 lg:p-0 gap-6 lg:flex lg:flex-row lg:relative">
                                    {navLinks.map(({ link, path }) => (
@@ -117,6 +119,11 @@ console.log("from nav", SearchContext)
                                    )}
                               </div>
                          )}
+
+                         {/* Favourite icon. This will display only when user logged in */}
+                         {user && <Link to="/wishlist"><div className="text-lg cursor-pointer">
+                                   <MdFavoriteBorder className="text-2xl"/>
+                              </div></Link>}
                          {/* cart icons */}
                          <Link to="/cart">
                               <div>

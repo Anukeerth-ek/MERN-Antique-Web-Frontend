@@ -11,7 +11,7 @@ const Cart = () => {
      const [quantity, setQuantity] = useState(1);
 
      const cartItems = useSelector((state) => state.cart.items);
-     console.log("from cart", cartItems);
+     console.log("from cart", cartItems.length);
 
      const price = cartItems.price;
      const id = cartItems.id;
@@ -36,7 +36,7 @@ const Cart = () => {
                path: "",
           },
      ];
-     // decrease 
+     // decrease
      const handleDecreaseProduct = (productPrice) => {
           setQuantity((prev) => prev - 1);
           if (quantity <= 1) {
@@ -53,7 +53,7 @@ const Cart = () => {
 
      // increase
      const handleIncreaseProduct = (productId, productPrice) => {
-          alert(productId)
+          alert(productId);
           setQuantity((prev) => prev + 1);
           setTotalProductPrice(productPrice * (quantity + 1));
      };
@@ -76,56 +76,71 @@ const Cart = () => {
                               );
                          })}
                     </ol>
-                    <div class="relative overflow-x-auto mt-14 mx-24">
-                         <table class="w-full text-sm text-left rtl:text-right">
-                              <thead class="text-xs  uppercase ">
-                                   <tr className="border-b-2 border-b-gray-400">
-                                        {cartHeadings?.map((item, index) => {
-                                             return (
-                                                  <th scope="col" class="px-6 py-3 " key={index}>
-                                                       {item.heading}
-                                                  </th>
-                                             );
-                                        })}
-                                   </tr>
-                              </thead>
-                              <tbody className=" ">
-                                   {cartItems?.map((item, index) => (
-                                        <tr className="border-b-2 ">
-                                             <>
-                                                  <td scope="row" class="px-6 py-2  font-medium whitespace-nowrap w-28 ">
-                                                       <img src={item.image} className="w-full " />
-                                                  </td>
-                                                  <td class="px-6 py-4">{item.title}</td>
-                                                  <td class="px-6 py-4">${item.price}</td>
-                                                  <td class="px-6 py-4">{quantity}</td>
-                                                  <td class="px-6 py-4">${item.price < totalProductPrice ? totalProductPrice : item.price}</td>
-                                             </>
-                                             <td class="px-6 py-4">
-                                                  <button
-                                                       className={`border border-black px-2 py-2 mr-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300 ${
-                                                            quantity === 1
-                                                                 ? "cursor-not-allowed hover:bg-gray-200 hover:border-gray-200"
-                                                                 : ""
-                                                       }`}
-                                                       disabled={quantity === 1}
-                                                       onClick={() => handleDecreaseProduct(item.price)}
-                                                  >
-                                                       <FaMinus />
-                                                  </button>
-
-                                                  <button
-                                                       className="border border-black px-2 py-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300"
-                                                       onClick={() => handleIncreaseProduct(item.itemId, item.price)}
-                                                  >
-                                                       <FaPlus />
-                                                  </button>
-                                             </td>
+                    {cartItems.length > 0 ? (
+                         <div class="relative overflow-x-auto mt-14 mx-24 ">
+                              <table class="w-full text-sm text-left rtl:text-right">
+                                   <thead class="text-xs  uppercase ">
+                                        <tr className="border-b-2 border-b-gray-400">
+                                             {cartHeadings?.map((item, index) => {
+                                                  return (
+                                                       <th scope="col" class="px-6 py-3 " key={index}>
+                                                            {item.heading}
+                                                       </th>
+                                                  );
+                                             })}
                                         </tr>
-                                   ))}
-                              </tbody>
-                         </table>
-                    </div>
+                                   </thead>
+                                   <tbody className=" ">
+                                        {cartItems?.map((item, index) => (
+                                             <tr className="border-b-2 ">
+                                                  <>
+                                                       <td
+                                                            scope="row"
+                                                            class="px-6 py-2  font-medium whitespace-nowrap w-28 "
+                                                       >
+                                                            <img src={item.image} className="w-full " />
+                                                       </td>
+                                                       <td class="px-6 py-4">{item.title}</td>
+                                                       <td class="px-6 py-4">${item.price}</td>
+                                                       <td class="px-6 py-4">{quantity}</td>
+                                                       <td class="px-6 py-4">
+                                                            $
+                                                            {item.price < totalProductPrice
+                                                                 ? totalProductPrice
+                                                                 : item.price}
+                                                       </td>
+                                                  </>
+                                                  <td class="px-6 py-4">
+                                                       <button
+                                                            className={`border border-black px-2 py-2 mr-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300 ${
+                                                                 quantity === 1
+                                                                      ? "cursor-not-allowed hover:bg-gray-200 hover:border-gray-200"
+                                                                      : ""
+                                                            }`}
+                                                            disabled={quantity === 1}
+                                                            onClick={() => handleDecreaseProduct(item.price)}
+                                                       >
+                                                            <FaMinus />
+                                                       </button>
+
+                                                       <button
+                                                            className="border border-black px-2 py-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300"
+                                                            onClick={() => handleIncreaseProduct(item.itemId, item.price)}
+                                                       >
+                                                            <FaPlus />
+                                                       </button>
+                                                  </td>
+                                             </tr>
+                                        ))}
+                                   </tbody>
+                              </table>
+                         </div>
+                    ) : (
+                         <div className="text-red-500 text-4xl text-center mt-7">
+                              <span>Oops!! There is no Items added</span>
+                              <p className="mt-2">Add Something to cart!!</p>
+                         </div>
+                    )}
                </div>
           </section>
      );
