@@ -17,27 +17,28 @@ import { ShimmerPostItem, ShimmerPostList, ShimmerSimpleGallery } from "react-sh
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/AntiqueSlice";
 import { SearchContext } from "./SearchContext";
-
+import { MdFavorite } from "react-icons/md";
+import { MdFavoriteBorder } from "react-icons/md";
 
 const ArtCard = ({ arts, headline }) => {
-
-     const dispatch = useDispatch()
+     const dispatch = useDispatch();
      // Redirect to cart page when active
      const navigate = useNavigate();
 
      const [showSpinner, setShowSpinner] = useState(false);
      const [spinnerBtnId, setSpinnerBtnId] = useState();
-     const [showShimmer, setShowShimmer] = useState(true)
+     const [showShimmer, setShowShimmer] = useState(true);
+     const [showFavIcon, setShowFavIcon] = useState({});
 
-     useEffect(()=> {
-          if(arts && arts.length > 0) {
-               setShowShimmer(false)
+     useEffect(() => {
+          if (arts && arts.length > 0) {
+               setShowShimmer(false);
           }
-     }, [arts])
+     }, [arts]);
 
      const handleRedirectToCart = (itemId, image, title, price) => {
           const item = { itemId, image, title, price };
-       
+
           dispatch(addToCart(item));
           setTimeout(() => {
                navigate(`/cart`);
@@ -48,7 +49,14 @@ const ArtCard = ({ arts, headline }) => {
 
      // check wheather user is logged in or not
      const { user, loading } = useContext(AuthContext);
-
+     
+     const handleFavIcon = (e, itemId)=> {
+          e.preventDefault()
+          setShowFavIcon(prevFavorites => ({
+               ...prevFavorites,
+               [itemId]: !prevFavorites[itemId]
+           }));
+     }
 
 
      return (
@@ -62,89 +70,105 @@ const ArtCard = ({ arts, headline }) => {
                     </div>
                </div>
                <div>
-           
-                    {showShimmer ?  <ShimmerSimpleGallery card imageHeight={242} col={4} row={1} caption /> :   <Swiper
-                         slidesPerView={1}
-                         spaceBetween={10}
-                         pagination={{
-                              clickable: true,
-                         }}
-                         breakpoints={{
-                              640: {
-                                   slidesPerView: 2,
-                                   spaceBetween: 20,
-                              },
-                              768: {
-                                   slidesPerView: 3,
-                                   spaceBetween: 35,
-                              },
-                              1024: {
-                                   slidesPerView: 4,
-                                   spaceBetween: 40,
-                              },
-                         }}
-                         modules={[Pagination]}
-                         className="mySwiper"
-                    >
-                         {arts?.map((items) => (
-                              <SwiperSlide key={items._id}>
-                                   <div className="px-3 py-2 bg-white border-gray-200 w-auto group ">
-                                        <Link to={`/art/${items._id}`}>
-                                             <div className="min-w-[250px] md:w-full ">
-                                                  <img
-                                                       src={items.image}
-                                                       className="w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg "
-                                                  />
-                                             </div>
-
-                                             <div className="flex justify-between mt-1 ">
-                                                  <p className=" font-medium md:text-base lg:text-lg">
-                                                       {items.title.length > 21 ? items.title.slice(0, 21) : items.title}
-                                                  </p>
-                                                  <p className="font-semibold text-lg ">${items.price} </p>
-                                             </div>
-                                             <p className="flex flex-wrap mt-2 gap-1  ">
-                                                  {items?.categories?.map((category, index) => (
-                                                       <p
-                                                            className="bg-gray-200 px-2 rounded-2xl gap-4 text-gray-600"
-                                                            key={index}
-                                                       >
-                                                            {category}
-                                                       </p>
-                                                  ))}
-                                             </p>
-                                        </Link>
-                                        <div className="flex justify-between items-center mt-3 mb-2">
-                                             <CiHeart className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300" />
-                                             <button
-                                                  className={`py-[5px] flex justify-center items-center w-[87%] border border-gray-900 rounded-sm ${
-                                                       spinnerBtnId == items._id && "bg-blue-600 border-blue-600 rounded-lg"
-                                                  } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}
-                                                  onClick={() =>
-                                                       user ? handleRedirectToCart(items._id, items.image, items.title, items.price) : navigate("/login")
-                                                  }
-                                             >
-                                                  {showSpinner && spinnerBtnId == items._id ? (
-                                                       <ThreeDots
-                                                            visible={true}
-                                                            height="20"
-                                                            width="50"
-                                                            color="white"
-                                                            radius="6"
-                                                            ariaLabel="three-dots-loading"
-                                                            wrapperStyle={{}}
-                                                            wrapperClass=""
+                    {showShimmer ? (
+                         <ShimmerSimpleGallery card imageHeight={242} col={4} row={1} caption />
+                    ) : (
+                         <Swiper
+                              slidesPerView={1}
+                              spaceBetween={10}
+                              pagination={{
+                                   clickable: true,
+                              }}
+                              breakpoints={{
+                                   640: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 20,
+                                   },
+                                   768: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 35,
+                                   },
+                                   1024: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 40,
+                                   },
+                              }}
+                              modules={[Pagination]}
+                              className="mySwiper"
+                         >
+                              {arts?.map((items) => (
+                                   <SwiperSlide key={items._id}>
+                                        <div className="px-3 py-2 bg-white border-gray-200 w-auto group ">
+                                             <Link to={`/art/${items._id}`}>
+                                                  <div className="min-w-[250px] md:w-full ">
+                                                       <img
+                                                            src={items.image}
+                                                            className="w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg "
                                                        />
-                                                  ) : (
-                                                       "Add to cart"
-                                                  )}
-                                             </button>
+                                                      {showFavIcon[items._id] ? <MdFavorite className={`group-hover:opacity-100 ${showFavIcon[items._id] && 'opacity-100' }  opacity-0 absolute right-4 top-3 text-3xl text-red-600 bg-white py-1 px-1 rounded-lg`}     onClick={(e) => handleFavIcon(e, items._id)}/> :  <MdFavoriteBorder
+                                                            className={`group-hover:opacity-100   opacity-0 absolute right-4 top-3 text-3xl text-red-600 bg-white py-1 px-1 rounded-lg`}
+                                                            onClick={(e) => handleFavIcon(e, items._id)}
+                                                       /> }
+                                                  </div>
+
+                                                  <div className="flex justify-between mt-1 ">
+                                                       <p className=" font-medium md:text-base lg:text-lg">
+                                                            {items.title.length > 21
+                                                                 ? items.title.slice(0, 21)
+                                                                 : items.title}
+                                                       </p>
+                                                       <p className="font-semibold text-lg ">${items.price} </p>
+                                                  </div>
+                                                  <p className="flex flex-wrap mt-2 gap-1  ">
+                                                       {items?.categories?.map((category, index) => (
+                                                            <p
+                                                                 className="bg-gray-200 px-2 rounded-2xl gap-4 text-gray-600"
+                                                                 key={index}
+                                                            >
+                                                                 {category}
+                                                            </p>
+                                                       ))}
+                                                  </p>
+                                             </Link>
+                                             <div className="flex justify-between items-center mt-3 mb-2">
+                                                  <CiHeart className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300" />
+                                                  <button
+                                                       className={`py-[5px] flex justify-center items-center w-[87%] border border-gray-900 rounded-sm ${
+                                                            spinnerBtnId == items._id &&
+                                                            "bg-blue-600 border-blue-600 rounded-lg"
+                                                       } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}
+                                                       onClick={() =>
+                                                            user
+                                                                 ? handleRedirectToCart(
+                                                                        items._id,
+                                                                        items.image,
+                                                                        items.title,
+                                                                        items.price
+                                                                   )
+                                                                 : navigate("/login")
+                                                       }
+                                                  >
+                                                       {showSpinner && spinnerBtnId == items._id ? (
+                                                            <ThreeDots
+                                                                 visible={true}
+                                                                 height="20"
+                                                                 width="50"
+                                                                 color="white"
+                                                                 radius="6"
+                                                                 ariaLabel="three-dots-loading"
+                                                                 wrapperStyle={{}}
+                                                                 wrapperClass=""
+                                                            />
+                                                       ) : (
+                                                            "Add to cart"
+                                                       )}
+                                                  </button>
+                                             </div>
                                         </div>
-                                   </div>
-                              </SwiperSlide>
-                         ))}
-                    </Swiper>}
-                  
+                                   </SwiperSlide>
+                              ))}
+                         </Swiper>
+                    )}
                </div>
           </div>
      );
