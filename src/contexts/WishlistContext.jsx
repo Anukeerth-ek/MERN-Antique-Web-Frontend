@@ -9,7 +9,7 @@ export const WishlistProvider = ({ children }) => {
   const addToWishlist = (item) => {
     setWishlist((prevWishlist) => [...prevWishlist, item]);
   };
-  const handleFavIcon = (e,itemId, item) => {
+  const handleFavIcon = (e, itemId, item) => {
     e.preventDefault()
     setShowFavIcon((prevFavIcons) => {
       const updatedFavIcons = {

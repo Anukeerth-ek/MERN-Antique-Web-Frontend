@@ -184,10 +184,20 @@ export const userDetailsLinks = [
      {
           link: "My Profile",
           icon: FaRegCircleUser,
-          path: ''
+          path: '/profile'
      },
      {
-          link: "Supercoin Zone",
+          link: "My Cart",
+          icon: FaRegCircleUser,
+          path: '/cart'
+     },
+     {
+          link: "Wishlist",
+          icon: FaRegCircleUser,
+          path: '/wishlist'
+     },
+     {
+          link: "Orders",
           icon: FaRegCircleUser,
           path: ''
      },
@@ -196,16 +206,8 @@ export const userDetailsLinks = [
           icon: FaRegCircleUser,
           path: ''
      },
-     {
-          link: "Orders",
-          icon: FaRegCircleUser,
-          path: ''
-     },
-     {
-          link: "Wishlist",
-          icon: FaRegCircleUser,
-          path: ''
-     },
+ 
+
      {
           link: "Coupons",
           icon: FaRegCircleUser,
