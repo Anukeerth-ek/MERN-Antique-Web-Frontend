@@ -135,7 +135,7 @@ const ArtCard = ({ arts, headline }) => {
                                                   {showFavIcon[items._id] ? (
                                                        <MdFavorite
                                                             onClick={(e) => handleFavIcon(e, items._id, items)}
-                                                            className="rounded-md text-white bg-red-500  text-[35px] hover:scale-90  p-[2px] cursor-pointer duration-300"
+                                                            className="rounded-md text-white bg-red-600  text-[35px] hover:scale-90  p-[2px] cursor-pointer duration-300"
                                                        />
                                                   ) : (
                                                        <CiHeart
