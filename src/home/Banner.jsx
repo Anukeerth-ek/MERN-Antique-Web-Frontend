@@ -10,7 +10,7 @@ const Banner = () => {
                          Transforming the ordinary into extraordinary antiquities.
                     </h1>
                     <div>
-                         <ul className="flex flex-wrap justify-center text-center mt-[20px] gap-14 mb-2">
+                         <ul className="flex flex-wrap justify-evenly md:justify-center text-center mt-[20px] gap-14 mb-2">
                               {bannerSection?.map((item, index) => (
                                    <Link to={`/all-arts/${item.title}`}  key={index}>
                                         <li
@@ -19,7 +19,7 @@ const Banner = () => {
                                         >
                                              <img
                                                   src={item?.image}
-                                                  className="rounded-[70%] object-cover h-[110px] w-[110px] mx-auto group-hover:scale-110 duration-300"
+                                                  className="rounded-[70%] object-cover h-[120px] md:h-[110px] w-[120px] md:w-[110px] mx-auto group-hover:scale-110 duration-300"
                                              />
                                              {item?.title?.split(".").map((sentence, index, array) => (
                                                   <React.Fragment key={index} >
