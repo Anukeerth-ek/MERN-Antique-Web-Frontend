@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/AntiqueSlice";
 import { ThreeDots } from "react-loader-spinner";
 import { SearchContext } from "../components/SearchContext";
+import { MdFavorite } from "react-icons/md";
 
 const Shop = () => {
      const [arts, setArts] = useState([]);
@@ -17,6 +18,7 @@ const Shop = () => {
      const { user, loading } = useContext(AuthContext);
      const [spinnerBtnId, setSpinnerBtnId] = useState();
      const [showSpinner, setShowSpinner] = useState(false);
+     const [showFavIcon, setShowFavIcon] = useState({});
      const dispatch = useDispatch();
 
      useEffect(() => {
@@ -46,20 +48,25 @@ const Shop = () => {
      // for displaying the search items only
      const { searchTerm } = useContext(SearchContext);
 
-
      const filteredArts = arts.filter(
           (item) =>
                item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                item.categories.some((category) => category.toLowerCase().includes(searchTerm.toLowerCase()))
      );
-
+     // handle fav section
+     const handleFavIcon = (e, itemId) => {
+          e.preventDefault();
+          setShowFavIcon((prevFavorites) => ({
+               ...prevFavorites,
+               [itemId]: !prevFavorites[itemId],
+          }));
+     };
 
      return (
           <div className="px-3 md:px-10 bg-gray-100">
                <h2 className="text-3xl pt-2 md:pt-2 md:text-4xl font-bold flex justify-center ">
                     INVENTORY
                     <span className="ml-2">
-                     
                          <BsShop />
                     </span>
                </h2>
@@ -102,9 +109,19 @@ const Shop = () => {
                                              </div>
                                         </Link>
                                         <div className="flex justify-between items-center mt-4 pb-2">
-                                             <CiHeart className="bg-black hover:bg-blue-600 min-h-full text-white text-[35px] rounded-sm p-[2px] hover:rounded-md duration-300" />
+                                             {showFavIcon[item._id] ? (
+                                                  <MdFavorite
+                                                       onClick={(e) => handleFavIcon(e, item._id)}
+                                                       className="rounded-md text-white bg-red-500  text-[35px] hover:scale-90  p-[2px] cursor-pointer duration-300"
+                                                  />
+                                             ) : (
+                                                  <CiHeart
+                                                       className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300"
+                                                       onClick={(e) => handleFavIcon(e, item._id)}
+                                                  />
+                                             )}
                                              <button
-                                                  className={`py-[5px] flex justify-center items-center w-[90%] border border-gray-900 rounded-sm ${
+                                                  className={`py-[5px] flex justify-center items-center w-[89%] border border-gray-900 rounded-sm ${
                                                        spinnerBtnId == item._id && "bg-blue-600 border-blue-600 rounded-lg"
                                                   } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}
                                                   onClick={() =>
