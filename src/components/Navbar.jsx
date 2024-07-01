@@ -14,7 +14,7 @@ import { GiNightVision } from "react-icons/gi";
 import { GiShoppingCart } from "react-icons/gi";
 import { FaRegCircleUser } from "react-icons/fa6";
 import UserDetails from "./userDetails/UserDetails";
-import { SearchContext } from "./SearchContext";
+import { SearchContext } from "../contexts/SearchContext";
 import { MdFavorite } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
 
@@ -71,7 +71,7 @@ const Navbar = () => {
                          <Link to="/shop">
                               <div className="flex justify-between items-center border-none outline-none md:border md:border-black w-0 md:w-96  duration-300 lg:w-[480px] focus:lg:w-[600px] h-9 rounded-2xl">
                                    <input
-                                        className="hidden md:block pl-2 py-5 rounded-md w-0 h-0 md:w-full md:h-full text-md   bg-gray-200 lg:w-full "
+                                        className="hidden md:block pl-2 py-5 rounded-md w-0 h-0 md:w-full md:h-full border hover:border-blue-600 text-md bg-blue-50 lg:w-full "
                                         placeholder="Whats on your mind?..."
                                         onChange={handleSearchInput}
                                    />

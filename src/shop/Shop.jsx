@@ -9,7 +9,7 @@ import { AuthContext } from "../contexts/AuthProvider";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/AntiqueSlice";
 import { ThreeDots } from "react-loader-spinner";
-import { SearchContext } from "../components/SearchContext";
+import { SearchContext } from "../contexts/SearchContext";
 import { MdFavorite } from "react-icons/md";
 import ShopHeading from "./ShopHeading";
 

@@ -13,7 +13,16 @@ import { SiGoogledocs } from "react-icons/si";
 import { TbHelp } from "react-icons/tb";
 
 // icons for userdetailsinfo
+
+import { GiShoppingCart } from "react-icons/gi";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { MdFavoriteBorder } from "react-icons/md";
+import { BsBoxSeam } from "react-icons/bs";
+import { PiShieldPlusLight } from "react-icons/pi";
+import { BsTicket } from "react-icons/bs";
+import { MdCardGiftcard } from "react-icons/md";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { AiOutlineLogout } from "react-icons/ai";
 
 export const navLinks = [
      {
@@ -188,44 +197,44 @@ export const userDetailsLinks = [
      },
      {
           link: "My Cart",
-          icon: FaRegCircleUser,
+          icon:  GiShoppingCart ,
           path: '/cart'
      },
      {
           link: "Wishlist",
-          icon: FaRegCircleUser,
+          icon: MdFavoriteBorder,
           path: '/wishlist'
      },
      {
           link: "Orders",
-          icon: FaRegCircleUser,
-          path: ''
+          icon: BsBoxSeam,
+          path: '/'
      },
      {
           link: "Antique Plus",
-          icon: FaRegCircleUser,
-          path: ''
+          icon: PiShieldPlusLight,
+          path: '/'
      },
  
 
      {
-          link: "Coupons",
-          icon: FaRegCircleUser,
-          path: ''
+          link: "BsTicket",
+          icon: BsTicket,
+          path: '/'
      },
      {
           link: "Gift Card",
-          icon: FaRegCircleUser,
-          path: ''
+          icon: MdCardGiftcard,
+          path: '/'
      },
      {
           link: "Notifications",
-          icon: FaRegCircleUser,
-          path: ''
+          icon: IoIosNotificationsOutline,
+          path: '/'
      },
      {
           link: "Logout",
-          icon: FaRegCircleUser,
+          icon: AiOutlineLogout,
           path: '/logout'
      },
 ]

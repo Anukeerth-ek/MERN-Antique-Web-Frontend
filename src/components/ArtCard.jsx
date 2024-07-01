@@ -16,7 +16,7 @@ import { Oval, ThreeDots } from "react-loader-spinner";
 import { ShimmerPostItem, ShimmerPostList, ShimmerSimpleGallery } from "react-shimmer-effects";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/AntiqueSlice";
-import { SearchContext } from "./SearchContext";
+
 import { MdFavorite } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GiShoppingCart } from "react-icons/gi";
