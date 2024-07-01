@@ -47,7 +47,7 @@ const Navbar = () => {
           loginPath: "/login",
           logoutPath: "/logout",
      };
-console.log("from nav", SearchContext)
+
      // for handling the search
      const { setSearchTerm } = useContext(SearchContext);
      const handleSearchInput = (e) => {

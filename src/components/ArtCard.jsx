@@ -20,6 +20,7 @@ import { SearchContext } from "./SearchContext";
 import { MdFavorite } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GiShoppingCart } from "react-icons/gi";
+import { WishlistContext } from "../contexts/WishlistContext";
 
 const ArtCard = ({ arts, headline }) => {
      const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const ArtCard = ({ arts, headline }) => {
      const [spinnerBtnId, setSpinnerBtnId] = useState();
      const [showShimmer, setShowShimmer] = useState(true);
      const [showFavIcon, setShowFavIcon] = useState({});
+     const { addToWishlist } = useContext(WishlistContext);
 
      useEffect(() => {
           if (arts && arts.length > 0) {
@@ -51,12 +53,15 @@ const ArtCard = ({ arts, headline }) => {
      // check wheather user is logged in or not
      const { user, loading } = useContext(AuthContext);
      
-     const handleFavIcon = (e, itemId)=> {
+     const handleFavIcon = (e, itemId, items)=> {
           e.preventDefault()
           setShowFavIcon(prevFavorites => ({
                ...prevFavorites,
                [itemId]: !prevFavorites[itemId]
            }));
+           addToWishlist(items)
+           console.log("from artcard", items)
+           
      }
 
 
@@ -132,7 +137,7 @@ const ArtCard = ({ arts, headline }) => {
                                                   </p>
                                              </Link>
                                              <div className="flex justify-between items-center mt-3 mb-2">
-                                                 { showFavIcon[items._id] ? <MdFavorite  onClick={(e) => handleFavIcon(e, items._id)} className="rounded-md text-white bg-red-500  text-[35px] hover:scale-90  p-[2px] cursor-pointer duration-300"/> : <CiHeart className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300"    onClick={(e) => handleFavIcon(e, items._id)}/>}
+                                                 { showFavIcon[items._id] ? <MdFavorite  onClick={(e) => handleFavIcon(e, items._id, items)} className="rounded-md text-white bg-red-500  text-[35px] hover:scale-90  p-[2px] cursor-pointer duration-300"/> : <CiHeart className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300"    onClick={(e) => handleFavIcon(e, items._id, items)}/>}
                                                   <button
                                                        className={`py-[5px] flex justify-center items-center w-[87%] border border-gray-900 rounded-sm ${
                                                             spinnerBtnId == items._id &&
