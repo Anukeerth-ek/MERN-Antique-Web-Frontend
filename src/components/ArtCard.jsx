@@ -30,9 +30,10 @@ const ArtCard = ({ arts, headline }) => {
      const [showSpinner, setShowSpinner] = useState(false);
      const [spinnerBtnId, setSpinnerBtnId] = useState();
      const [showShimmer, setShowShimmer] = useState(true);
-     const [showFavIcon, setShowFavIcon] = useState({});
+
      const { addToWishlist } = useContext(WishlistContext);
 
+     const { showFavIcon, handleFavIcon } = useContext(WishlistContext);
      useEffect(() => {
           if (arts && arts.length > 0) {
                setShowShimmer(false);
@@ -52,18 +53,16 @@ const ArtCard = ({ arts, headline }) => {
 
      // check wheather user is logged in or not
      const { user, loading } = useContext(AuthContext);
-     
-     const handleFavIcon = (e, itemId, items)=> {
-          e.preventDefault()
-          setShowFavIcon(prevFavorites => ({
-               ...prevFavorites,
-               [itemId]: !prevFavorites[itemId]
-           }));
-           addToWishlist(items)
-           console.log("from artcard", items)
-           
-     }
 
+     // const handleFavIcon = (e, itemId, items) => {
+     //      e.preventDefault();
+     //      setShowFavIcon((prevFavorites) => ({
+     //           ...prevFavorites,
+     //           [itemId]: !prevFavorites[itemId],
+     //      }));
+     //      addToWishlist(items);
+     //      console.log("from artcard", items);
+     // };
 
      return (
           <div className="mx-4 lg:mx-20">
@@ -111,10 +110,6 @@ const ArtCard = ({ arts, headline }) => {
                                                             src={items.image}
                                                             className="w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg "
                                                        />
-                                                      {/* {showFavIcon[items._id] ? <MdFavorite className={`group-hover:opacity-100 ${showFavIcon[items._id] && 'opacity-100' }  opacity-0 absolute right-4 top-3 text-3xl text-red-600 bg-white py-1 px-1 rounded-lg`}     onClick={(e) => handleFavIcon(e, items._id)}/> :  <MdFavoriteBorder
-                                                            className={`group-hover:opacity-100   opacity-0 absolute right-4 top-3 text-3xl text-red-600 bg-white py-1 px-1 rounded-lg`}
-                                                            onClick={(e) => handleFavIcon(e, items._id)}
-                                                       /> } */}
                                                   </div>
 
                                                   <div className="flex justify-between mt-1 ">
@@ -137,7 +132,17 @@ const ArtCard = ({ arts, headline }) => {
                                                   </p>
                                              </Link>
                                              <div className="flex justify-between items-center mt-3 mb-2">
-                                                 { showFavIcon[items._id] ? <MdFavorite  onClick={(e) => handleFavIcon(e, items._id, items)} className="rounded-md text-white bg-red-500  text-[35px] hover:scale-90  p-[2px] cursor-pointer duration-300"/> : <CiHeart className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300"    onClick={(e) => handleFavIcon(e, items._id, items)}/>}
+                                                  {showFavIcon[items._id] ? (
+                                                       <MdFavorite
+                                                            onClick={(e) => handleFavIcon(e, items._id, items)}
+                                                            className="rounded-md text-white bg-red-500  text-[35px] hover:scale-90  p-[2px] cursor-pointer duration-300"
+                                                       />
+                                                  ) : (
+                                                       <CiHeart
+                                                            className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300"
+                                                            onClick={(e) => handleFavIcon(e, items._id, items)}
+                                                       />
+                                                  )}
                                                   <button
                                                        className={`py-[5px] flex justify-center items-center w-[87%] border border-gray-900 rounded-sm ${
                                                             spinnerBtnId == items._id &&
@@ -168,7 +173,7 @@ const ArtCard = ({ arts, headline }) => {
                                                        ) : (
                                                             "Add to cart"
                                                        )}
-                                                       <GiShoppingCart className="text-[22px] ml-2"/>
+                                                       <GiShoppingCart className="text-[22px] ml-2" />
                                                   </button>
                                              </div>
                                         </div>

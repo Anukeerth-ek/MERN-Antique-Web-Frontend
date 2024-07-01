@@ -1,12 +1,17 @@
-import React, { useContext } from 'react'
-import { WishlistContext } from '../contexts/WishlistContext';
+import React, { useContext } from "react";
+import { WishlistContext } from "../contexts/WishlistContext";
+import ArtCard from "./ArtCard";
 
 const WishList = () => {
-  const { wishlist } = useContext(WishlistContext);
-  console.log("from wishlist",wishlist)
-  return (
-    <div>WishList</div>
-  )
-}
+     const { wishlist } = useContext(WishlistContext);
 
-export default WishList
+     return (
+          <div>
+               {wishlist.length > 0 ?  <div className="mt-2">
+                    <ArtCard arts={wishlist} headline={"Wishlist"} /> 
+               </div> : <p className="text-red-500 text-5xl text-center mt-4">No items added yet</p> }
+          </div>
+     );
+};
+
+export default WishList;

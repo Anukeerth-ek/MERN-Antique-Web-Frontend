@@ -11,6 +11,7 @@ import { addToCart } from "../redux/AntiqueSlice";
 import { ThreeDots } from "react-loader-spinner";
 import { SearchContext } from "../components/SearchContext";
 import { MdFavorite } from "react-icons/md";
+import ShopHeading from "./ShopHeading";
 
 const Shop = () => {
      const [arts, setArts] = useState([]);
@@ -64,12 +65,7 @@ const Shop = () => {
 
      return (
           <div className="px-3 md:px-10 bg-gray-100">
-               <h2 className="text-3xl pt-2 md:pt-2 md:text-4xl font-bold flex justify-center ">
-                    INVENTORY
-                    <span className="ml-2">
-                         <BsShop />
-                    </span>
-               </h2>
+             <ShopHeading/>
                {showShimmer ? (
                     <ShimmerSimpleGallery card imageHeight={240} col={4} row={5} caption />
                ) : (
