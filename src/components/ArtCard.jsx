@@ -40,14 +40,14 @@ const ArtCard = ({ arts, headline }) => {
           }
      }, [arts]);
 
-     const handleRedirectToCart = (itemId, image, title, price) => {
-          const item = { itemId, image, title, price };
-
+     const handleRedirectToCart = (id, image, title, price) => {
+          const item = { id, image, title, price };
+    
           dispatch(addToCart(item));
           setTimeout(() => {
                navigate(`/cart`);
           }, 1800);
-          setSpinnerBtnId(itemId);
+          setSpinnerBtnId(id);
           setShowSpinner(true);
      };
 

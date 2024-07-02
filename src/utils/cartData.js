@@ -24,4 +24,8 @@ export const cartHeadings = [
         heading: "Actions",
         positionLeft: false,
     },
+    {
+        heading: "Remove",
+        positionLeft: false,
+    },
 ]
