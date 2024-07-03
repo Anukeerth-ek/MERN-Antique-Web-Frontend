@@ -8,10 +8,12 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { RxCross2 } from "react-icons/rx";
 import { removeFromCart } from "../redux/AntiqueSlice";
+import CartTotal from "./CartTotal";
 
 const Cart = () => {
-     const dispatch = useDispatch()
+     const dispatch = useDispatch();
      const cartItems = useSelector((state) => state.cart.items);
+     let lastTotalPrice = totalPrice
 
      // Initialize quantities and total prices for each cart item
      const initialStates = cartItems.reduce((acc, item) => {
@@ -44,7 +46,7 @@ const Cart = () => {
 
      // Decrease product quantity and update total price
      const handleDecreaseProduct = (productId, productPrice) => {
-          console.log("id", productId)
+          console.log("id", productId);
           setCartState((prev) => {
                const newState = { ...prev };
                if (newState[productId].quantity > 1) {
@@ -59,24 +61,25 @@ const Cart = () => {
 
      // Increase product quantity and update total price
      const handleIncreaseProduct = (productId, productPrice) => {
-        
           setCartState((prev) => {
                const newState = { ...prev };
                newState[productId].quantity += 1;
                newState[productId].totalPrice += productPrice;
                return newState;
+               lastTotalPrice = newState
           });
      };
 
-     // remove from cart 
-     const handleRemoveFromCart = (itemId)=> {
-          dispatch(removeFromCart(itemId))
+     // remove from cart
+     const handleRemoveFromCart = (itemId) => {
+          dispatch(removeFromCart(itemId));
           setCartState((prev) => {
                const newState = { ...prev };
                delete newState[itemId];
                return newState;
-           });
-     }
+          });
+     };
+     
      return (
           <section>
                <div>
@@ -110,16 +113,16 @@ const Cart = () => {
                                         {cartItems?.map((item, index) => (
                                              <tr className="border-b-2" key={index}>
                                                   <>
-                                                       <td scope="row" className="px-6 py-2 font-medium whitespace-nowrap w-28">
+                                                       <td
+                                                            scope="row"
+                                                            className="px-6 py-2 font-medium whitespace-nowrap w-28"
+                                                       >
                                                             <img src={item.image} className="w-full " alt={item.title} />
                                                        </td>
                                                        <td className="px-6 py-4">{item.title}</td>
                                                        <td className="px-6 py-4">${item.price}</td>
                                                        <td className="px-6 py-4">{cartState[item.id].quantity}</td>
-                                                       <td className="px-6 py-4">
-                                                            ${cartState[item.id].totalPrice}
-                                                       </td>
-                                                       
+                                                       <td className="px-6 py-4">${cartState[item.id].totalPrice}</td>
                                                   </>
                                                   <td className="px-6 py-4">
                                                        <button
@@ -140,8 +143,8 @@ const Cart = () => {
                                                             <FaPlus />
                                                        </button>
                                                   </td>
-                                                  <td className="px-9 py-4 text-2xl content-center cursor-pointer" >
-                                                  <RxCross2 onClick={()=> handleRemoveFromCart(item.id)}/>
+                                                  <td className="px-9 py-4 text-2xl content-center cursor-pointer">
+                                                       <RxCross2 onClick={() => handleRemoveFromCart(item.id)} />
                                                   </td>
                                              </tr>
                                         ))}
@@ -154,6 +157,8 @@ const Cart = () => {
                               <p className="mt-2">Add Something to cart!!</p>
                          </div>
                     )}
+
+                    {cartItems.length > 0 ? <CartTotal totalPrice={totalPrice} /> : ""}
                </div>
           </section>
      );
