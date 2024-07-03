@@ -81,6 +81,9 @@ const Cart = () => {
           });
      };
      
+       // Calculate total price of all items in the cart
+    const totalCartPrice = Object.values(cartState).reduce((acc, item) => acc + item.totalPrice, 0);
+
      return (
           <section>
                <div>
@@ -160,7 +163,7 @@ const Cart = () => {
                          </div>
                     )}
 
-                    {cartItems.length > 0 ? <CartTotal  /> : ""}
+                    {cartItems.length > 0 ? <CartTotal  totalCartPrice={totalCartPrice}/> : ""}
                </div>
           </section>
      );
