@@ -13,7 +13,7 @@ import CartTotal from "./CartTotal";
 const Cart = () => {
      const dispatch = useDispatch();
      const cartItems = useSelector((state) => state.cart.items);
-     let lastTotalPrice = totalPrice
+    
 
      // Initialize quantities and total prices for each cart item
      const initialStates = cartItems.reduce((acc, item) => {
@@ -65,8 +65,9 @@ const Cart = () => {
                const newState = { ...prev };
                newState[productId].quantity += 1;
                newState[productId].totalPrice += productPrice;
+               
                return newState;
-               lastTotalPrice = newState
+           
           });
      };
 
@@ -124,6 +125,7 @@ const Cart = () => {
                                                        <td className="px-6 py-4">{cartState[item.id].quantity}</td>
                                                        <td className="px-6 py-4">${cartState[item.id].totalPrice}</td>
                                                   </>
+                                                  
                                                   <td className="px-6 py-4">
                                                        <button
                                                             className={`border border-black px-2 py-2 mr-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300 ${
@@ -158,7 +160,7 @@ const Cart = () => {
                          </div>
                     )}
 
-                    {cartItems.length > 0 ? <CartTotal totalPrice={totalPrice} /> : ""}
+                    {cartItems.length > 0 ? <CartTotal  /> : ""}
                </div>
           </section>
      );
