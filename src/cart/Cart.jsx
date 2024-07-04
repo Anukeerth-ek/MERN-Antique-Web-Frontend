@@ -26,7 +26,7 @@ const Cart = () => {
 
      const [cartState, setCartState] = useState(initialStates);
 
-     const cartBreakCrumbs = [
+     const cartBreadCrumbs = [
           {
                link: "Home",
                icon: IoHome,
@@ -88,7 +88,7 @@ const Cart = () => {
           <section>
                <div>
                     <ol className="inline-flex items-center cursor-pointer mx-0 px-3 md:px-0 md:mx-24 mt-5">
-                         {cartBreakCrumbs?.map((item, index) => {
+                         {cartBreadCrumbs?.map((item, index) => {
                               return (
                                    <Link to={item.path} key={index}>
                                         <li className="flex items-center text-base font-medium text-gray-700 hover:text-blue-600 md:ms-1 dark:text-gray-400 dark:hover:text-black">
