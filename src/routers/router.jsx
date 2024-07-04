@@ -15,8 +15,8 @@ import PrivateRoute from "../privateRoute/PrivateRoute";
 import Logout from "../components/Logout";
 import CategorizedAntiques from "../components/categorized/CategorizedAntiques";
 import { fetchAntiqueByCategory } from "../home/FetchAntiqueByCategory";
-import ProductDetailsPage from "../ProductDetailsPage/ProductDetailsPage";
-import Cart from "../cart/Cart";
+import ProductDetailsPage from "../orderSection/ProductDetailsPage/ProductDetailsPage";
+import Cart from "../orderSection/cart/Cart";
 import WishList from "../components/WishList";
 
 const router = createBrowserRouter([

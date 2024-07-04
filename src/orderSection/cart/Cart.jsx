@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { cartHeadings } from "../utils/cartData";
+import { cartHeadings } from "../../utils/cartData";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa6";
 import { IoHome } from "react-icons/io5";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { RxCross2 } from "react-icons/rx";
-import { removeFromCart } from "../redux/AntiqueSlice";
+import { removeFromCart } from "../../redux/AntiqueSlice";
 import CartTotal from "./CartTotal";
 
 const Cart = () => {

@@ -193,7 +193,7 @@ export const userDetailsLinks = [
      {
           link: "My Profile",
           icon: FaRegCircleUser,
-          path: '/profile'
+          path: '/'
      },
      {
           link: "My Cart",

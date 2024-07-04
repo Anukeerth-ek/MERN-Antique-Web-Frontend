@@ -5,7 +5,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 
 import { FaStar } from "react-icons/fa6";
 import Dimensions from "./Dimensions";
-import { AuthContext } from "../contexts/AuthProvider";
+import { AuthContext } from "../../contexts/AuthProvider";
 import { useContext } from "react";
 
 const ProductDetailsPage = () => {
