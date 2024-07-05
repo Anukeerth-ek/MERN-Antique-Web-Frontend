@@ -3,6 +3,7 @@
 import { json } from 'react-router-dom';
 
 export const fetchAntiqueByCategory = async ({ params }) => {
+  console.log("params", params)
   try {
     const response = await fetch(`https://antique-web.onrender.com/all-arts/${params.category}`);
   

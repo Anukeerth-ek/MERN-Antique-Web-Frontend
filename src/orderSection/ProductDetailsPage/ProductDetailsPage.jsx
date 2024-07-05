@@ -6,11 +6,28 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
 import Dimensions from "./Dimensions";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import ArtCard from "../../components/ArtCard";
+import { fetchAntiqueByCategory } from "../../home/FetchAntiqueByCategory";
 
 const ProductDetailsPage = () => {
      const { _id, image, title, description, seller, offer, price, materials, dimensions, categories } = useLoaderData();
      const { user, loading } = useContext(AuthContext);
+     const [categoryItem, setCategoryItem] = useState("");
+
+     useEffect(() => {
+          const fetchCategoryData = async () => {
+               try {
+                    const fetchedItems = await Promise.all(
+                         categories.map((item) => fetchAntiqueByCategory(item))
+                    );
+                    setCategoryItems(fetchedItems);
+               } catch (error) {
+                    console.error('Error fetching category items:', error);
+               }
+          };
+          fetchCategoryData();
+     }, [categories]);
 
      const productDetailBreadCrumbs = [
           {
@@ -36,7 +53,7 @@ const ProductDetailsPage = () => {
      };
      return (
           <section>
-               <div className="mx-0 px-4 md:px-0 md:mx-28 mt-5 ">
+               <div className="mx-0 px-4 md:px-0 md:mx-16 mt-5 ">
                     <ol class="inline-flex items-center  cursor-pointer">
                          {productDetailBreadCrumbs.map((item, index) => (
                               <Link to={item.path}>
@@ -52,10 +69,28 @@ const ProductDetailsPage = () => {
                     </ol>
 
                     <div className="flex flex-wrap md:flex-nowrap  justify-between mt-4 md:mt-7">
-                         <div className=" md:h-[550px] md:w-[700px] md:max-w-1/2 ">
-                              <img src={image} className="min-w-full- h-full md:relative md:right-10 " />
+                         <div className="flex overflow-x-scroll md:overflow-x-hidden md:overflow-y-hidden cursor-pointer flex-row md:flex-col mr-5 gap-y-0 gap-x-2 md:gap-x-0 mb-3 md:gap-y-9">
+                              <img
+                                   src={image}
+                                   className="max-w-28 h-28 bg-gray-200 p-2 hover:scale-110 hover:p-0 hover:rounded-md duration-300 rounded-md"
+                              />
+                              <img
+                                   src={image}
+                                   className="max-w-28 h-28 bg-gray-200 p-2 hover:scale-110 hover:p-0 hover:rounded-md duration-300 rounded-md"
+                              />
+                              <img
+                                   src={image}
+                                   className="max-w-28 h-28 bg-gray-200 p-2 hover:scale-110 hover:p-0 hover:rounded-md duration-300 rounded-md"
+                              />
+                              <img
+                                   src={image}
+                                   className="max-w-28 h-28 bg-gray-200 p-2 hover:scale-110 hover:p-0 hover:rounded-md duration-300 rounded-md"
+                              />
                          </div>
-                         <div className="md:w-1/2">
+                         <div className="  md:h-[550px] md:w-[600px]  mr-10">
+                              <img src={image} className="min-w-full h-full md:relative   rounded-md" />
+                         </div>
+                         <div className="md:w-[580px]">
                               <h2 className="text-xl mt-3 md:mt-0 md:text-4xl font-semibold">{title}</h2>
                               <div className="flex justify-between md:flex md:flex-col md:justify-normal">
                                    <div className="inline-flex items-center mt-3 mb-3">
@@ -115,6 +150,8 @@ const ProductDetailsPage = () => {
                          </div>
                     </div>
                </div>
+
+               {/* <div>  <ArtCard arts={artWorks} headline={"hello"}/></div> */}
           </section>
      );
 };

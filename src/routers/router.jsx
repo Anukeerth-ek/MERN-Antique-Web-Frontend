@@ -13,7 +13,7 @@ import Signup from "../components/Signup";
 import Login from "../components/Login";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import Logout from "../components/Logout";
-import CategorizedAntiques from "../components/categorized/CategorizedAntiques";
+import CategorizedAntiques from "../home/categorized/CategorizedAntiques";
 import { fetchAntiqueByCategory } from "../home/FetchAntiqueByCategory";
 import ProductDetailsPage from "../orderSection/ProductDetailsPage/ProductDetailsPage";
 import Cart from "../orderSection/cart/Cart";
@@ -52,7 +52,8 @@ const router = createBrowserRouter([
                {
                     path: "/art/:id",
                     element: <ProductDetailsPage/>,
-                    loader:({params})=> fetch(`https://antique-web.onrender.com/art/${params.id}`)
+                    loader:({params})=> fetch(`https://antique-web.onrender.com/art/${params.id}`),
+                    
                },
                {
                     path: "/all-arts/:category",

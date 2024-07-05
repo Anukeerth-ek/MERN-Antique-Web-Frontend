@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import ArtCard from '../ArtCard';
+import ArtCard from '../../components/ArtCard';
 
 const CategorizedAntiques = () => {
   const artworks = useLoaderData();
