@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Oval, ThreeDots } from "react-loader-spinner";
 import { ShimmerPostItem, ShimmerPostList, ShimmerSimpleGallery } from "react-shimmer-effects";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/AntiqueSlice";
 
 import { MdFavorite } from "react-icons/md";
@@ -27,6 +27,9 @@ const ArtCard = ({ arts, headline }) => {
      // Redirect to cart page when active
      const navigate = useNavigate();
 
+     // Get the current state of the item
+     const cartItems = useSelector((state) => state.cart.items);
+
      const [showSpinner, setShowSpinner] = useState(false);
      const [spinnerBtnId, setSpinnerBtnId] = useState();
      const [showShimmer, setShowShimmer] = useState(true);
@@ -34,21 +37,29 @@ const ArtCard = ({ arts, headline }) => {
      const { addToWishlist } = useContext(WishlistContext);
 
      const { showFavIcon, handleFavIcon } = useContext(WishlistContext);
+
+     // SHIMMER EFFECT
      useEffect(() => {
           if (arts && arts.length > 0) {
                setShowShimmer(false);
           }
      }, [arts]);
 
+     // HANDLE CART SECTION
      const handleRedirectToCart = (id, image, title, price) => {
           const item = { id, image, title, price };
-    
-          dispatch(addToCart(item));
-          setTimeout(() => {
-               navigate(`/cart`);
-          }, 1800);
-          setSpinnerBtnId(id);
-          setShowSpinner(true);
+
+          const itemExist = cartItems.find((cartItem) => cartItem.id === id);
+          if (itemExist) {
+               alert("Item Exist");
+          } else {
+               dispatch(addToCart(item));
+               setTimeout(() => {
+                    navigate(`/cart`);
+               }, 1800);
+               setSpinnerBtnId(id);
+               setShowSpinner(true);
+          }
      };
 
      // check wheather user is logged in or not
