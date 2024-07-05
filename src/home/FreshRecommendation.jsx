@@ -10,7 +10,7 @@ const FreshRecommendation = () => {
     }, [])
 
   return (
-    <div className="bg-gray-100 py-4">
+    <div className="bg-gray-100 py-3">
        
       <ArtCard arts={arts} headline="Fresh recommendations"/>
      

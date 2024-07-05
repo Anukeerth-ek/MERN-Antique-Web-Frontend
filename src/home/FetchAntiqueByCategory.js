@@ -3,7 +3,7 @@
 import { json } from 'react-router-dom';
 
 export const fetchAntiqueByCategory = async ({ params }) => {
-  console.log("params", params)
+
   try {
     const response = await fetch(`https://antique-web.onrender.com/all-arts/${params.category}`);
   
@@ -12,7 +12,7 @@ export const fetchAntiqueByCategory = async ({ params }) => {
       console.error(`Network response was not ok: ${response.statusText}`);
     }
     const data = await response.json();
-    return json(data);
+    return data;
   } 
   catch (error) {
     console.error('Error fetching artworks by category:', error);

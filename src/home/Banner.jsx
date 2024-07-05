@@ -6,7 +6,7 @@ const Banner = () => {
      return (
           <section>
                <div className="flex flex-wrap items-center flex-col px-4 lg:px-0">
-                    <h1 className="mt-2 md:mt-0 text-xl text-center text-gray-500 lg:text-[24px] lg:my-[12px] md:font-normal">
+                    <h1 className="mt-2 md:mt-0 text-xl text-center text-gray-500 lg:text-[24px] lg:mt-[6px] lg:mb-[8px] md:font-normal">
                          Transforming the ordinary into extraordinary antiquities.
                     </h1>
                     <div>

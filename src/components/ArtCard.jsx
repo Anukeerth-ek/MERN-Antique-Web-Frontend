@@ -124,7 +124,7 @@ const ArtCard = ({ arts, headline }) => {
                                                        />
                                                   </div>
 
-                                                  <div className="flex justify-between mt-1 ">
+                                                  <div className="flex justify-between mt-2 ">
                                                        <p className=" font-medium md:text-base lg:text-lg">
                                                             {items.title.length > 21
                                                                  ? items.title.slice(0, 21)
@@ -132,7 +132,7 @@ const ArtCard = ({ arts, headline }) => {
                                                        </p>
                                                        <p className="font-semibold text-lg ">${items.price} </p>
                                                   </div>
-                                                  <p className="flex flex-wrap mt-2 gap-1  ">
+                                                  <p className="flex flex-wrap mt-3 gap-1  ">
                                                        {items?.categories?.map((category, index) => (
                                                             <p
                                                                  className="bg-gray-200 px-2 rounded-2xl gap-4 text-gray-600"
@@ -143,7 +143,7 @@ const ArtCard = ({ arts, headline }) => {
                                                        ))}
                                                   </p>
                                              </Link>
-                                             <div className="flex justify-between items-center mt-3 mb-2">
+                                             <div className="flex justify-between items-center mt-4 mb-2">
                                                   {showFavIcon[items._id] ? (
                                                        <MdFavorite
                                                             onClick={(e) => handleFavIcon(e, items._id, items)}
