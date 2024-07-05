@@ -30,6 +30,7 @@ const ArtCard = ({ arts, headline }) => {
      // Get the current state of the item
      const cartItems = useSelector((state) => state.cart.items);
 
+
      const [showSpinner, setShowSpinner] = useState(false);
      const [spinnerBtnId, setSpinnerBtnId] = useState();
      const [showShimmer, setShowShimmer] = useState(true);
@@ -51,7 +52,7 @@ const ArtCard = ({ arts, headline }) => {
 
           const itemExist = cartItems.find((cartItem) => cartItem.id === id);
           if (itemExist) {
-               alert("Item Exist");
+               alert("Item Already added to cart");
           } else {
                dispatch(addToCart(item));
                setTimeout(() => {

@@ -49,7 +49,7 @@ const Shop = () => {
      // for displaying the search items only
      const { searchTerm } = useContext(SearchContext);
 
-     const filteredArts = arts.filter(
+     const filteredArts = arts?.filter(
           (item) =>
                item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                item.categories.some((category) => category.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -64,14 +64,13 @@ const Shop = () => {
      };
 
      return (
-          <div className="px-3 md:px-10 bg-gray-100">
+          <div className="px-3 md:px-10 h-full bg-gray-100">
              <ShopHeading/>
                {showShimmer ? (
                     <ShimmerSimpleGallery card imageHeight={240} col={4} row={5} caption />
                ) : (
                     <div className="grid gap-3 mb-8 mt-4 lg:grid-cols-4 sm:grid-cols-2 md:grid-row-3 grid-cols-1">
-                         {filteredArts?.map((item, index) => {
-                              return (
+                         {filteredArts && filteredArts.length> 0 ? filteredArts?.map((item, index) =>  (
                                    <div class="w-full px-3 py-2 max-w-sm bg-white border border-gray-100 rounded-lg shadow dark:bg-white group text-blue-950">
                                         <Link to={`/art/${item._id}`} key={index}>
                                              <a href="#">
@@ -148,8 +147,11 @@ const Shop = () => {
                                              </button>
                                         </div>
                                    </div>
-                              );
-                         })}
+                              )
+                         ) : <div className=" h-[100%] bg-gray-100">
+                              <p className="text-black text-center"><span className="text-red-500">Searched Items</span> is not Existed</p>
+                              </div>
+                              } 
                     </div>
                )}
           </div>

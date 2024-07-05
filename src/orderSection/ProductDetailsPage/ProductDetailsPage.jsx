@@ -31,12 +31,12 @@ const ProductDetailsPage = () => {
      ];
      const navigate = useNavigate();
      const handleRedirectToCart = (event, itemId) => {
-          event.preventDefault()
+          event.preventDefault();
           navigate(`/antique/cart/${itemId}`);
      };
      return (
           <section>
-               <div className="mx-0 px-3 md:px-0 md:mx-28 mt-5 ">
+               <div className="mx-0 px-4 md:px-0 md:mx-28 mt-5 ">
                     <ol class="inline-flex items-center  cursor-pointer">
                          {productDetailBreadCrumbs.map((item, index) => (
                               <Link to={item.path}>
@@ -57,29 +57,31 @@ const ProductDetailsPage = () => {
                          </div>
                          <div className="md:w-1/2">
                               <h2 className="text-xl mt-3 md:mt-0 md:text-4xl font-semibold">{title}</h2>
-                             <div className="flex justify-between md:flex md:flex-col md:justify-normal">
-                             <div className="inline-flex items-center mt-3 mb-3">
-                                   {seller.rating ? (
-                                        <>
-                                             <FaStar className="text-[#FFD700]" /> <FaStar className="text-[#FFD700]" />{" "}
-                                             <FaStar className="text-[#FFD700]" /> <FaStar className="text-[#FFD700]" />{" "}
-                                             <FaStar className="text-[#FFD700]" />{" "}
-                                        </>
-                                   ) : (
-                                        ""
-                                   )}
-                                   <span>(122)</span>
+                              <div className="flex justify-between md:flex md:flex-col md:justify-normal">
+                                   <div className="inline-flex items-center mt-3 mb-3">
+                                        {seller.rating ? (
+                                             <>
+                                                  <FaStar className="text-[#FFD700]" />{" "}
+                                                  <FaStar className="text-[#FFD700]" />{" "}
+                                                  <FaStar className="text-[#FFD700]" />{" "}
+                                                  <FaStar className="text-[#FFD700]" />{" "}
+                                                  <FaStar className="text-[#FFD700]" />{" "}
+                                             </>
+                                        ) : (
+                                             ""
+                                        )}
+                                        <span>(122)</span>
+                                   </div>
+                                   <div className="mt-3 md:mt-0 mb-3 md:mb-4  md:ml-0">
+                                        <span className="mr-3 text-blue-500 text-xl font-medium">${price}</span>
+                                        <span className=" text-blue-500 text-lg font-medium">{offer}%off</span>
+                                   </div>
                               </div>
-                              <div className="mt-3 md:mt-0 mb-3 md:mb-4  md:ml-0">
-                                   <span className="mr-3 text-blue-500 text-xl font-medium">${price}</span>
-                                   <span className=" text-blue-500 text-lg font-medium">{offer}%off</span>
-                              </div>
-                             </div>
                               <p>{description}</p>
                               <div className="flex  space-x-2 my-8">
-                                   <p className="mr-4"> Materials:</p>
+                                   <p className="mr-[19px]"> Materials:</p>
                                    {materials.map((item, index) => (
-                                        <span className="bg-black hover:bg-blue-500 duration-300 text-white px-4 py-[2px] cursor-pointer">
+                                        <span className="bg-black hover:bg-blue-500 duration-300 text-white px-2 md:px-4 py-[2px] cursor-pointer">
                                              {item}
                                         </span>
                                    ))}
@@ -89,13 +91,25 @@ const ProductDetailsPage = () => {
                                    <Dimensions dimensions={dimensions} />
                               </div>
                               <div className="mt-10 flex justify-center md:flex-none md:justify-normal">
-                                   <button className="bg-blue-600 hover:bg-blue-800 duration-300 py-2 px-16 rounded-md text-white" onClick={(event)=> user ? handleRedirectToCart(event, _id) : navigate('/login')}>Add to cart</button>
+                                   <button
+                                        className="bg-blue-600 hover:bg-blue-800 duration-300 py-2 w-48 md:w-full  rounded-md text-white"
+                                        onClick={(event) => (user ? handleRedirectToCart(event, _id) : navigate("/login"))}
+                                   >
+                                        Add to cart
+                                   </button>
                               </div>
 
                               <ul className="inline-flex mt-6 mb-3 md:mb-0">
                                    <strong className="mr-2">Category:</strong>
                                    {categories.map((item, index) => {
-                                        return <li key={index}>{item.concat(" ", ",")} </li>;
+                                        const isLastItem = index === categories.length - 1;
+                                        return (
+                                             <li key={index}>
+                                                  {" "}
+                                                  {item}
+                                                  {!isLastItem && ", "}{" "}
+                                             </li>
+                                        );
                                    })}
                               </ul>
                          </div>
