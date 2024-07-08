@@ -160,7 +160,7 @@ const ProductDetailsPage = () => {
                                         <button
                                              className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-800 duration-300 py-2 w-48 rounded-md text-white"
                                              onClick={(event) =>
-                                                  user ? handleRedirectToCart(event, _id) : navigate("/login")
+                                                  user ? navigate('/checkout') : navigate("/login")
                                              }
                                         >
                                              <AiOutlineThunderbolt className="mr-1" />

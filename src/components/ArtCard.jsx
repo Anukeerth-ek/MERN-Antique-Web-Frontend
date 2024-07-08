@@ -22,7 +22,8 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { GiShoppingCart } from "react-icons/gi";
 import { WishlistContext } from "../contexts/WishlistContext";
 
-const ArtCard = ({ arts, headline }) => {
+const ArtCard = ({ arts, headline, headlineIcon}) => {
+
      const dispatch = useDispatch();
      // Redirect to cart page when active
      const navigate = useNavigate();
@@ -115,7 +116,7 @@ const ArtCard = ({ arts, headline }) => {
                          >
                               {arts?.map((items) => (
                                    <SwiperSlide key={items._id}>
-                                        <div className="px-3 py-2 bg-white border-gray-200 w-auto group ">
+                                        <div className="px-3 py-2 bg-white border-gray-200 w-auto group shadow-lg">
                                              <Link to={`/art/${items._id}`}>
                                                   <div className="min-w-[250px] md:w-full ">
                                                        <img

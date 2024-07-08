@@ -18,6 +18,7 @@ import { fetchAntiqueByCategory } from "../home/FetchAntiqueByCategory";
 import ProductDetailsPage from "../orderSection/ProductDetailsPage/ProductDetailsPage";
 import Cart from "../orderSection/cart/Cart";
 import WishList from "../components/WishList";
+import Checkout from "../orderSection/checkout/Checkout";
 
 const router = createBrowserRouter([
      {
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
                {
                     path: "/cart",
                     element: <Cart />,
+             
+               },
+               {
+                    path: "/checkout",
+                    element: <Checkout />,
              
                },
                {

@@ -2,7 +2,11 @@ import { useEffect, useState } from "react"
 import ArtCard from "../components/ArtCard"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import { TbCategory } from "react-icons/tb";
 const FreshRecommendation = () => {
+  const icon = TbCategory
+
+
     const [arts, setArts] = useState([])
    
     useEffect(()=> {
@@ -12,7 +16,7 @@ const FreshRecommendation = () => {
   return (
     <div className="bg-gray-100 py-3">
        
-      <ArtCard arts={arts} headline="Fresh recommendations"/>
+      <ArtCard arts={arts} headline="Fresh recommendations" />
      
     </div>
   )
