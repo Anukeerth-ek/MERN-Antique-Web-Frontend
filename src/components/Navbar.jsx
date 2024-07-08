@@ -113,7 +113,7 @@ const Navbar = () => {
                                         </span>
                                    )}
                                    {showUserInfo && (
-                                        <div className="absolute top-12 -right-16 bg-white shadow-lg rounded-lg z-10">
+                                        <div className="absolute top-12 -right-9 bg-white shadow-lg rounded-lg z-10">
                                              <UserDetails />
                                         </div>
                                    )}
@@ -121,15 +121,15 @@ const Navbar = () => {
                          )}
 
                          {/* Favourite icon. This will display only when user logged in */}
-                         {user && <Link to="/wishlist"><div className="hidden lg:block text-lg cursor-pointer">
+                         {/* {user && <Link to="/wishlist"><div className="hidden lg:block text-lg cursor-pointer">
                                    <MdFavoriteBorder className="text-2xl"/>
-                              </div></Link>}
+                              </div></Link>} */}
                          {/* cart icons */}
-                        {user &&  <Link to="/cart" className="hidden lg:block">
+                        {/* {user &&  <Link to="/cart" className="hidden lg:block">
                               <div>
                                    <GiShoppingCart className="text-2xl cursor-pointer" />
                               </div>
-                         </Link>}
+                         </Link>} */}
                          {/* Hamburger for mobile view */}
                          <div className="block md:block lg:hidden">
                               <button
