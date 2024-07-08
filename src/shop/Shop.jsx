@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
 import { BsShop } from "react-icons/bs";
 import { AuthContext } from "../contexts/AuthProvider";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/AntiqueSlice";
 import { ThreeDots } from "react-loader-spinner";
 import { SearchContext } from "../contexts/SearchContext";
@@ -21,6 +21,7 @@ const Shop = () => {
      const [showSpinner, setShowSpinner] = useState(false);
      const [showFavIcon, setShowFavIcon] = useState({});
      const dispatch = useDispatch();
+     const cartItems = useSelector((state) => state.cart.items);
 
      useEffect(() => {
           fetch("https://antique-web.onrender.com/all-arts")
@@ -32,12 +33,21 @@ const Shop = () => {
 
      const handleRedirectToCart = (id, image, title, price) => {
           const item = { id, image, title, price };
-          dispatch(addToCart(item));
-          setTimeout(() => {
-               navigate("/cart");
-          }, 1800);
-          setSpinnerBtnId(id);
-          setShowSpinner(true);
+          const itemExist = cartItems.find((cartItem) => cartItem.id === id);
+          
+          if(itemExist) {
+               alert("Item already added to cart")
+          }
+          else {
+               dispatch(addToCart(item));
+               setTimeout(() => {
+                    navigate("/cart");
+               }, 1000);
+               setSpinnerBtnId(id);
+               setShowSpinner(true);
+          }
+
+          
      };
 
      useEffect(() => {

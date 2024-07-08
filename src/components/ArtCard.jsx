@@ -57,7 +57,7 @@ const ArtCard = ({ arts, headline }) => {
                dispatch(addToCart(item));
                setTimeout(() => {
                     navigate(`/cart`);
-               }, 1800);
+               }, 1000);
                setSpinnerBtnId(id);
                setShowSpinner(true);
           }
