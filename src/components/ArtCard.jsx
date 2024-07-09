@@ -67,15 +67,6 @@ const ArtCard = ({ arts, headline, headlineIcon}) => {
      // check wheather user is logged in or not
      const { user, loading } = useContext(AuthContext);
 
-     // const handleFavIcon = (e, itemId, items) => {
-     //      e.preventDefault();
-     //      setShowFavIcon((prevFavorites) => ({
-     //           ...prevFavorites,
-     //           [itemId]: !prevFavorites[itemId],
-     //      }));
-     //      addToWishlist(items);
-     //      console.log("from artcard", items);
-     // };
 
      return (
           <div className="mx-4 lg:mx-20">
