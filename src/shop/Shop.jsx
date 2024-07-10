@@ -11,6 +11,7 @@ import { addToCart } from "../redux/AntiqueSlice";
 import { ThreeDots } from "react-loader-spinner";
 import { SearchContext } from "../contexts/SearchContext";
 import { MdFavorite } from "react-icons/md";
+import { WishlistContext } from "../contexts/WishlistContext";
 import ShopHeading from "./ShopHeading";
 
 const Shop = () => {
@@ -19,7 +20,7 @@ const Shop = () => {
      const { user, loading } = useContext(AuthContext);
      const [spinnerBtnId, setSpinnerBtnId] = useState();
      const [showSpinner, setShowSpinner] = useState(false);
-     const [showFavIcon, setShowFavIcon] = useState({});
+     // const [showFavIcon, setShowFavIcon] = useState({});
      const dispatch = useDispatch();
      const cartItems = useSelector((state) => state.cart.items);
 
@@ -65,14 +66,16 @@ const Shop = () => {
                item.categories.some((category) => category.toLowerCase().includes(searchTerm.toLowerCase()))
      );
      // handle fav section
-     const handleFavIcon = (e, itemId) => {
-          e.preventDefault();
-          setShowFavIcon((prevFavorites) => ({
-               ...prevFavorites,
-               [itemId]: !prevFavorites[itemId],
-          }));
-     };
+     // const handleFavIcon = (e, itemId) => {
+     //      e.preventDefault();
+     //      setShowFavIcon((prevFavorites) => ({
+     //           ...prevFavorites,
+     //           [itemId]: !prevFavorites[itemId],
+     //      }));
+     // };
 
+     //  WISH LIST
+     const { showFavIcon, handleFavIcon } = useContext(WishlistContext);   
      return (
           <div className="px-3 md:px-10 h-full bg-gray-100">
              <ShopHeading/>
@@ -116,13 +119,13 @@ const Shop = () => {
                                         <div className="flex justify-between items-center mt-4 pb-2">
                                              {showFavIcon[item._id] ? (
                                                   <MdFavorite
-                                                       onClick={(e) => handleFavIcon(e, item._id)}
+                                                       onClick={(e) => handleFavIcon(e, item._id, item)}
                                                        className="rounded-md text-white bg-red-500  text-[35px] hover:scale-90  p-[2px] cursor-pointer duration-300"
                                                   />
                                              ) : (
                                                   <CiHeart
                                                        className="bg-black hover:bg-blue-600 min-h-full cursor-pointer text-white text-[35px] rounded-md p-[2px] hover:rounded-md duration-300"
-                                                       onClick={(e) => handleFavIcon(e, item._id)}
+                                                       onClick={(e) => handleFavIcon(e, item._id, item)}
                                                   />
                                              )}
                                              <button
