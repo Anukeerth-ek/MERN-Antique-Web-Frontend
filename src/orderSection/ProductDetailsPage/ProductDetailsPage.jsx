@@ -11,6 +11,7 @@ import { AiOutlineThunderbolt } from "react-icons/ai";
 import { GiShoppingCart } from "react-icons/gi";
 import { addToCart } from "../../redux/AntiqueSlice";
 import { useDispatch } from "react-redux";
+import Review from "./Review";
 
 const ProductDetailsPage = () => {
      const { _id, image, title, description, seller, offer, price, materials, dimensions, categories } = useLoaderData();
@@ -171,7 +172,7 @@ const ProductDetailsPage = () => {
                          </div>
                     </div>
                </div>
-
+               <Review/>
                <div className="mt-6 md:mt-1">
                     <ArtCard arts={categoryItems} headline="View Similar Products" />
                </div>
