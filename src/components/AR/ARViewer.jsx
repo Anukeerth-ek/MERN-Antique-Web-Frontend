@@ -1,7 +1,7 @@
 // src/ARViewer.js
 import React, { useEffect } from 'react';
 import * as THREE from 'three';
-import { ARjs } from 'ar.js';
+import {ARjs} from 'ar.js'
 
 const ARViewer = () => {
   useEffect(() => {
