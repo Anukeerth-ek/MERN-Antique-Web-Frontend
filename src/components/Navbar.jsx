@@ -61,9 +61,9 @@ const Navbar = () => {
                          {/* Name */}
                          <Link to="/">
                           
-                              <h3 className=" text-2xl  text-blue-600 flex">
+                              <h3 className="text-xl md:text-2xl  text-blue-600 flex">
                                    Antique
-                                   <span className=" ml-1 relative font-semibold text-2xl text-black ">Vision</span>{" "}
+                                   <span className=" ml-1 relative font-semibold text-xl md:text-2xl text-black ">Vision</span>{" "}
                                    <GiNightVision className="absolute left-28 md:left-36 top-1" />{" "}
                               </h3>
                          </Link>

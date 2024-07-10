@@ -89,10 +89,10 @@ const ProductDetailsPage = () => {
                                    />
                               ))}
                          </div>
-                         <div className="md:h-[550px] md:w-[600px] mr-10">
-                              <img src={image} className="min-w-full h-full md:relative rounded-md" />
+                         <div className="md:h-[550px] md:w-[500px] mr-10">
+                              <img src={image} className="min-w-full h-full object-contain md:relative rounded-md" />
                          </div>
-                         <div className="md:w-[580px]">
+                         <div className="md:w-[650px]">
                               <h2 className="text-xl mt-3 md:mt-0 md:text-4xl font-semibold">{title}</h2>
                               <div className="flex justify-between md:flex md:flex-col md:justify-normal">
                                    <div className="inline-flex items-center mt-3 mb-3">
@@ -106,7 +106,7 @@ const ProductDetailsPage = () => {
                                         )}
                                    </div>
                                    <div className="mt-3 md:mt-0 mb-3 md:mb-4 md:ml-0">
-                                        <span className="mr-3 text-blue-500 text-2xl font-medium">${price}</span>
+                                        <span className="mr-3 text-3xl font-medium">${price}</span>
                                         <span className="text-blue-500 text-lg font-medium">{offer}% off</span>
                                    </div>
                               </div>
@@ -144,9 +144,9 @@ const ProductDetailsPage = () => {
                               </ul>
                               <div className="flex  md:mt-3 ">
                                    {/* Add to cart */}
-                                   <div className="mt-5 flex w-[170px] md:w-1/2  ">
+                                   <div className="mt-5 mr-2 md:mr-3 flex w-[170px] md:w-[300px] ">
                                         <button
-                                             className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-800 duration-300 py-2 w-48  rounded-md text-white"
+                                             className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-800 duration-300 py-2 md:w-full rounded-md text-white"
                                              onClick={() =>
                                                   user ? handleRedirectToCart( _id, image, title, price ) : navigate("/login")
                                              }
@@ -156,9 +156,9 @@ const ProductDetailsPage = () => {
                                         </button>
                                    </div>
                                    {/* Buy Now */}
-                                   <div className="mt-5 flex w-[170px] md:w-1/2 ">
+                                   <div className="mt-5 flex w-[170px] md:w-[300px] ">
                                         <button
-                                             className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-800 duration-300 py-2 w-48 rounded-md text-white"
+                                             className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-800 duration-300 py-2 md:w-full rounded-md text-white"
                                              onClick={(event) =>
                                                   user ? navigate('/checkout') : navigate("/login")
                                              }
