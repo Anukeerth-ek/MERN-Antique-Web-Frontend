@@ -106,7 +106,7 @@ const Navbar = () => {
                          {user && (
                               <div className="relative" onClick={() => setShowUserInfo(!showUserInfo)}>
                                    {user && user.photoURL ? (
-                                        <img src={user.photoURL} alt="User" className="w-8 h-8 rounded-full" />
+                                        <img src={user.photoURL} alt="User" className="w-8 h-8 rounded-full cursor-pointer" />
                                    ) : (
                                         <span className="text-2xl cursor-pointer" title="Account">
                                              <FaRegCircleUser />

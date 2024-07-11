@@ -114,7 +114,7 @@ const ProductDetailsPage = () => {
                               <p>{description}</p>
                               <div className="flex space-x-2 my-6">
                                    <p className="mr-[19px]">Materials:</p>
-                                   {materials.map((item, index) => (
+                                   {materials?.map((item, index) => (
                                         <span
                                              key={index}
                                              className="bg-black hover:bg-blue-500 duration-300 text-white px-2 md:px-4 py-[2px] cursor-pointer"

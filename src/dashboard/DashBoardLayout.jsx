@@ -20,9 +20,9 @@ const DashBoardLayout = () => {
   };
   return (
     <div className='flex gap-4 flex-col md:flex-row bg-gray-100'>
-      {/* <SideBar/>
-      <Outlet/> */}
-      {showMaintenance()}
+      <SideBar/>
+      <Outlet/>
+      {/* {showMaintenance()} */}
     </div>
   )
 }
