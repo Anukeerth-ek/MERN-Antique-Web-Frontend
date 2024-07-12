@@ -1,3 +1,4 @@
+import Accordian from "../components/Accordian"
 import Banner from "./Banner"
 import FavAntiques from "./FavAntiques"
 import FreshRecommendation from "./FreshRecommendation"
@@ -12,6 +13,7 @@ const Home = () => {
       <FavAntiques/>
       <MoreAntiques/>
       <PromoBanner/>
+      <Accordian/>
     </div>
   )
 }
