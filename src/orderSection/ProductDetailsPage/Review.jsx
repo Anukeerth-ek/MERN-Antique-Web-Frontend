@@ -34,7 +34,13 @@ const Review = () => {
                   <p className='text-gray-600'>{item.Time}</p>
                 </div>
                 <div className='w-3/4'>
-                 <p> {item.Rating}</p>
+                <span className='text-[#FFD700] inline-flex items-center'> 
+                 <p className='text-black mr-1'> {item.Rating}</p>
+                 <FaStar/>
+                 <FaStar/>
+                 <FaStar/>
+                 <FaStar/>
+                 <FaStar/></span>
                  <h3 className='font-bold text-lg'>{item.Review_Title}</h3>
                  <p className='text-gray-600'>{item.Review_Description}</p>
                 </div>
