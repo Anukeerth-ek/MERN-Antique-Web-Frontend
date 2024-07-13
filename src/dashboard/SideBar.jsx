@@ -15,8 +15,8 @@ const SideBar = () => {
 
      return (
           <aside>
-               <div className={`duration-500 ${closeSidebar ? ' w-28' : ''}`}>
-                    <ul className="bg-white pt-10 pb-5 pr-5 pl-5 duration-500">
+               <div className={`duration-500 ${closeSidebar ? ' w-28' : ' w-[350px]'}`}>
+                    <ul className="bg-white pt-10 pb-5 pl-5 duration-500">
                               <div className=" flex justify-between items-center mb-6">
                          <Link to="/">
                                   <div className="flex">
@@ -31,13 +31,13 @@ const SideBar = () => {
                                    <h3 className={` text-base font-bold ${closeSidebar ? 'hidden' : 'block'}`}>Hi, {user?.email.split('@')[0]}</h3>
                                   </div>
                          </Link>
-                                  { closeSidebar ?  <MdKeyboardArrowRight className=" text-2xl cursor-pointer" onClick={()=> setCloseSidebar(!closeSidebar)}/> : <MdOutlineKeyboardArrowLeft   className=" text-2xl cursor-pointer" onClick={()=> setCloseSidebar(!closeSidebar)}/>} 
+                                  { closeSidebar ?  <MdKeyboardArrowRight className=" text-3xl cursor-pointer" onClick={()=> setCloseSidebar(!closeSidebar)}/> : <MdOutlineKeyboardArrowLeft   className=" text-3xl cursor-pointer" onClick={()=> setCloseSidebar(!closeSidebar)}/>} 
                               </div>
                          {sideBar.map((item, index) => {
                               return (
                                    <Link to={item.path} key={index}>
                                         <p className={`text-gray-600 ml-2 text-xs font-semibold mb-2 ${closeSidebar ? ' invisible' : 'visible'}`}>{item.showFirstTitle && <span>OVERVIEW</span>}</p>
-                                        <p className={`text-gray-600 ml-2 text-xs font-semibold mb-2  `}>{item.showSecondTitle && <span className={`${closeSidebar ? 'invisible' : 'visible '}`}>ACCOUNTS</span>}</p>
+                                        <p className={`text-gray-600 ml-2 text-xs font-semibold mb-1  `}>{item.showSecondTitle && <span className={`${closeSidebar ? 'invisible' : 'visible '}`}>ACCOUNTS</span>}</p>
 
                                         <li
                                              className={`flex items-center gap-3 mb-[5px] cursor-pointer hover:bg-gray-200 rounded-md ${closeSidebar ? 'pl-1 pr-1 py-3' : 'pl-2 pr-8 py-2 '}  ${

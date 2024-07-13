@@ -11,6 +11,7 @@ import { CgLogOut } from "react-icons/cg";
 import { GrUpgrade } from "react-icons/gr";
 import { SiGoogledocs } from "react-icons/si";
 import { TbHelp } from "react-icons/tb";
+import { FaRegHeart } from "react-icons/fa6";
 
 // icons for userdetailsinfo
 
@@ -91,15 +92,15 @@ export const bannerSection = [
 ];
 
 export const sideBar = [
-     {
-          icons: MdOutlineDashboard,
-          title: "Dashboard",
-          marginBottom: false,
-          marginTop: false,
-          path: "/admin/dashboard",
-          showFirstTitle: true,
-          showSecondTitle: false,
-     },
+     // {
+     //      icons: MdOutlineDashboard,
+     //      title: "Dashboard",
+     //      marginBottom: false,
+     //      marginTop: false,
+     //      path: "/admin/dashboard",
+     //      showFirstTitle: true,
+     //      showSecondTitle: false,
+     // },
      {
           icons: MdOutlineCloudUpload,
           title: "Upload Antiques",
@@ -124,6 +125,15 @@ export const sideBar = [
           marginBottom: false,
           marginTop: false,
           showFirstTitle: false,
+          showSecondTitle: false,
+     },
+     {
+          icons: FaRegHeart,
+          title: "Wishlist",
+          marginBottom: false,
+          marginTop: false,
+          showFirstTitle: false,
+          path:"/wishlist",
           showSecondTitle: false,
      },
      {
@@ -176,6 +186,7 @@ export const sideBar = [
 
           showSecondTitle: false,
      },
+     
 ];
 
 export const favouriteAntiqueDescription = {
