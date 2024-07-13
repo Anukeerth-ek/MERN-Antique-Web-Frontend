@@ -284,7 +284,7 @@ const UploadAntiques = () => {
                          </div>
                     </div>
 
-                    <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 py-2 text-white">
+                    <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 rounded-md py-2 text-white">
                          Upload
                     </button>
                </form>

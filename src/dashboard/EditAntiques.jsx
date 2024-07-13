@@ -301,7 +301,7 @@ console.log(  antiqueMaterials)
                          </div>
                     </div>
 
-                    <button type="submit" className="mt-4 bg-blue-600 py-2 text-white rounded-md">
+                    <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 py-2 text-white rounded-md">
                          Update
                     </button>
                </form>
