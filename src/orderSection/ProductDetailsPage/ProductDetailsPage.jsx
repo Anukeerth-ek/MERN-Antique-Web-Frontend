@@ -172,10 +172,12 @@ const ProductDetailsPage = () => {
                          </div>
                     </div>
                </div>
-               <Review/>
-               <div className="mt-6 md:mt-1">
+              <div className="mx-16 mt-5">
+              <Review/>
+              </div>
+               {/* <div className="mt-6 md:mt-1">
                     <ArtCard arts={categoryItems} headline="View Similar Products" />
-               </div>
+               </div> */}
           </section>
      );
 };
