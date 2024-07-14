@@ -8,7 +8,7 @@ const UserDetails = () => {
     <div className=''>
         <div>
           {/* <p className="border-b-8 border-white relative" style={{ transform: 'translateX(-8px)', bottom: '-10px' }}></p> */}
-            <ul className='w-52 shadow-custom-shadow '>
+            <ul className='w-52  shadow-custom-shadow '>
             {userDetailsLinks.map((item, index)=> 
               
         

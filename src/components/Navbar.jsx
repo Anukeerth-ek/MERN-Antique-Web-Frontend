@@ -113,7 +113,7 @@ const Navbar = () => {
                                         </span>
                                    )}
                                    {showUserInfo && (
-                                        <div className="absolute top-12 -right-9 bg-white shadow-lg rounded-lg z-10">
+                                        <div className="absolute top-[52px] -right-9 bg-white shadow-lg rounded-lg z-10">
                                              <UserDetails />
                                         </div>
                                    )}

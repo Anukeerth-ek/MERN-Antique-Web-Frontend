@@ -19,6 +19,7 @@ import ProductDetailsPage from "../orderSection/ProductDetailsPage/ProductDetail
 import Cart from "../orderSection/cart/Cart";
 import WishList from "../components/WishList";
 import Checkout from "../orderSection/checkout/Checkout";
+import UserProfile from "../components/userDetails/UserProfile";
 
 const router = createBrowserRouter([
      {
@@ -48,63 +49,71 @@ const router = createBrowserRouter([
                {
                     path: "/cart",
                     element: <Cart />,
-             
                },
                {
                     path: "/checkout",
                     element: <Checkout />,
-             
+               },
+               {
+                    path:'/userProfile',
+                    element: <UserProfile/>
                },
                {
                     path: "/art/:id",
-                    element: <ProductDetailsPage/>,
-                    loader:({params})=> fetch(`https://antique-web.onrender.com/art/${params.id}`),
-                    
+                    element: <ProductDetailsPage />,
+                    loader: ({ params }) => fetch(`https://antique-web.onrender.com/art/${params.id}`),
                },
                {
                     path: "/all-arts/:category",
                     element: <CategorizedAntiques />,
                     loader: fetchAntiqueByCategory,
-                  },
-                  
+               },
+
           ],
      },
      {
-          path: '/admin/dashboard',
-          element: <DashBoardLayout/>,
+          path: "/admin/dashboard",
+          element: <DashBoardLayout />,
           children: [
                {
-                    path:'/admin/dashboard',
-                    element: <PrivateRoute><DashBoard/></PrivateRoute>
+                    path: "/admin/dashboard",
+                    element: (
+                         <PrivateRoute>
+                              <DashBoard />
+                         </PrivateRoute>
+                    ),
                },
                {
-                    path:'/admin/dashboard/upload',
-                    element: <PrivateRoute><UploadAntiques/></PrivateRoute>
+                    path: "/admin/dashboard/upload",
+                    element: (
+                         <PrivateRoute>
+                              <UploadAntiques />
+                         </PrivateRoute>
+                    ),
                },
                {
-                    path:'/admin/dashboard/manage',
-                    element: <ManageAntiques/>
+                    path: "/admin/dashboard/manage",
+                    element: <ManageAntiques />,
                },
                {
-                    path:'/admin/dashboard/edit-antiques/:id',
-                    element: <EditAntiques/>,
-                    loader: ({params})=> fetch(`https://antique-web.onrender.com/art/${params.id}`)
+                    path: "/admin/dashboard/edit-antiques/:id",
+                    element: <EditAntiques />,
+                    loader: ({ params }) => fetch(`https://antique-web.onrender.com/art/${params.id}`),
                },
-               
-          ]
+          ],
      },
      {
-      path: 'sign-up',
-      element: <Signup/>
+          path: "sign-up",
+          element: <Signup />,
      },
      {
-          path:'login',
-          element: <Login/>
+          path: "login",
+          element: <Login />,
      },
      {
-          path:"logout",
-          element: <Logout/>
-     }
+          path: "logout",
+          element: <Logout />,
+     },
 ]);
 
 export default router;
