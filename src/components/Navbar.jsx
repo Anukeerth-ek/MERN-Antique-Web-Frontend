@@ -89,7 +89,7 @@ const Navbar = () => {
                                              activeclassname="text-red-500 underline" // This class will be applied when NavLink is active
                                              className={({ isActive }) => (isActive ? "text-blue-700 " : "")}
                                         >
-                                             <li className=" hover:text-blue-700 hover:bg-gray-200 px-3 py-1 hover:shadow-lg rounded-md duration-300 ">
+                                             <li className=" hover:text-blue-700 hover:bg-gray-200 px-3  py-1 hover:shadow-lg rounded-md duration-300 ">
                                                   {link}
                                              </li>
                                         </NavLink>
