@@ -7,6 +7,7 @@ import { MdPayments } from "react-icons/md";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { RiAccountPinBoxFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
+import { AiOutlineLogout } from "react-icons/ai";
 const UserProfileSideBar = () => {
     const {user} = useContext(AuthContext)
      return (
@@ -61,9 +62,9 @@ const UserProfileSideBar = () => {
                               ))}
                          </ul>
                          <div className="inline-flex items-center py-3">
-                         <FaRegUserCircle  className="ml-6 text-2xl  text-blue-600 "/>
-                         <button className="flex items-center font-semibold  text-base text-gray-500 text-center pl-8 ">
-                               Logout
+                         <AiOutlineLogout  className="ml-4 text-2xl  text-blue-600  -rotate-90"/>
+                         <button className="flex items-center font-semibold  text-base text-gray-500 text-center pl-6 ">
+                               LOGOUT
                          </button>
                          
                          </div>
