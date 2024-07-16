@@ -61,7 +61,7 @@ const ManageAntiques = () => {
                                              </th>
                                              <th
                                                   scope="row"
-                                                  className="px-6 py-4 font-medium whitespace-nowrap text-white"
+                                                  className="px-6 py-4 font-medium whitespace-nowrap text-white hover:text-blue-600"
                                              >
                                                   {item.title}
                                              </th>

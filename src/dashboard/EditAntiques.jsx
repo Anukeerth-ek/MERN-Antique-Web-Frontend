@@ -12,7 +12,7 @@ const EditAntiques = () => {
           antiqueMaterials,
           seller: { name: sellerName, contact: sellerContact, location: sellerLocation },
      } = useLoaderData();
-console.log(  antiqueMaterials)
+
      // CATEGORIES
      const antiqueCategories = ["Original Arts", "Jewelery", "Books", "Home Decor", "Vintage Cars", "Furniture", "Musical"];
 
@@ -85,7 +85,7 @@ console.log(  antiqueMaterials)
           setMaterials([...materials, ""]);
      };
 
- 
+   alert( materials)
 
      return (
           <div className=" bg-white pl-4 pt-8 w-full">
