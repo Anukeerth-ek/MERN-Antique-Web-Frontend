@@ -15,7 +15,7 @@ const SideBar = () => {
 
      return (
           <aside>
-               <div className={`duration-500 ${closeSidebar ? ' w-28' : ' w-[350px]'}`}>
+               <div className={`duration-500 ${closeSidebar ? ' w-28' : ' w-[310px]'}`}>
                     <ul className="bg-white pt-10 pb-5 pl-5 duration-500">
                               <div className=" flex justify-between items-center mb-6">
                          <Link to="/">
@@ -40,13 +40,13 @@ const SideBar = () => {
                                         <p className={`text-gray-600 ml-2 text-xs font-semibold mb-1  `}>{item.showSecondTitle && <span className={`${closeSidebar ? 'invisible' : 'visible '}`}>ACCOUNTS</span>}</p>
 
                                         <li
-                                             className={`flex items-center gap-3 mb-[5px] cursor-pointer duration-300 hover:bg-gray-200 rounded-md ${closeSidebar ? 'pl-1 pr-1 py-3' : 'pl-2 pr-8 py-2 '}  ${
+                                             className={`flex items-center gap-3 mb-[5px] cursor-pointer duration-300 hover:bg-gray-200  rounded-md ${closeSidebar ? 'px-4 py-3 mr-10' : 'pl-2 py-2 mr-2'}  ${
                                                   item.marginBottom ? " mb-12   " : ""
                                              } ${item.marginTop ? " mt-1" : ""}`}
                                         >
                                              <item.icons className=" text-xl items-center" />
 
-                                             <span className={`${closeSidebar ? 'hidden pl-2 pr-8 py-2 duration-500' : 'block'}`}>{item.title}</span>
+                                             <span className={`${closeSidebar ? 'hidden pl-2 pr-8 py-2 duration-500 ' : 'block '}`}>{item.title}</span>
                                         </li>
                                    </Link>
                               );
