@@ -77,13 +77,13 @@ const UploadAntiques = () => {
 
    
      return (
-          <div className="pt-10 bg-white px-4 duration-300 w-full">
+          <div className="pt-10 bg-white px-4 duration-300   w-full">
                <h2 className="text-3xl font-bold  mb-5">Upload an Antique</h2>
                <form className="flex lg:w-[1100px] flex-col flex-wrap gap-4" onSubmit={handleAntiqueSubmission}>
                     {/* first category */}
                     <div className="flex gap-8">
                          {/*Title Here  */}
-                         <div className="lg:w-1/2">
+                         <div className="lg:w-1/2 ">
                               <div className="relative ">
                                    <input
                                         type="text"
