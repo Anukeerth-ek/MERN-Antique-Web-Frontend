@@ -112,7 +112,7 @@ const ArtCard = ({ arts, headline, headlineIcon}) => {
                                                   <div className="min-w-[250px] md:w-full ">
                                                        <img
                                                             src={items.image}
-                                                            className="w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg "
+                                                            className="w-full h-auto sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg "
                                                        />
                                                   </div>
 
