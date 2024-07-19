@@ -12,7 +12,7 @@ const UserProfileSideBar = () => {
     const {user} = useContext(AuthContext)
      return (
           <aside>
-               <div className="w-[300px]">
+               <div className="w-[300px] bg-gray-100">
                     <div className="flex items-center bg-white my-3 py-3 px-3">
                          <img src={user.photoURL ? user.photoURL : ''} alt="userImage" className="w-11 h-11 rounded-full" />
                          <span className="ml-3 font-normal text-lg">Hello,</span>

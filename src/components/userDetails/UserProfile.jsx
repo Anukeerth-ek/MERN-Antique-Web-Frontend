@@ -10,7 +10,7 @@ const UserProfile = () => {
      //   )
      return (
           <section className="flex bg-gray-100">
-            <div className=' ml-32 w-[300px] flex '>
+            <div className=' ml-32 w-[300px] flex bg-gray-200'>
             <UserProfileSideBar/>
             
             </div>
