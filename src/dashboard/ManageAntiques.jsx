@@ -51,6 +51,7 @@ const ManageAntiques = () => {
                          </thead>
                          <tbody>
                               {allAntiques.map((item, index) => {
+                                   
                                    return (
                                         <tr className=" border-b bg-gray-600 dark:border-gray-700">
                                              <th

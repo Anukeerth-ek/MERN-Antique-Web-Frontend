@@ -9,16 +9,20 @@ const EditAntiques = () => {
           image,
           categories: selectedCategories,
           description,
-          antiqueMaterials,
-          seller: { name: sellerName, contact: sellerContact, location: sellerLocation },
+          materials,
+          seller = { name: sellerName, contact: sellerContact, location: sellerLocation },
      } = useLoaderData();
 
+     const totalMaterials = materials.toString();
+     console.log("materials", useLoaderData());
+     console.log("items", selectedCategories.toString());
+     const antiqueCategory = selectedCategories.toString();
      // CATEGORIES
-     const antiqueCategories = ["Original Arts", "Jewelery", "Books", "Home Decor", "Vintage Cars", "Furniture", "Musical"];
+     const antiqueCategories = ["Original Arts", "Jewelry", "Books", "Vintage", "Home Decor", "Decor", "Vintage Cars", "Furniture", "Musical Instruments", "Wall Arts"];
 
      //  STATES are here
      const [selectedAntiqueCategory, setSelectedAntiqueCategory] = useState("");
-     const [materials, setMaterials] = useState([""]);
+     const [antiqueMaterials, setAntiqueMaterials] = useState([""]);
 
      //  SELECTED VALUE
      const handleChangeSelectedValue = (event) => {
@@ -35,7 +39,6 @@ const EditAntiques = () => {
           const image = form.image.value;
 
           const description = form.description.value;
-         
 
           const selectedCategories = Array.from(form.categories.options)
                .filter((option) => option.selected)
@@ -59,37 +62,33 @@ const EditAntiques = () => {
                },
           };
 
-              //  update an antique item
-     fetch(`https://antique-web.onrender.com/art/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-
-      },
-      body:JSON.stringify(updateAntiqueObj)
-     })
-          .then((res) => res.json())
-          .then((data) => {
-               alert("Antique updated suceessfully");
-              
-          });
+          //  update an antique item
+          fetch(`https://antique-web.onrender.com/art/${id}`, {
+               method: "PATCH",
+               headers: {
+                    "Content-Type": "application/json",
+               },
+               body: JSON.stringify(updateAntiqueObj),
+          })
+               .then((res) => res.json())
+               .then((data) => {
+                    alert("Antique updated suceessfully");
+               });
      };
 
      const handleMaterialChange = (index, event) => {
           const newMaterials = [...materials];
           newMaterials[index] = event.target.value;
-          setMaterials(newMaterials);
+          setAntiqueMaterials(newMaterials);
      };
 
      const addMaterialField = () => {
-          setMaterials([...materials, ""]);
+          setAntiqueMaterials([...materials, ""]);
      };
-
-   alert( materials)
 
      return (
           <div className=" bg-white pl-4 pt-8 w-full">
-               <h2 className="text-3xl font-bold  mb-5">Update an Antique</h2>
+               <h2 className="text-3xl font-bold  mb-5">Update your Antique</h2>
                <form className="flex lg:w-[1100px] flex-col flex-wrap gap-4" onSubmit={handleAntiqueUpdate}>
                     {/* first category */}
                     <div className="flex gap-8">
@@ -168,7 +167,7 @@ const EditAntiques = () => {
                                         id="Inputstate"
                                         name="categories"
                                         className="w-full rounded"
-                                        value={selectedAntiqueCategory}
+                                        value={selectedAntiqueCategory ? selectedAntiqueCategory : antiqueCategory}
                                         onChange={handleChangeSelectedValue}
                                         
                                    >
@@ -188,29 +187,22 @@ const EditAntiques = () => {
                          {/*material  */}
                          <div className="lg:w-1/2">
                               <div className="form-group relative">
-                                   {materials.map((item, index) => (
-                                        <>
+                                   <>
                                         <input
-                                             key={index}
                                              type="text"
-                                             value={item}
-                                             onChange={(event) => handleMaterialChange(index, event)}
                                              required
                                              placeholder="Materials"
-                                             defaultValue={materials}
+                                             defaultValue={totalMaterials}
                                              className=" block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                         />
-                                           <label
-                                        htmlFor="materials"
-                                        value="materials"
-                                        className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-                                   >
-                                       materials
-                                   </label>
-
-                                        </>
-                                        
-                                   ))}
+                                        <label
+                                             htmlFor="materials"
+                                             value="materials"
+                                             className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                                        >
+                                             materials
+                                        </label>
+                                   </>
                               </div>
                          </div>
                          {/* location */}
@@ -223,6 +215,7 @@ const EditAntiques = () => {
                                         name="sellerLocation"
                                         className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 bg-white border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                         placeholder="seller Location"
+                                        defaultValue={seller.location}
                                    />
                                    <label
                                         htmlFor="sellerLocation"
@@ -247,6 +240,7 @@ const EditAntiques = () => {
                                         name="sellerName"
                                         className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                         placeholder="sellerName"
+                                        defaultValue={seller.name}
                                    />
                                    <label
                                         htmlFor="sellerName"
@@ -267,6 +261,7 @@ const EditAntiques = () => {
                                         name="sellerContact"
                                         className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                         placeholder="seller Contact"
+                                        defaultValue={seller.contact}
                                    />
                                    <label
                                         htmlFor="sellerContact"
@@ -301,7 +296,10 @@ const EditAntiques = () => {
                          </div>
                     </div>
 
-                    <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 py-2 text-white rounded-md">
+                    <button
+                         type="submit"
+                         className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 py-2 text-white rounded-md"
+                    >
                          Update
                     </button>
                </form>
