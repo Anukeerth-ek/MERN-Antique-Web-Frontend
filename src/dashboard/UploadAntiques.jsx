@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const UploadAntiques = () => {
-     const antiqueCategories = ["Original Arts", "Jewelery", "Books", "Home Decor", "Vintage Cars", "Furniture", "Musical"];
+     const antiqueCategories = ["Original Arts", "Jewelry", "Books", "Vintage", "Home Decor", "Decor", "Vintage Cars", "Furniture", "Musical Instruments", "Wall Arts"];
 
      const [selectedAntiqueCategory, setSelectedAntiqueCategory] = useState("");
      const [materials, setMaterials] = useState([""]);
@@ -284,7 +284,7 @@ const UploadAntiques = () => {
                          </div>
                     </div>
 
-                    <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 rounded-md py-2 text-white">
+                    <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 rounded-md py-[10px] text-white">
                          Upload
                     </button>
                </form>
