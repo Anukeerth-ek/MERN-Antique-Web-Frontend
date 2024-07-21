@@ -1,10 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUploadedAntique } from "../redux/AntiqueSlice";
 
 const UploadAntiques = () => {
-     const antiqueCategories = ["Original Arts", "Jewelry", "Books", "Vintage", "Home Decor", "Decor", "Vintage Cars", "Furniture", "Musical Instruments", "Wall Arts"];
+     const antiqueCategories = [
+          "Original Arts",
+          "Jewelry",
+          "Books",
+          "Vintage",
+          "Home Decor",
+          "Decor",
+          "Vintage Cars",
+          "Furniture",
+          "Musical Instruments",
+          "Wall Arts",
+     ];
 
      const [selectedAntiqueCategory, setSelectedAntiqueCategory] = useState("");
      const [materials, setMaterials] = useState([""]);
+     const dispatch = useDispatch();
 
      const handleChangeSelectedValue = (event) => {
           setSelectedAntiqueCategory(event.target.value);
@@ -20,8 +34,8 @@ const UploadAntiques = () => {
           const image = form.image.value;
 
           const description = form.description.value;
-         
-          const materials = form.materials.value
+
+          const materials = form.materials.value;
 
           const selectedCategories = Array.from(form.categories.options)
                .filter((option) => option.selected)
@@ -37,32 +51,30 @@ const UploadAntiques = () => {
                image,
                categories: selectedCategories,
                description,
-               materials,
+               materials: [],
                seller: {
                     name: sellerName,
                     contact: sellerContact,
                     location: sellerLocation,
                },
           };
-            //  fetching for uploading the data
+          //  fetching for uploading the data
+          console.log("uploaded data", antiqueObj);
 
-     fetch("https://antique-web.onrender.com/upload-arts",
-        {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(antiqueObj)
-        }
-     )
-          .then((res) => res.json())
-          .then((data) => {
-               alert("Antique added succesfully");
-               form.reset()
-          });
-        };
-         
-     
+          fetch("https://antique-web.onrender.com/upload-arts", {
+               method: "POST",
+               headers: {
+                    "Content-type": "application/json",
+               },
+               body: JSON.stringify(antiqueObj),
+          })
+               .then((res) => res.json())
+               .then((data) => {
+                    alert("Antique added succesfully");
+                    dispatch(addUploadedAntique(antiqueObj));
+                    form.reset();
+               });
+     };
 
      // material add section
      const handleMaterialChange = (index, event) => {
@@ -75,7 +87,6 @@ const UploadAntiques = () => {
           setMaterials([...materials, ""]);
      };
 
-   
      return (
           <div className="pt-10 bg-white px-4 duration-300   w-full">
                <h2 className="text-3xl font-bold  mb-5">Upload an Antique</h2>
@@ -126,6 +137,26 @@ const UploadAntiques = () => {
                     </div>
                     {/* second category */}
                     <div className="flex gap-8">
+                         {/* Offer */}
+                         <div className="lg:w-1/2">
+                              <div className="relative ">
+                                   <input
+                                        type="text"
+                                        id="price"
+                                        required
+                                        name="price"
+                                        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                        placeholder="rate"
+                                   />
+                                   <label
+                                        htmlFor="price"
+                                        value="price"
+                                        className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                                   >
+                                        Offer
+                                   </label>
+                              </div>
+                         </div>
                          {/*Image  */}
                          <div className="lg:w-1/2">
                               <div className="relative ">
@@ -146,7 +177,10 @@ const UploadAntiques = () => {
                                    </label>
                               </div>
                          </div>
+                    </div>
 
+                    {/* third category */}
+                    <div className="flex gap-8">
                          {/* category*/}
                          <div className="lg:w-1/2">
                               <div className="relative">
@@ -166,37 +200,57 @@ const UploadAntiques = () => {
                                    </select>
                               </div>
                          </div>
-                    </div>
-
-                    {/* third category */}
-                    <div className="flex gap-8">
                          {/*material  */}
                          <div className="lg:w-1/2">
                               <div className="form-group relative ">
                                    {materials.map((material, index) => (
-                                       <>
-                                        <input
-                                             key={index}
-                                             type="text"
-                                             id="materials"
-                                             name="materials"
-                                             value={material}
-                                             onChange={(event) => handleMaterialChange(index, event)}
-                                             required
-                                             placeholder="Materials"
-                                             className=" block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        />
-                                       <label
-                                        htmlFor="materials"
-                                        value="materials"
-                                        className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-                                   >
-                                       materials
-                                   </label>
-                                       </>
+                                        <>
+                                             <input
+                                                  key={index}
+                                                  type="text"
+                                                  id="materials"
+                                                  name="materials"
+                                                  value={material}
+                                                  onChange={(event) => handleMaterialChange(index, event)}
+                                                  required
+                                                  placeholder="Materials"
+                                                  className=" block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                             />
+                                             <label
+                                                  htmlFor="materials"
+                                                  value="materials"
+                                                  className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                                             >
+                                                  materials
+                                             </label>
+                                        </>
                                    ))}
                               </div>
                          </div>
+                    </div>
+
+                    {/* fourth category */}
+                    <div className="flex gap-8">
+                         <div className="lg:w-1/2">
+                              <div className="relative ">
+                                   <input
+                                        type="text"
+                                        id="sellerLocation"
+                                        required
+                                        name="sellerLocation"
+                                        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                        placeholder="Dimensions"
+                                   />
+                                   <label
+                                        htmlFor="sellerLocation"
+                                        value="Seller location"
+                                        className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                                   >
+                                        Dimensions
+                                   </label>
+                              </div>
+                         </div>
+
                          {/* location */}
                          <div className="lg:w-1/2">
                               <div className="relative ">
@@ -218,51 +272,50 @@ const UploadAntiques = () => {
                               </div>
                          </div>
                     </div>
-
-                    {/* fourth category */}
                     <div className="flex gap-8">
-                         {/*sellerName */}
-                         <div className="lg:w-1/2">
-                              <div className="relative ">
-                                   <input
-                                        type="text"
-                                        id="sellerName"
-                                        required
-                                        name="sellerName"
-                                        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        placeholder="sellerName"
-                                   />
-                                   <label
-                                        htmlFor="sellerName"
-                                        value="Seller Name"
-                                        className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-                                   >
-                                        seller Name
-                                   </label>
+                   
+                              {/*sellerName */}
+                              <div className="lg:w-1/2">
+                                   <div className="relative ">
+                                        <input
+                                             type="text"
+                                             id="sellerName"
+                                             required
+                                             name="sellerName"
+                                             className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                             placeholder="sellerName"
+                                        />
+                                        <label
+                                             htmlFor="sellerName"
+                                             value="Seller Name"
+                                             className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                                        >
+                                             seller Name
+                                        </label>
+                                   </div>
                               </div>
-                         </div>
-                         {/* seller contact */}
-                         <div className="lg:w-1/2">
-                              <div className="relative ">
-                                   <input
-                                        type="text"
-                                        id="sellerContact"
-                                        required
-                                        name="sellerContact"
-                                        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        placeholder="seller Contact"
-                                   />
-                                   <label
-                                        htmlFor="sellerContact"
-                                        value="seller Contact"
-                                        className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-                                   >
-                                        sellerContact
-                                   </label>
+                              {/* seller contact */}
+                              <div className="lg:w-1/2">
+                                   <div className="relative ">
+                                        <input
+                                             type="text"
+                                             id="sellerContact"
+                                             required
+                                             name="sellerContact"
+                                             className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                             placeholder="seller Contact"
+                                        />
+                                        <label
+                                             htmlFor="sellerContact"
+                                             value="seller Contact"
+                                             className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                                        >
+                                             sellerContact
+                                        </label>
+                                   </div>
                               </div>
-                         </div>
+                     
                     </div>
-
                     {/* fifth category */}
                     {/* job description */}
                     <div className="lg:w-full">
@@ -284,12 +337,14 @@ const UploadAntiques = () => {
                          </div>
                     </div>
 
-                    <button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 rounded-md py-[10px] text-white">
+                    <button
+                         type="submit"
+                         className="mt-4 bg-blue-600 hover:bg-blue-800 duration-300 rounded-md py-[10px] text-white"
+                    >
                          Upload
                     </button>
                </form>
           </div>
-        
      );
 };
 
