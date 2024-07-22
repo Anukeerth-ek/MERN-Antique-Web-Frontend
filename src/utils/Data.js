@@ -249,3 +249,36 @@ export const userDetailsLinks = [
           path: '/logout'
      },
 ]
+
+export const statesList = [
+     {
+      link: "Andhra Pradesh"
+     },
+     {
+      link: "Karnataka"
+     },
+     {
+      link: "Kerala"
+     },
+     {
+      link: "Madhya Pradesh"
+     },
+     {
+      link: "Gujarat"
+     },
+     {
+      link: "Tamil Nadu"
+     },
+     {
+      link: "Uttar Pradesh"
+     },
+     {
+      link: "West Bengal"
+     },
+     {
+      link: "Assam"
+     },
+     {
+      link: "Goa"
+     },
+]

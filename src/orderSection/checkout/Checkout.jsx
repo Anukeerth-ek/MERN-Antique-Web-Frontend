@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import BillingAddress from "./BillingAddress";
+
 
 const Checkout = () => {
-  return (
-    <div>Checkout</div>
-  )
-}
+     return (
+         <section>
+          <BillingAddress/>
+         </section>
+     );
+};
 
-export default Checkout
+export default Checkout;
