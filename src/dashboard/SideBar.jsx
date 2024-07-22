@@ -9,7 +9,7 @@ const SideBar = () => {
 
      // usecontext hook
      const { user } = useContext(AuthContext);
-     console.log(user)
+   
 
     
 

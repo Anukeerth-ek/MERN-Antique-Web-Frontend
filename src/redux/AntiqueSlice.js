@@ -18,7 +18,7 @@ const cartSlice = createSlice({
 
 // Define antique slice
 const antiqueSlice = createSlice({
-  name: 'antiques', // Corrected name to match the intended slice
+  name: 'antiques',
   initialState: {
     uploadedAntiques: [],
   },
@@ -33,6 +33,6 @@ const antiqueSlice = createSlice({
 export const { addToCart, removeFromCart } = cartSlice.actions;
 export const { addUploadedAntique } = antiqueSlice.actions;
 
-// Export reducers from both slices
+// Export reducers as named exports
 export const cartReducer = cartSlice.reducer;
 export const antiqueReducer = antiqueSlice.reducer;

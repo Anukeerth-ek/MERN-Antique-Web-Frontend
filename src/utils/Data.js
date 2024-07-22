@@ -103,7 +103,7 @@ export const sideBar = [
      // },
      {
           icons: MdOutlineCloudUpload,
-          title: "Upload Antiques",
+          title: "Upload an Antiques",
           marginBottom: false,
           marginTop: false,
           path: "/admin/dashboard/upload",
@@ -112,7 +112,7 @@ export const sideBar = [
      },
      {
           icons: MdOutlineManageHistory,
-          title: "Manage Antiques",
+          title: "Manage your Antiques",
           marginBottom: false,
           marginTop: false,
           path: "/admin/dashboard/manage",
