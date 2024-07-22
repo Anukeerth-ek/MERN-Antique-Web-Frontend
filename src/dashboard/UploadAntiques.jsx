@@ -32,10 +32,18 @@ const UploadAntiques = () => {
           const title = form.title.value;
           const price = form.price.value;
           const image = form.image.value;
+          const offer = form.Offer.value;
 
           const description = form.description.value;
 
-          const materials = form.materials.value;
+          const antiqueMaterials = form.materials.value;
+          const materials = antiqueMaterials.split(",")
+          const antiqueDimensions = form.dimensions.value;
+          const dimensions = {}
+          antiqueDimensions.split(",").forEach(pair => {
+               let [key, value] = pair.split(":");
+               dimensions[key] = value;
+           });
 
           const selectedCategories = Array.from(form.categories.options)
                .filter((option) => option.selected)
@@ -49,9 +57,11 @@ const UploadAntiques = () => {
                title,
                price,
                image,
+               offer,
                categories: selectedCategories,
                description,
-               materials: [],
+               materials,
+               dimensions,
                seller: {
                     name: sellerName,
                     contact: sellerContact,
@@ -235,15 +245,15 @@ const UploadAntiques = () => {
                               <div className="relative ">
                                    <input
                                         type="text"
-                                        id="Dimensions"
+                                        id="dimensions"
                                         required
-                                        name="Dimensions"
+                                        name="dimensions"
                                         className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        placeholder="Dimensions"
+                                        placeholder="dimensions"
                                    />
                                    <label
-                                        htmlFor="Dimensions"
-                                        value="Dimensions"
+                                        htmlFor="dimensions"
+                                        value="dimensions"
                                         className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                                    >
                                         Dimensions

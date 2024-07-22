@@ -38,8 +38,8 @@ const SideBar = () => {
                          {sideBar.map((item, index) => {
                               return (
                                    <Link to={item.path} key={index}>
-                                        <p className={`text-gray-600 ml-2 text-xs font-semibold mb-2 ${closeSidebar ? ' invisible' : 'visible'}`}>{item.showFirstTitle && <span>OVERVIEW</span>}</p>
-                                        <p className={`text-gray-600 ml-2 text-xs font-semibold mb-1  `}>{item.showSecondTitle && <span className={`${closeSidebar ? 'invisible' : 'visible  mt-10'}`}>ACCOUNTS</span>}</p>
+                                        <p className={`text-gray-600 ml-2 text-xs font-semibold mb-2 ${closeSidebar ? 'invisible' : 'visible'}`}>{item.showFirstTitle && <span>OVERVIEW</span>}</p>
+                                        <p className={`text-gray-600 ml-2 text-xs font-semibold mb-1  `}>{item.showSecondTitle && <span className={` ${closeSidebar ? 'invisible' : 'visible mt-20'}`}>ACCOUNTS</span>}</p>
 
                                         <li
                                              className={`flex items-center gap-3 mb-[5px] cursor-pointer duration-300 hover:bg-gray-200  rounded-md ${closeSidebar ? 'px-4 py-3 mr-10' : 'pl-2 py-2 mr-2'}  ${
