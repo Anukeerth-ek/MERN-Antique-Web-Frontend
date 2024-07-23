@@ -108,9 +108,7 @@ const Navbar = () => {
                                    {user && user.photoURL ? (
                                         <img src={user.photoURL} alt="User" className="w-8 h-8 rounded-full cursor-pointer" />
                                    ) : (
-                                        <span className="text-2xl cursor-pointer" title="Account">
-                                             <FaRegCircleUser />
-                                        </span>
+                                     <img src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt="user"  className=" w-9 h-10 rounded-full cursor-pointer border" title="My Account"/>
                                    )}
                                    {showUserInfo && (
                                         <div className="absolute top-[52px] -right-9 bg-white shadow-lg rounded-lg z-10">

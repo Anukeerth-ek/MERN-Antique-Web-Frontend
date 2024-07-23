@@ -6,7 +6,7 @@ const CartTotal = ({totalCartPrice}) => {
      return (
           <div className="flex justify-between mt-10 ">
                <div className="w-1/2"></div>
-               <div className="w-1/2 mr-24  p-3 shadow-lg">
+               <div className="w-1/2 mr-24  p-3 shadow-2xl">
                 <h2 className="text-4xl font-semibold text-center">Cart Total</h2>
                 <div className="flex justify-between mt-7 border-b-2 border-gray-300 pb-1">
                     <p>Sub Total</p>

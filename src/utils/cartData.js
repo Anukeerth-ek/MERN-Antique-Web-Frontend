@@ -74,3 +74,5 @@ export const reviewData = [
                "As a collector, I'm always on the lookout for unique pieces. The antique lamp I bought is in excellent condition and has become a centerpiece in my collection. The seller was knowledgeable and provided detailed information about the item's history. Highly recommended!",
      },
 ];
+
+

@@ -5,6 +5,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     items: [],
+    totalCartPrice: 0, // Initial total cart price
   },
   reducers: {
     addToCart: (state, action) => {
@@ -12,6 +13,9 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       state.items = state.items.filter(item => item.id !== action.payload);
+    },
+    setTotalCartPrice: (state, action) => {
+      state.totalCartPrice = action.payload;
     },
   },
 });
@@ -30,7 +34,7 @@ const antiqueSlice = createSlice({
 });
 
 // Export actions from both slices
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, setTotalCartPrice } = cartSlice.actions;
 export const { addUploadedAntique } = antiqueSlice.actions;
 
 // Export reducers as named exports
