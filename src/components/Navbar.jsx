@@ -81,7 +81,7 @@ const Navbar = () => {
                         <Link to={"/shop"}> <BsSearch className=" relative  text-lg md:hidden" />  </Link>    {/* This is for mobile responsive search icon */}
                     
                          <div className={`${isMenuOpen ? "" : "hidden"} lg:inline`}>
-                              <ul className="flex flex-col absolute right-3 lg:right-0 top-6 md:text-md lg:top-0 bg-white py-3 px-5 md:px-3 lg:p-0 gap-6 lg:flex lg:flex-row lg:relative">
+                              <ul className="flex flex-col absolute right-3 lg:right-0 top-6 md:text-md lg:top-0 bg-white py-3 px-4 md:px-3 lg:p-0 gap-6 lg:flex lg:flex-row lg:relative">
                                    {navLinks.map(({ link, path }) => (
                                         <NavLink
                                              to={path}
@@ -89,7 +89,7 @@ const Navbar = () => {
                                              activeclassname="text-red-500 underline" // This class will be applied when NavLink is active
                                              className={({ isActive }) => (isActive ? "text-blue-700 " : "")}
                                         >
-                                             <li className=" hover:text-blue-700 hover:bg-gray-200 px-3  py-1 hover:shadow-lg rounded-md duration-300 ">
+                                             <li className=" hover:text-blue-700 hover:bg-gray-200 px-4  py-1 hover:shadow-lg rounded-md duration-300 ">
                                                   {link}
                                              </li>
                                         </NavLink>
