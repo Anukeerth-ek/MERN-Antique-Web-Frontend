@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { GiShoppingCart } from "react-icons/gi";
-import ArtCard from "./ArtCard";
+import ArtCard from "../../components/ArtCard"
 import { Link } from "react-router-dom";
-const EmptyWishlist = (prop) => {
+
+const EmptyComponent = (prop) => {
      const { image } = prop;
      console.log(image);
 
@@ -38,4 +39,4 @@ const EmptyWishlist = (prop) => {
      );
 };
 
-export default EmptyWishlist;
+export default EmptyComponent;

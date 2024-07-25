@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RxCross2 } from "react-icons/rx";
 import { removeFromCart, setTotalCartPrice } from "../../redux/AntiqueSlice";
 import CartTotal from "./CartTotal";
+import EmptyComponent from "../wishlist/EmptyComponent";
+import EmptyComponentImage from '../../assets/empty-cart.jpg'
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -161,9 +163,8 @@ const Cart = () => {
             </table>
           </div>
         ) : (
-          <div className="text-red-500 text-4xl text-center mt-7">
-            <span>Oops!! There are no items added</span>
-            <p className="mt-2">Add something to the cart!!</p>
+          <div >
+            <EmptyComponent image={EmptyComponentImage}/>
           </div>
         )}
 

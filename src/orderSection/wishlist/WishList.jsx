@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { WishlistContext } from "../contexts/WishlistContext";
-import ArtCard from "./ArtCard";
-import EmptyWishlist from "./EmptyComponent";
-import emptyWishlistImage from '../assets/wishlist-1.png'
+import { WishlistContext } from "../../contexts/WishlistContext";
+import ArtCard from "../../components/ArtCard";
+import EmptyWishlist from './EmptyComponent'
+import emptyWishlistImage from '../../assets/wishlist-1.png'
 
 const WishList = () => {
      const { wishlist } = useContext(WishlistContext);

@@ -17,7 +17,7 @@ import CategorizedAntiques from "../home/categorized/CategorizedAntiques";
 import { fetchAntiqueByCategory } from "../home/FetchAntiqueByCategory";
 import ProductDetailsPage from "../orderSection/ProductDetailsPage/ProductDetailsPage";
 import Cart from "../orderSection/cart/Cart";
-import WishList from "../components/WishList";
+import WishList from "../orderSection/wishlist/WishList";
 import Checkout from "../orderSection/checkout/Checkout";
 import UserProfile from "../components/userDetails/UserProfile";
 
