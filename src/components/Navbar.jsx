@@ -17,6 +17,7 @@ import UserDetails from "./userDetails/UserDetails";
 import { SearchContext } from "../contexts/SearchContext";
 import { MdFavorite } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
+import { WishlistContext } from "../contexts/WishlistContext";
 
 const Navbar = () => {
      //________ STATES __________
@@ -54,10 +55,14 @@ const Navbar = () => {
           setSearchTerm(e.target.value);
      };
 
+     // wishlist context
+     const { wishlist } = useContext(WishlistContext);
+     const wishlistLength = wishlist.length;
+   
      return (
           <header>
                <nav>
-                    <div className="flex justify-between items-center  md:text-black px-4 md:px-10 lg:px-15 py-4 flex-wrap border-b-2 ">
+                    <div className="flex justify-between items-center  md:text-black px-4 md:px-10 lg:px-15 py-4 flex-wrap border-b-2 duration-300">
                          {/* Name */}
                          <Link to="/">
                           
@@ -116,7 +121,8 @@ const Navbar = () => {
                                         </div>
                                    )}
                               </div>
-                         ) : <Link to="/wishlist"> <MdFavoriteBorder className="text-2xl"/></Link>}
+                         ) : wishlistLength ? <Link to="/wishlist"> <MdFavoriteBorder className="text-2xl scale-125 text-red-600 duration-300 hover:scale-110"/></Link> : ''}
+                       
 
                          {/* Favourite icon. This will display only when user logged in */}
                          {/* {user && <Link to="/wishlist"><div className="hidden lg:block text-lg cursor-pointer">
