@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GiShoppingCart } from "react-icons/gi";
-import ArtCard from "../../components/ArtCard"
+import ArtCard from "../../components/ArtCard";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const EmptyComponent = (prop) => {
      const { image } = prop;
-  
-      const {user} = useContext(AuthContext)
+
+     const { user } = useContext(AuthContext);
 
      const [arts, setArts] = useState([]);
 
      useEffect(() => {
           fetch("https://antique-web.onrender.com/all-arts")
                .then((res) => res.json())
-               .then((data) => setArts(data.slice(14, 18)));
+               .then((data) => setArts(data.slice(14, 21)));
      }, []);
 
      return (
@@ -25,13 +25,21 @@ const EmptyComponent = (prop) => {
                     <p className="text-red-500 font-bold text-xl">
                          No items added yet? <span className="text-black">Continue shopping to explore more.</span>
                     </p>
-                    {user ? '' : <Link to="/login">
-                         <button className="bg-blue-600 text-white hover:bg-blue-800 duration-300 px-6  py-2 rounded-2xl  w-[300px] mt-9">
-                              Sign in
-                         </button>
-                    </Link>}
+                    {user ? (
+                         ""
+                    ) : (
+                         <Link to="/login">
+                              <button className="bg-blue-600 text-white hover:bg-blue-800 duration-300 px-6  py-2 rounded-2xl  w-[300px] mt-9">
+                                   Sign in
+                              </button>
+                         </Link>
+                    )}
                     <Link to={"/shop"}>
-                         <button className={`bg-blue-400 text-white hover:bg-blue-500 duration-300 px-6  py-2 rounded-2xl  w-[300px] mt-4 ${user ? 'mt-9' : ''}`}>
+                         <button
+                              className={`bg-blue-400 text-white hover:bg-blue-500 duration-300 px-6  py-2 rounded-2xl  w-[300px] mt-4 ${
+                                   user ? "mt-9" : ""
+                              }`}
+                         >
                               Explore items
                          </button>
                     </Link>
