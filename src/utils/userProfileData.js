@@ -131,3 +131,36 @@ export const cityList = [
     },
 
 ]
+
+export const payDetails = [
+    {
+        link: "Subtotal",
+        bold: true,
+        fSize: false
+    },
+    {
+        link: "Promotional Savings",
+        bold: false,
+        fSize: false
+    },
+    {
+        link: "Subtotal After Discounts:",
+        bold: true,
+        fSize: false
+    },
+    {
+        link: "Shipping:",
+        bold: false,
+        fSize: false
+    },
+    {
+        link: "Estimated Tax:",
+        bold: false,
+        fSize: false
+    },
+    {
+        link: "Total",
+        bold: true,
+        fSize: true
+    },
+]
