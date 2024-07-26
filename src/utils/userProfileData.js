@@ -48,3 +48,86 @@ export const userProfileSideBarData = [
     },
 ]
 ]
+
+export const countryList = [
+    {
+        
+        link: "India"
+    },
+    {
+       link: "Argentina"
+    },
+    {
+        link: "Bahrain"
+    },
+    {
+        link: "Iceland"
+    },
+    {
+        link: "Ireland"
+    },
+    {
+        link: "New Zealand"
+    },
+    {
+        link: "Portugal"
+    },
+    {
+        link: "Russia"
+    },
+    {
+        link: "South Africa"
+    },
+    {
+        link: "Switzerland"
+    },
+    {
+        link: "United States"
+    },
+    {
+        link: "United Kingdom"
+    },
+    {
+        link: "United Arab Emirates"
+    },
+]
+
+export const cityList = [
+    {
+        link: 'Ahmedabad (Gujarat)'
+    },
+    {
+        link: 'Bangalore (Karnataka)'
+    },
+    {
+        link: 'Chennai (Tamil Nadu)'
+    },
+    {
+        link: 'Delhi (Delhi)'
+    },
+    {
+        link: 'Hyderabad (Telangana)'
+    },
+    {
+        link: 'Mumbai (Maharashtra)'
+    },
+    {
+        link: 'Kochi (Kerala)'
+    },
+    {
+        link: 'Surat (Gujarat)'
+    },
+    {
+        link: 'Gurgaon (Haryana)'
+    },
+    {
+        link: 'Mangalore (Karnataka)'
+    },
+    {
+        link: 'Trivandrum (Kerala)'
+    },
+    {
+        link: 'Thane (Maharashtra)'
+    },
+
+]

@@ -28,7 +28,7 @@ const Accordian = () => {
                                         </p>
                                         {toggleItemId === item.id ? <FaMinus /> : <FaPlus />}
                                    </div>
-                                   {toggleItemId === item.id && <p className="py-3 bg-gray-50 duration-300 pl-4 px-2 ">{item.body}</p>}
+                                   {toggleItemId === item.id && <p className="py-3 bg-gray-50  pl-4 px-2 transition-all duration-[500ms] ease-[cubic-bezier(1,0,1,0)]">{item.body}</p>}
                               </li>
                          ))}
                     </ul>

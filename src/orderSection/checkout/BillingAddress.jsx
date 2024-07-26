@@ -1,7 +1,12 @@
 import React from 'react'
 import { statesList } from "../../utils/Data";
+import { cityList, countryList } from '../../utils/userProfileData';
+import { selectTotalCartPrice } from '../../redux/AntiqueSlice';
+import { useSelector } from 'react-redux';
 
 const BillingAddress = () => {
+     const totalCartPrice = useSelector(selectTotalCartPrice);
+     console.log(totalCartPrice)
   return (
     <section>
     <div className="mx-20 my-6">
@@ -48,7 +53,14 @@ const BillingAddress = () => {
                                        <label htmlFor="" className="mt-3">
                                             Country
                                        </label>
-                                       <input type="text" />
+                                       <select name="" id="">
+
+                                      {countryList.map((item, index)=> (
+                                        <option key={index}>
+                                             {item.link}
+                                        </option>
+                                       ))}
+                                      </select>
                                   </div>
                                   <div className="w-[49%] flex flex-col ml-3 ">
                                        <label htmlFor="" className="mt-3">
@@ -62,7 +74,14 @@ const BillingAddress = () => {
                                        <label htmlFor="" className="mt-3">
                                             City
                                        </label>
-                                       <input type="text" />
+                                       <select>
+                                        {cityList.map((item, index)=> (
+                                             <option key={index}>
+                                                  {item.link}
+                                             </option>
+                                        ))}
+                                       </select>
+                                      
                                   </div>
                                 <div className="w-[49%] flex flex-col ml-3">
                                 <label htmlFor="" className="mt-3">
@@ -70,7 +89,7 @@ const BillingAddress = () => {
                                   </label>
                                   <select>
                                        {statesList.map((item, index) => (
-                                            <option>{item.link}</option>
+                                            <option key={index}>{item.link}</option>
                                        ))}
                                   </select>
                                 </div>

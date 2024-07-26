@@ -16,6 +16,7 @@ const Cart = () => {
   const cartItems = useSelector(selectCartItems);
   const totalCartPrice = useSelector(selectTotalCartPrice);
 
+
   const [cartState, setCartState] = useState({});
 
   // Initialize quantities and total prices for each cart item
