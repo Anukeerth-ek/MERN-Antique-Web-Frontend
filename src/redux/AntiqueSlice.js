@@ -5,7 +5,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     items: [],
-    totalCartPrice: 0, // Initial total cart price
+    totalCartPrice: 0,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -36,6 +36,9 @@ const antiqueSlice = createSlice({
 // Export actions from both slices
 export const { addToCart, removeFromCart, setTotalCartPrice } = cartSlice.actions;
 export const { addUploadedAntique } = antiqueSlice.actions;
+// Selectors to access cart state
+export const selectCartItems = state => state.cart.items;
+export const selectTotalCartPrice = state => state.cart.totalCartPrice;
 
 // Export reducers as named exports
 export const cartReducer = cartSlice.reducer;

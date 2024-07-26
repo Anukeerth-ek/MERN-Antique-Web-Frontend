@@ -103,7 +103,7 @@ const Navbar = () => {
                               </div>
                          </Link>
                          {/* user icon (it will show only if user has logged in)*/}
-                         {user && (
+                         {user ? (
                               <div className="relative" onClick={() => setShowUserInfo(!showUserInfo)}>
                                    {user && user.photoURL ? (
                                         <img src={user.photoURL} alt="User" className="w-8 h-8 rounded-full cursor-pointer" />
@@ -116,7 +116,7 @@ const Navbar = () => {
                                         </div>
                                    )}
                               </div>
-                         )}
+                         ) : <Link to="/wishlist"> <MdFavoriteBorder className="text-2xl"/></Link>}
 
                          {/* Favourite icon. This will display only when user logged in */}
                          {/* {user && <Link to="/wishlist"><div className="hidden lg:block text-lg cursor-pointer">
