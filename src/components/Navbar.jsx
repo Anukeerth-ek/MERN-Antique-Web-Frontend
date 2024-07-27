@@ -62,7 +62,7 @@ const Navbar = () => {
      return (
           <header>
                <nav>
-                    <div className="flex justify-between items-center  md:text-black px-4 md:px-10 lg:px-15 py-4 flex-wrap border-b-2 duration-300">
+                    <div className="flex justify-between items-center  md:text-black px-4 lg:px-10 lg:px-15 py-4 flex-wrap border-b-2 duration-300">
                          {/* Name */}
                          <Link to="/">
                           
@@ -74,7 +74,7 @@ const Navbar = () => {
                          </Link>
                          {/* Input bar */}
                          <Link to="/shop">
-                              <div className="flex justify-between items-center border-none outline-none md:border md:border-black w-0 md:w-96  duration-300 lg:w-[480px] focus:lg:w-[600px] h-9 rounded-2xl">
+                              <div className="flex justify-between items-center border-none outline-none md:border md:border-black w-0 md:w-72  duration-300 lg:w-[480px] focus:lg:w-[600px] h-9 rounded-2xl">
                                    <input
                                         className="hidden md:block pl-2 py-5 rounded-md w-0 h-0 md:w-full md:h-full border hover:border-blue-600 text-md bg-blue-50 lg:w-full "
                                         placeholder="Whats on your mind?..."
