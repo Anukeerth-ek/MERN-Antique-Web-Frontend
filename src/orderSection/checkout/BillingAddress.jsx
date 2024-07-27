@@ -14,10 +14,10 @@ const BillingAddress = () => {
      console.log(totalAfterDiscount)
      return (
           <section>
-               <div className="mx-20 my-6 flex">
+               <div className="mx-4 lg:mx-20 my-6 lg:flex">
                     {/* BILLING ADDRESS DIV */}
                
-                         <div className="border p-5 w-2/4">
+                         <div className="border p-5 w-fu lg:w-2/4">
                               <h2 className="text-3xl font-bold text-center mb-3">Billing Address</h2>
                               <form action="">
                                    <div className="flex flex-col w-full">
@@ -26,13 +26,13 @@ const BillingAddress = () => {
                                    </div>
                                    <div>
                                         <div className="flex flex-wrap w-full">
-                                             <div className="w-[49%] flex flex-col ">
+                                             <div className="w-full lg:w-[49%] flex flex-col ">
                                                   <label htmlFor="" className="mt-3">
                                                        First Name
                                                   </label>
                                                   <input type="text" />
                                              </div>
-                                             <div className="w-[49%] flex flex-col ml-3 ">
+                                             <div className="w-full lg:w-[49%] flex flex-col lg:ml-3 ">
                                                   <label htmlFor="" className="mt-3">
                                                        Last Name
                                                   </label>
@@ -40,13 +40,13 @@ const BillingAddress = () => {
                                              </div>
                                         </div>
                                         <div className="flex flex-wrap w-full">
-                                             <div className="w-[49%] flex flex-col ">
+                                             <div className="w-full lg:w-[49%] flex flex-col ">
                                                   <label htmlFor="" className="mt-3">
                                                        Address Line1
                                                   </label>
                                                   <input type="text" />
                                              </div>
-                                             <div className="w-[49%] flex flex-col ml-3 ">
+                                             <div className="w-full lg:w-[49%] flex flex-col lg:ml-3 ">
                                                   <label htmlFor="" className="mt-3">
                                                        Address Line2
                                                   </label>
@@ -54,7 +54,7 @@ const BillingAddress = () => {
                                              </div>
                                         </div>
                                         <div className="flex flex-wrap w-full">
-                                             <div className="w-[49%] flex flex-col ">
+                                             <div className="w-full lg:w-[49%] flex flex-col ">
                                                   <label htmlFor="" className="mt-3">
                                                        Country
                                                   </label>
@@ -64,15 +64,15 @@ const BillingAddress = () => {
                                                        ))}
                                                   </select>
                                              </div>
-                                             <div className="w-[49%] flex flex-col ml-3 ">
+                                             <div className="w-full lg:w-[49%] flex flex-col lg:ml-3 ">
                                                   <label htmlFor="" className="mt-3">
                                                        Zip Code
                                                   </label>
                                                   <input type="text" />
                                              </div>
                                         </div>
-                                        <div className="flex   w-[100%]">
-                                             <div className="w-[49%] flex flex-col ">
+                                        <div className=" flex-none lg:flex w-[100%]">
+                                             <div className="w-full lg:w-[49%] flex flex-col ">
                                                   <label htmlFor="" className="mt-3">
                                                        City
                                                   </label>
@@ -82,7 +82,7 @@ const BillingAddress = () => {
                                                        ))}
                                                   </select>
                                              </div>
-                                             <div className="w-[49%] flex flex-col ml-3">
+                                             <div className="w-full lg:w-[49%] flex flex-col lg:ml-3">
                                                   <label htmlFor="" className="mt-3">
                                                        States
                                                   </label>
@@ -101,13 +101,13 @@ const BillingAddress = () => {
                                         </div>
                                    </div>
                               </form>
-                              <button className="bg-blue-600 hover:bg-blue-800 duration-500 w-full py-2 mt-5 text-lg rounded-md text-white">
+                              <button className="bg-blue-600 hover:bg-blue-800 duration-500 w-full py-2 mt-8 lg:mt-5 text-lg rounded-md text-white">
                                    Submit
                               </button>
                          </div>
                     
 
-                    <div className="w-[30%] h-2/4 ml-36 border">
+                    <div className=" w-full lg:w-[30%] h-2/4 ml-0 lg:ml-36 border mt-10 lg:mt-0">
                          <div className="p-3">
                               <h2 className="text-center text-3xl font-bold mt-2">Payment Section</h2>
                              <div className="flex justify-between">
