@@ -7,7 +7,7 @@ import { addUploadedAntique, antiqueReducer } from "../redux/AntiqueSlice";
 const ManageAntiques = () => {
      const [allAntiques, setAllAntiques] = useState([]);
      const uploadedAntiques = useSelector((state) => state.antiques);
-     console.log(uploadedAntiques)
+
 
      useEffect(() => {
           fetch("https://antique-web.onrender.com/all-arts")

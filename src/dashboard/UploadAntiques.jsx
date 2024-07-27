@@ -68,6 +68,7 @@ const UploadAntiques = () => {
                     location: sellerLocation,
                },
           };
+          console.log(antiqueObj.price)
           //  fetching for uploading the data
           console.log("uploaded data", antiqueObj);
 
