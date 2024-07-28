@@ -62,6 +62,7 @@ const ProductDetailsPage = () => {
      const navigate = useNavigate();
      const handleRedirectToCart = (id, image, title, price) => {
        const items = {id, image, title, price}
+   
        
           dispatch(addToCart(items));
           navigate('/cart')

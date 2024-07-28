@@ -86,11 +86,11 @@ const Shop = () => {
                          {filteredArts && filteredArts.length> 0 ? filteredArts?.map((item, index) =>  (
                                    <div class="w-full px-3 py-2 max-w-sm bg-white border border-gray-100 rounded-lg shadow dark:bg-white group text-blue-950">
                                         <Link to={`/art/${item._id}`} key={index}>
-                                             <a href="#">
-                                                  <div className="min-w-[250px] md:w-[300px] lg:w-full ">
+                                             <a href="#" className="w-full">
+                                                  <div className="min-w-[250px] lg:w-full ">
                                                        <img
                                                             src={item.image}
-                                                            className="w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-300 rounded-lg "
+                                                            className="min-w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-300 rounded-lg "
                                                        />
                                                   </div>
                                              </a>

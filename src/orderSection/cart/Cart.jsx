@@ -14,12 +14,8 @@ import EmptyComponentImage from "../../assets/empty-cart.jpg";
 const Cart = () => {
      const dispatch = useDispatch();
      const cartItems = useSelector(selectCartItems);
- 
-     
-
 
      const totalCartPrice = useSelector(selectTotalCartPrice);
-
 
      const [cartState, setCartState] = useState({});
 
@@ -120,41 +116,45 @@ const Cart = () => {
                                    </thead>
                                    <tbody>
                                         {cartItems?.map((item, index) => {
-                                          const itemPrice = parseInt(item.price)
-                                    
-                                        return(
-                                             <tr className="border-b-2" key={index}>
-                                                  <td scope="row" className="px-6 py-2 font-medium whitespace-nowrap w-28">
-                                                       <img src={item.image} className="w-full" alt={item.title} />
-                                                  </td>
-                                                  <td className="px-6 py-4">{item.title}</td>
-                                                  <td className="px-6 py-4">${itemPrice}</td>
-                                                  <td className="px-6 py-4">{cartState[item.id]?.quantity}</td>
-                                                  <td className="px-6 py-4">${cartState[item.id]?.totalPrice}</td>
-                                                  <td className="px-6 py-4">
-                                                       <button
-                                                            className={`border border-black px-2 py-2 mr-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300 ${
-                                                                 cartState[item.id]?.quantity === 1
-                                                                      ? "cursor-not-allowed hover:bg-gray-200 hover:border-gray-200"
-                                                                      : ""
-                                                            }`}
-                                                            disabled={cartState[item.id]?.quantity === 1}
-                                                            onClick={() => handleDecreaseProduct(item.id, item?.price)}
+                                             const itemPrice = parseInt(item.price);
+
+                                             return (
+                                                  <tr className="border-b-2" key={index}>
+                                                       <td
+                                                            scope="row"
+                                                            className="px-6 py-2 font-medium whitespace-nowrap w-28"
                                                        >
-                                                            <FaMinus />
-                                                       </button>
-                                                       <button
-                                                            className="border border-black px-2 py-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300"
-                                                            onClick={() => handleIncreaseProduct(item.id, item?.price)}
-                                                       >
-                                                            <FaPlus />
-                                                       </button>
-                                                  </td>
-                                                  <td className="px-9 py-4 text-2xl content-center cursor-pointer">
-                                                       <RxCross2 onClick={() => handleRemoveFromCart(item.id)} />
-                                                  </td>
-                                             </tr>
-                                        )})}
+                                                            <img src={item.image} className="w-full" alt={item.title} />
+                                                       </td>
+                                                       <td className="px-6 py-4">{item.title}</td>
+                                                       <td className="px-6 py-4">${itemPrice}</td>
+                                                       <td className="px-6 py-4">{cartState[item.id]?.quantity}</td>
+                                                       <td className="px-6 py-4">${cartState[item.id]?.totalPrice}</td>
+                                                       <td className="px-6 py-4">
+                                                            <button
+                                                                 className={`border border-black px-2 py-2 mr-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300 ${
+                                                                      cartState[item.id]?.quantity === 1
+                                                                           ? "cursor-not-allowed hover:bg-gray-200 hover:border-gray-200"
+                                                                           : ""
+                                                                 }`}
+                                                                 disabled={cartState[item.id]?.quantity === 1}
+                                                                 onClick={() => handleDecreaseProduct(item.id, item?.price)}
+                                                            >
+                                                                 <FaMinus />
+                                                            </button>
+                                                            <button
+                                                                 className="border border-black px-2 py-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300"
+                                                                 onClick={() => handleIncreaseProduct(item.id, item?.price)}
+                                                            >
+                                                                 <FaPlus />
+                                                            </button>
+                                                       </td>
+                                                       <td className="px-9 py-4 text-2xl content-center cursor-pointer">
+                                                            <RxCross2 onClick={() => handleRemoveFromCart(item.id)} />
+                                                       </td>
+                                                  </tr>
+                                             );
+                                        })}
                                    </tbody>
                               </table>
                          </div>
