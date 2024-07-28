@@ -145,7 +145,7 @@ const ProductDetailsPage = () => {
                               </ul>
                               <div className="flex  md:mt-3 ">
                                    {/* Add to cart */}
-                                   <div className="mt-5 mr-2 md:mr-3 flex w-[170px] md:w-[300px] ">
+                                   <div className="mt-5 mr-2 md:mr-3 flex w-[170px] md:w-full ">
                                         <button
                                              className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-800 duration-300 py-2 md:w-full rounded-md text-white"
                                              onClick={() =>
@@ -157,7 +157,7 @@ const ProductDetailsPage = () => {
                                         </button>
                                    </div>
                                    {/* Buy Now */}
-                                   <div className="mt-5 flex w-[170px] md:w-[300px] ">
+                                   {/* <div className="mt-5 flex w-[170px] md:w-[300px] ">
                                         <button
                                              className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-800 duration-300 py-2 md:w-full rounded-md text-white"
                                              onClick={(event) =>
@@ -167,7 +167,7 @@ const ProductDetailsPage = () => {
                                              <AiOutlineThunderbolt className="mr-1" />
                                              Buy Now
                                         </button>
-                                   </div>
+                                   </div> */}
                               </div>
                          </div>
                     </div>
