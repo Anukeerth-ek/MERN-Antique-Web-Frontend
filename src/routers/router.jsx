@@ -1,25 +1,33 @@
+import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../App";
 import Home from "../home/Home";
-import Shop from "../shop/Shop";
+const Shop = React.lazy(()=> import("../shop/Shop"))
+
 import About from "../components/About";
 import Blog from "../components/Blog";
-import DashBoardLayout from "../dashboard/DashBoardLayout";
-import UploadAntiques from "../dashboard/UploadAntiques";
+
+const DashBoardLayout = React.lazy(()=> import("../dashboard/DashBoardLayout"))
+const UploadAntiques = React.lazy(()=> import("../dashboard/UploadAntiques"))
 import DashBoard from "../dashboard/DashBoard";
-import ManageAntiques from "../dashboard/ManageAntiques";
-import EditAntiques from "../dashboard/EditAntiques";
+
+const ManageAntiques = React.lazy(()=> import("../dashboard/ManageAntiques"))
+
+const EditAntiques = React.lazy(()=> import("../dashboard/EditAntiques"))
 import Signup from "../components/Signup";
 import Login from "../components/Login";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import Logout from "../components/Logout";
 import CategorizedAntiques from "../home/categorized/CategorizedAntiques";
 import { fetchAntiqueByCategory } from "../home/FetchAntiqueByCategory";
-import ProductDetailsPage from "../orderSection/ProductDetailsPage/ProductDetailsPage";
-import Cart from "../orderSection/cart/Cart";
-import WishList from "../orderSection/wishlist/WishList";
-import Checkout from "../orderSection/checkout/Checkout";
+
+const ProductDetailsPage = React.lazy(()=> import("../orderSection/ProductDetailsPage/ProductDetailsPage"))
+const Cart = React.lazy(()=> import("../orderSection/cart/Cart"))
+const WishList = React.lazy(()=> import("../orderSection/wishlist/WishList"))
+const Checkout = React.lazy(()=> import("../orderSection/checkout/Checkout"))
+
 import UserProfile from "../components/userDetails/UserProfile";
+
 
 const router = createBrowserRouter([
      {
@@ -32,7 +40,7 @@ const router = createBrowserRouter([
                },
                {
                     path: "/shop",
-                    element: <Shop />,
+                    element: <Suspense fallback={<div>Loading...</div>}><Shop /></Suspense>,
                },
                {
                     path: "/about",
@@ -44,15 +52,15 @@ const router = createBrowserRouter([
                },
                {
                     path: "/wishlist",
-                    element: <WishList />,
+                    element: <Suspense fallback={<div>Loading...</div>}><WishList /></Suspense>,
                },
                {
                     path: "/cart",
-                    element: <Cart />,
+                    element: <Suspense fallback={<div>Loading...</div>}><Cart /></Suspense>,
                },
                {
                     path: "/checkout",
-                    element: <Checkout />,
+                    element: <Suspense fallback={<div>Loading...</div>}><Checkout /></Suspense>,
                },
                {
                     path:'/userProfile',
@@ -60,7 +68,7 @@ const router = createBrowserRouter([
                },
                {
                     path: "/art/:id",
-                    element: <ProductDetailsPage />,
+                    element: <Suspense fallback={<div>Loading...</div>}><ProductDetailsPage /></Suspense>,
                     loader: ({ params }) => fetch(`https://antique-web.onrender.com/art/${params.id}`),
                },
                {
@@ -73,7 +81,7 @@ const router = createBrowserRouter([
      },
      {
           path: "/admin/dashboard",
-          element: <DashBoardLayout />,
+          element: <Suspense fallback={<div>Loading...</div>}><DashBoardLayout/></Suspense>,
           children: [
                {
                     path: "/admin/dashboard",
@@ -86,18 +94,20 @@ const router = createBrowserRouter([
                {
                     path: "/admin/dashboard/upload",
                     element: (
+                         <Suspense fallback={<div>Loading...</div>}>
                          <PrivateRoute>
                               <UploadAntiques />
                          </PrivateRoute>
+                         </Suspense>
                     ),
                },
                {
                     path: "/admin/dashboard/manage",
-                    element: <ManageAntiques />,
+                    element: <Suspense fallback={<div>Loading...</div>}><ManageAntiques /></Suspense>,
                },
                {
                     path: "/admin/dashboard/edit-antiques/:id",
-                    element: <EditAntiques />,
+                    element: <Suspense fallback={<div>Loading...</div>}><EditAntiques /></Suspense>,
                     loader: ({ params }) => fetch(`https://antique-web.onrender.com/art/${params.id}`),
                },
           ],
