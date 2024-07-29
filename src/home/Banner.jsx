@@ -15,11 +15,11 @@ const Banner = () => {
                                    <Link to={`/all-arts/${item.title}`}  key={index}>
                                         <li
                                             
-                                             className={`text-semibold text-lg group hover:text-blue-600 ${item.wordBreak ? "break-words" : ""}`} 
+                                             className={`text-semibold text-lg group hover:text-blue-600 glow-on-hover ${item.wordBreak ? "break-words" : ""}`} 
                                         >
                                              <img
                                                   src={item?.image}
-                                                  className="rounded-[70%] object-cover h-[120px] md:h-[110px] w-[120px] md:w-[110px] mx-auto group-hover:border-[4px]  group-hover:p-[4px] transition-all scroll-smooth group-hover:border-blue-500 group-hover:duration-300 "
+                                                  className="rounded-[70%] object-cover h-[120px] md:h-[110px] w-[120px] md:w-[110px] mx-auto   group-hover:p-[4px] transition-all scroll-smooth  group-hover:duration-300 "
                                              />
                                              {item?.title?.split(".").map((sentence, index, array) => (
                                                   <React.Fragment key={index} >

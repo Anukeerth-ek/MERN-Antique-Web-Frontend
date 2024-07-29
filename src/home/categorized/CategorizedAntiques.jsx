@@ -7,7 +7,7 @@ const CategorizedAntiques = () => {
 const headline = artworks[0].categories.toString()
   
   return (
-    <div className='mt-4'>
+    <div className='mt-4 '>
       
       <ArtCard arts={artworks} headline={headline}/>
     </div>

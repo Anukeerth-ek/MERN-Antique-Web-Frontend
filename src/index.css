@@ -6,3 +6,46 @@
 @view-transition {
     navigation: auto;
   }
+
+
+@keyframes glow {
+    0% {
+        filter: brightness(1) drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+    }
+    50% {
+        filter: brightness(1.2) drop-shadow(0 0 15px rgba(0, 255, 255, 0.8));
+    }
+    100% {
+        filter: brightness(1) drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+    }
+}
+.glow-on-hover {
+  /* Ensures that the filter transition is smooth */
+  transition: filter 2s ease;
+}
+
+.glow-on-hover:hover {
+  /* Apply the glow animation with a duration of 1s and an infinite loop */
+  animation: glow 1s ease-in-out infinite;
+}
+
+
+@keyframes fadeScaleIn {
+  0% {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+  100% {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+.fade-scale-in {
+  animation: fadeScaleIn 1s ease-in-out forwards;
+}
+
+
+
+
+
