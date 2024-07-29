@@ -13,6 +13,7 @@ import { SearchContext } from "../contexts/SearchContext";
 import { MdFavorite } from "react-icons/md";
 import { WishlistContext } from "../contexts/WishlistContext";
 import ShopHeading from "./ShopHeading";
+import EmptySearched from "./EmptySearched";
 
 const Shop = () => {
      const [arts, setArts] = useState([]);
@@ -77,7 +78,7 @@ const Shop = () => {
      //  WISH LIST
      const { showFavIcon, handleFavIcon } = useContext(WishlistContext);   
      return (
-          <div className="px-3 md:px-10 h-full bg-gray-100">
+          <div className={`px-3 md:px-10 h-full ${filteredArts.length > 0 ? "bg-gray-100" : 'bg-white'}`}>
              <ShopHeading/>
                {showShimmer ? (
                     <ShimmerSimpleGallery card imageHeight={240} col={4} row={5} caption />
@@ -161,8 +162,8 @@ const Shop = () => {
                                         </div>
                                    </div>
                               )
-                         ) : <div className=" h-[100%] bg-gray-100">
-                              <p className="text-black text-center"><span className="text-red-500">Searched Items</span> is not Existed</p>
+                         ) : <div className="mx-auto">
+                             <EmptySearched/>
                               </div>
                               } 
                     </div>
