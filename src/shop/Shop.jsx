@@ -90,7 +90,7 @@ const Shop = () => {
                                                   <div className="min-w-[250px] lg:w-full ">
                                                        <img
                                                             src={item.image}
-                                                            className="min-w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-300 rounded-lg "
+                                                            className="min-w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-300 rounded-lg slide-in-bottom"
                                                        />
                                                   </div>
                                              </a>

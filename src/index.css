@@ -30,20 +30,43 @@
 }
 
 
-@keyframes fadeScaleIn {
+@keyframes slideInBottom {
   0% {
+      transform: translateY(20px);
       opacity: 0;
-      transform: scale(0.9);
   }
   100% {
+      transform: translateY(0);
       opacity: 1;
-      transform: scale(1);
   }
 }
 
-.fade-scale-in {
-  animation: fadeScaleIn 1s ease-in-out forwards;
+.slide-in-bottom {
+  animation: slideInBottom .6s ease-out forwards;
 }
+
+@keyframes blurEffect {
+  0% {
+      filter: blur(8px);
+  }
+
+  100%{
+    filter: blur((0px));
+  }
+}
+
+.blur-on-hover {
+  transition: filter 0.3s ease;
+  animation: blurEffect 1.2s forwards;
+
+}
+.blur-on-hover:hover {
+  transition-duration: 1s;
+}
+
+
+
+
 
 
 
