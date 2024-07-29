@@ -14,7 +14,10 @@ import EmptyComponentImage from "../../assets/empty-cart.jpg";
 const Cart = () => {
      const dispatch = useDispatch();
      const cartItems = useSelector(selectCartItems);
-
+   
+     const filteredCartItems = cartItems.filter((item, index)=> cartItems.id !== item.id)
+     console.log(cartItems)
+     console.log(filteredCartItems)
      const totalCartPrice = useSelector(selectTotalCartPrice);
 
      const [cartState, setCartState] = useState({});
@@ -102,7 +105,7 @@ const Cart = () => {
                               </Link>
                          ))}
                     </ol>
-                    {cartItems?.length > 0 ? (
+                    {cartItems?.length > 0  ? (
                          <div className="relative overflow-x-auto mt-14 mx-24">
                               <table className="w-full text-sm text-left rtl:text-right">
                                    <thead className="text-xs uppercase">
