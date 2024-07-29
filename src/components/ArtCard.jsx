@@ -69,7 +69,7 @@ const ArtCard = ({ arts, headline, headlineIcon}) => {
 
 
      return (
-          <div className="mx-4 lg:mx-20">
+          <div className="mx-4 lg:mx-10">
                <div className="flex justify-between mb-4 ">
                     <h2 className="text-xl lg:text-[28px] font-semibold">{headline}</h2>
                     <div>
@@ -112,7 +112,7 @@ const ArtCard = ({ arts, headline, headlineIcon}) => {
                                                   <div className="min-w-[250px] md:w-full ">
                                                        <img
                                                             src={items.image}
-                                                            className="w-full h-auto sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-300 rounded-lg blur-on-hover"
+                                                            className="w-full h-auto sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg blur-on-hover "
                                                        />
                                                   </div>
 

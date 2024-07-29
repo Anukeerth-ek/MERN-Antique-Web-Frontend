@@ -56,14 +56,10 @@
 }
 
 .blur-on-hover {
-  transition: filter 0.3s ease;
   animation: blurEffect 1.2s forwards;
-
+  transition-duration: 500ms;
+  
 }
-.blur-on-hover:hover {
-  transition-duration: 1s;
-}
-
 
 
 
