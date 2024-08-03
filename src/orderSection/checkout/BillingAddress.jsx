@@ -1,133 +1,284 @@
-import React from "react";
+import React, { useState } from "react";
 import { statesList } from "../../utils/Data";
 import { cityList, countryList, payDetails } from "../../utils/userProfileData";
 import { selectTotalCartPrice } from "../../redux/AntiqueSlice";
 import { useSelector } from "react-redux";
 import { MdLockOutline } from "react-icons/md";
 import { MdLockOpen } from "react-icons/md";
+import { BsLockFill } from "react-icons/bs";
+import { BsFillUnlockFill } from "react-icons/bs";
 
 const BillingAddress = () => {
      const totalCartPrice = useSelector(selectTotalCartPrice);
-     console.log(totalCartPrice);
+     const [showPaymentBtn, setShowPaymentBtn] = useState(false)
 
-     const totalAfterDiscount = totalCartPrice - 1.40;
-     console.log(totalAfterDiscount)
+     const [formData, setFormData] = useState({
+          email: "",
+          firstName: "",
+          lastName: "",
+          addressLine1: "",
+          addressLine2: "",
+          country: "",
+          zipCode: "",
+          city: "",
+          state: "",
+          mobilePhone: "",
+     });
+
+     const totalAfterDiscount = totalCartPrice - 1.4;
+     const [errors, setErrors] = useState({});
+
+     // Handle form input change
+     const handleChange = (e) => {
+          const { name, value } = e.target;
+          setFormData({
+               ...formData,
+               [name]: value,
+          });
+     };
+
+     // Handle form submission
+     const handleSubmit = (e) => {
+          e.preventDefault();
+          const validationErrors = validate();
+          if (Object.keys(validationErrors).length === 0) {
+               console.log("Form submitted successfully:", formData);
+               alert("Successfully submitted")
+               setShowPaymentBtn(true)
+          } else {
+               setErrors(validationErrors);
+               alert("Please fill the form correctly")
+               setShowPaymentBtn(false)
+          }
+     };
+
+     // Validate form fields
+     const validate = () => {
+          const newErrors = {};
+          if (!formData.email) newErrors.email = "Email is required";
+          if (!formData.firstName) newErrors.firstName = "First Name is required";
+          if (!formData.lastName) newErrors.lastName = "Last Name is required";
+          if (!formData.addressLine1) newErrors.addressLine1 = "Address Line1 is required";
+          if (!formData.country) newErrors.country = "Country is required";
+          if (!formData.zipCode) newErrors.zipCode = "Zip Code is required";
+          if (!formData.city) newErrors.city = "City is required";
+          if (!formData.state) newErrors.state = "State is required";
+          if (!formData.mobilePhone) newErrors.mobilePhone = "Mobile Phone is required";
+          return newErrors;
+     };
      return (
           <section>
                <div className="mx-4 lg:mx-20 my-6 lg:flex">
                     {/* BILLING ADDRESS DIV */}
-               
-                         <div className="border p-5 w-fu lg:w-2/4">
-                              <h2 className="text-3xl font-bold text-center mb-3">Billing Address</h2>
-                              <form action="">
-                                   <div className="flex flex-col w-full">
-                                        <label htmlFor="">Email Address</label>
-                                        <input type="text" name="" id="" />
-                                   </div>
-                                   <div>
-                                        <div className="flex flex-wrap w-full">
-                                             <div className="w-full lg:w-[49%] flex flex-col ">
-                                                  <label htmlFor="" className="mt-3">
-                                                       First Name
-                                                  </label>
-                                                  <input type="text" />
-                                             </div>
-                                             <div className="w-full lg:w-[49%] flex flex-col lg:ml-3 ">
-                                                  <label htmlFor="" className="mt-3">
-                                                       Last Name
-                                                  </label>
-                                                  <input type="text" />
-                                             </div>
-                                        </div>
-                                        <div className="flex flex-wrap w-full">
-                                             <div className="w-full lg:w-[49%] flex flex-col ">
-                                                  <label htmlFor="" className="mt-3">
-                                                       Address Line1
-                                                  </label>
-                                                  <input type="text" />
-                                             </div>
-                                             <div className="w-full lg:w-[49%] flex flex-col lg:ml-3 ">
-                                                  <label htmlFor="" className="mt-3">
-                                                       Address Line2
-                                                  </label>
-                                                  <input type="text" />
-                                             </div>
-                                        </div>
-                                        <div className="flex flex-wrap w-full">
-                                             <div className="w-full lg:w-[49%] flex flex-col ">
-                                                  <label htmlFor="" className="mt-3">
-                                                       Country
-                                                  </label>
-                                                  <select name="" id="">
-                                                       {countryList.map((item, index) => (
-                                                            <option key={index}>{item.link}</option>
-                                                       ))}
-                                                  </select>
-                                             </div>
-                                             <div className="w-full lg:w-[49%] flex flex-col lg:ml-3 ">
-                                                  <label htmlFor="" className="mt-3">
-                                                       Zip Code
-                                                  </label>
-                                                  <input type="text" />
-                                             </div>
-                                        </div>
-                                        <div className=" flex-none lg:flex w-[100%]">
-                                             <div className="w-full lg:w-[49%] flex flex-col ">
-                                                  <label htmlFor="" className="mt-3">
-                                                       City
-                                                  </label>
-                                                  <select>
-                                                       {cityList.map((item, index) => (
-                                                            <option key={index}>{item.link}</option>
-                                                       ))}
-                                                  </select>
-                                             </div>
-                                             <div className="w-full lg:w-[49%] flex flex-col lg:ml-3">
-                                                  <label htmlFor="" className="mt-3">
-                                                       States
-                                                  </label>
-                                                  <select>
-                                                       {statesList.map((item, index) => (
-                                                            <option key={index}>{item.link}</option>
-                                                       ))}
-                                                  </select>
-                                             </div>
-                                        </div>
-                                        <div className="flex flex-col  w-full">
-                                             <label htmlFor="" className="mt-3">
-                                                  Mobile Phone
+
+                    <div className="border p-5 w-fu lg:w-2/4">
+                         <h2 className="text-3xl font-bold text-center mb-3">Billing Address</h2>
+                         <form onSubmit={handleSubmit} className=" duration-500">
+                              <div className="flex flex-col w-full">
+                                   <label htmlFor="email">Email Address</label>
+                                   <input
+                                        type="text"
+                                        id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required 
+                                   />
+                                   {errors.email && <span className="text-red-500">{errors.email}</span>}
+                              </div>
+                              <div>
+                                   <div className="flex flex-wrap w-full">
+                                        <div className="w-full lg:w-[49%] flex flex-col">
+                                             <label htmlFor="firstName" className="mt-3">
+                                                  First Name
                                              </label>
-                                             <input type="text" />
+                                             <input
+                                                  type="text"
+                                                  id="firstName"
+                                                  name="firstName"
+                                                  value={formData.firstName}
+                                                  onChange={handleChange}
+                                                  required
+                                             />
+                                             {errors.firstName && <span className="text-red-500">{errors.firstName}</span>}
+                                        </div>
+                                        <div className="w-full lg:w-[49%] flex flex-col lg:ml-3">
+                                             <label htmlFor="lastName" className="mt-3">
+                                                  Last Name
+                                             </label>
+                                             <input
+                                                  type="text"
+                                                  id="lastName"
+                                                  name="lastName"
+                                                  value={formData.lastName}
+                                                  onChange={handleChange}
+                                                  required
+                                             />
+                                             {errors.lastName && <span className="text-red-500">{errors.lastName}</span>}
                                         </div>
                                    </div>
-                              </form>
-                              <button className="bg-blue-600 hover:bg-blue-800 duration-500 w-full py-2 mt-8 lg:mt-5 text-lg rounded-md text-white">
-                                   Submit
-                              </button>
-                         </div>
-                    
+                                   <div className="flex flex-wrap w-full">
+                                        <div className="w-full lg:w-[49%] flex flex-col">
+                                             <label htmlFor="addressLine1" className="mt-3">
+                                                  Address Line1
+                                             </label>
+                                             <input
+                                                  type="text"
+                                                  id="addressLine1"
+                                                  name="addressLine1"
+                                                  value={formData.addressLine1}
+                                                  onChange={handleChange}
+                                                  required
+                                             />
+                                             {errors.addressLine1 && (
+                                                  <span className="text-red-500">{errors.addressLine1}</span>
+                                             )}
+                                        </div>
+                                        <div className="w-full lg:w-[49%] flex flex-col lg:ml-3">
+                                             <label htmlFor="addressLine2" className="mt-3">
+                                                  Address Line2 <span className="text-gray-400">(optional)</span>
+                                             </label>
+                                             <input
+                                                  type="text"
+                                                  id="addressLine2"
+                                                  name="addressLine2"
+                                                  value={formData.addressLine2}
+                                                  onChange={handleChange}
+                                             />
+                                        </div>
+                                   </div>
+                                   <div className="flex flex-wrap w-full">
+                                        <div className="w-full lg:w-[49%] flex flex-col">
+                                             <label htmlFor="country" className="mt-3">
+                                                  Country
+                                             </label>
+                                             <select
+                                                  id="country"
+                                                  name="country"
+                                                  value={formData.country}
+                                                  onChange={handleChange}
+                                                  required
+                                             >
+                                                  <option value="">Select Country</option>
+                                                  {countryList.map((item, index) => (
+                                                       <option key={index} value={item.link}>
+                                                            {item.link}
+                                                       </option>
+                                                  ))}
+                                             </select>
+                                             {errors.country && <span className="text-red-500">{errors.country}</span>}
+                                        </div>
+                                        <div className="w-full lg:w-[49%] flex flex-col lg:ml-3">
+                                             <label htmlFor="zipCode" className="mt-3">
+                                                  Zip Code
+                                             </label>
+                                             <input
+                                                  type="text"
+                                                  id="zipCode"
+                                                  name="zipCode"
+                                                  value={formData.zipCode}
+                                                  onChange={handleChange}
+                                                  required
+                                             />
+                                             {errors.zipCode && <span className="text-red-500">{errors.zipCode}</span>}
+                                        </div>
+                                   </div>
+                                   <div className="flex flex-wrap w-full">
+                                        <div className="w-full lg:w-[49%] flex flex-col">
+                                             <label htmlFor="city" className="mt-3">
+                                                  City
+                                             </label>
+                                             <select
+                                                  id="city"
+                                                  name="city"
+                                                  value={formData.city}
+                                                  onChange={handleChange}
+                                                  required
+                                             >
+                                                  <option value="">Select City</option>
+                                                  {cityList.map((item, index) => (
+                                                       <option key={index} value={item.link}>
+                                                            {item.link}
+                                                       </option>
+                                                  ))}
+                                             </select>
+                                             {errors.city ? <span className="text-red-500">{errors.city}</span> : ''}
+                                        </div>
+                                        <div className="w-full lg:w-[49%] flex flex-col lg:ml-3">
+                                             <label htmlFor="state" className="mt-3">
+                                                  State
+                                             </label>
+                                             <select
+                                                  id="state"
+                                                  name="state"
+                                                  value={formData.state}
+                                                  onChange={handleChange}
+                                                  required
+                                             >
+                                                  <option value="">Select State</option>
+                                                  {statesList.map((item, index) => (
+                                                       <option key={index} value={item.link}>
+                                                            {item.link}
+                                                       </option>
+                                                  ))}
+                                             </select>
+                                             {errors.state && <span className="text-red-500">{errors.state}</span>}
+                                        </div>
+                                   </div>
+                                   <div className="flex flex-col w-full">
+                                        <label htmlFor="mobilePhone" className="mt-3">
+                                             Mobile Phone
+                                        </label>
+                                        <input
+                                             type="text"
+                                             id="mobilePhone"
+                                             name="mobilePhone"
+                                             value={formData.mobilePhone}
+                                             onChange={handleChange}
+                                             required
+                                        />
+                                        {errors.mobilePhone && <span className="text-red-500">{errors.mobilePhone}</span>}
+                                   </div>
+                              </div>
+                         </form>
+                         <button
+                              type="submit"
+                              className="bg-blue-500 hover:bg-blue-800 duration-500 w-full py-2 mt-8 lg:mt-5 text-lg rounded-md text-white" onClick={handleSubmit}
+                         >
+                              Submit
+                         </button>
+                    </div>
 
                     <div className=" w-full lg:w-[30%] h-2/4 ml-0 lg:ml-36 border mt-10 lg:mt-0">
                          <div className="p-3">
                               <h2 className="text-center text-3xl font-bold mt-2">Payment Section</h2>
-                             <div className="flex justify-between">
-                             <ul className="mt-6 text-gray-700">
-                              {payDetails.map((item, index)=> (
-                                   <li className={`mb-[6px] ${item.bold && 'font-bold'} ${item.fSize && 'text-2xl'}`}>
-                                        {item.link}
-                                   </li>
-                              ))}
-                              </ul>
-                              <ul className="mt-6 text-gray-700">
-                                   <li className="mb-[6px] font-bold">${totalCartPrice}</li>
-                                   <li className="mb-[6px] font-bold text-red-500">-$1.40</li>
-                                   <li className="mb-[6px] font-bold">${totalAfterDiscount}</li>
-                                   <li className="mb-[6px] font-bold">FREE</li>
-                                   <li className="mb-[6px]">$0.00</li>
-                                   <li className="mb-[6px] font-bold text-2xl ">${totalAfterDiscount}</li>
-                              </ul>
+                              <div className="flex justify-between">
+                                   <ul className="mt-8 text-gray-700 space-y-3">
+                                        {payDetails.map((item, index) => (
+                                             <li
+                                                  className={` ${item.bold && "font-bold"} ${
+                                                       item.fSize && "text-2xl"
+                                                  }`}
+                                                  key={index}
+                                             >
+                                                  {item.link}
+                                             </li>
+                                        ))}
+                                   </ul>
+                                   <ul className="mt-8 space-y-3 text-gray-700">
+                                        <li className=" font-bold">${totalCartPrice}</li>
+                                        <li className=" font-bold text-green-600 ">-$1.40</li>
+                                        <li className=" font-bold">${totalAfterDiscount}</li>
+                                        <li className=" font-bold">FREE</li>
+                                        <li className="">$0.00</li>
+                                        <li className=" font-bold text-2xl ">${totalAfterDiscount}</li>
+                                   </ul>
                               </div>
-                              <button className="bg-green-500 hover:bg-green-600 duration-500 mt-5 text-white rounded-md py-2 w-full inline-flex items-center justify-center"> <MdLockOutline className="mr-1"/>Confirm Order</button>
+                              <button className={`${showPaymentBtn ? 'bg-green-500 hover:bg-green-700' : 'bg-blue-500 hover:bg-blue-700'} duration-500 mt-5 text-white rounded-md py-2 w-full inline-flex items-center justify-center`}>
+                               
+                                   { showPaymentBtn ? <BsFillUnlockFill className="mr-1 text-lg"/> : <BsLockFill className="mr-1 text-lg" />}
+                                   Confirm Order
+                              </button>
                          </div>
                     </div>
                </div>
