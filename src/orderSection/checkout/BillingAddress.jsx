@@ -7,7 +7,8 @@ import { MdLockOutline } from "react-icons/md";
 import { MdLockOpen } from "react-icons/md";
 import { BsLockFill } from "react-icons/bs";
 import { BsFillUnlockFill } from "react-icons/bs";
-
+import { BiSolidLock } from "react-icons/bi";
+import { BiSolidLockOpen } from "react-icons/bi";
 const BillingAddress = () => {
      const totalCartPrice = useSelector(selectTotalCartPrice);
      const [showPaymentBtn, setShowPaymentBtn] = useState(false)
@@ -276,7 +277,7 @@ const BillingAddress = () => {
                               </div>
                               <button className={`${showPaymentBtn ? 'bg-green-500 hover:bg-green-700' : 'bg-blue-500 hover:bg-blue-700'} duration-500 mt-5 text-white rounded-md py-2 w-full inline-flex items-center justify-center`}>
                                
-                                   { showPaymentBtn ? <BsFillUnlockFill className="mr-1 text-lg"/> : <BsLockFill className="mr-1 text-lg" />}
+                                   { showPaymentBtn ? <BiSolidLockOpen className="mr-1 text-lg"/> : <BiSolidLock className="mr-1 text-lg" />}
                                    Confirm Order
                               </button>
                          </div>
