@@ -3,15 +3,11 @@ import { statesList } from "../../utils/Data";
 import { cityList, countryList, payDetails } from "../../utils/userProfileData";
 import { selectTotalCartPrice } from "../../redux/AntiqueSlice";
 import { useSelector } from "react-redux";
-import { MdLockOutline } from "react-icons/md";
-import { MdLockOpen } from "react-icons/md";
-import { BsLockFill } from "react-icons/bs";
-import { BsFillUnlockFill } from "react-icons/bs";
 import { BiSolidLock } from "react-icons/bi";
 import { BiSolidLockOpen } from "react-icons/bi";
 const BillingAddress = () => {
      const totalCartPrice = useSelector(selectTotalCartPrice);
-     const [showPaymentBtn, setShowPaymentBtn] = useState(false)
+     const [showPaymentBtn, setShowPaymentBtn] = useState(false);
 
      const [formData, setFormData] = useState({
           email: "",
@@ -44,12 +40,12 @@ const BillingAddress = () => {
           const validationErrors = validate();
           if (Object.keys(validationErrors).length === 0) {
                console.log("Form submitted successfully:", formData);
-               alert("Successfully submitted")
-               setShowPaymentBtn(true)
+               alert("Successfully submitted");
+               setShowPaymentBtn(true);
           } else {
                setErrors(validationErrors);
-               alert("Please fill the form correctly")
-               setShowPaymentBtn(false)
+               alert("Please fill the form correctly");
+               setShowPaymentBtn(false);
           }
      };
 
@@ -83,7 +79,7 @@ const BillingAddress = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        required 
+                                        required
                                    />
                                    {errors.email && <span className="text-red-500">{errors.email}</span>}
                               </div>
@@ -203,7 +199,7 @@ const BillingAddress = () => {
                                                        </option>
                                                   ))}
                                              </select>
-                                             {errors.city ? <span className="text-red-500">{errors.city}</span> : ''}
+                                             {errors.city ? <span className="text-red-500">{errors.city}</span> : ""}
                                         </div>
                                         <div className="w-full lg:w-[49%] flex flex-col lg:ml-3">
                                              <label htmlFor="state" className="mt-3">
@@ -244,7 +240,8 @@ const BillingAddress = () => {
                          </form>
                          <button
                               type="submit"
-                              className="bg-blue-500 hover:bg-blue-800 duration-500 w-full py-2 mt-8 lg:mt-5 text-lg rounded-md text-white" onClick={handleSubmit}
+                              className="bg-blue-500 hover:bg-blue-800 duration-500 w-full py-2 mt-8 lg:mt-5 text-lg rounded-md text-white"
+                              onClick={handleSubmit}
                          >
                               Submit
                          </button>
@@ -257,9 +254,7 @@ const BillingAddress = () => {
                                    <ul className="mt-8 text-gray-700 space-y-3">
                                         {payDetails.map((item, index) => (
                                              <li
-                                                  className={` ${item.bold && "font-bold"} ${
-                                                       item.fSize && "text-2xl"
-                                                  }`}
+                                                  className={` ${item.bold && "font-bold"} ${item.fSize && "text-2xl"}`}
                                                   key={index}
                                              >
                                                   {item.link}
@@ -275,9 +270,16 @@ const BillingAddress = () => {
                                         <li className=" font-bold text-2xl ">${totalAfterDiscount}</li>
                                    </ul>
                               </div>
-                              <button className={`${showPaymentBtn ? 'bg-green-500 hover:bg-green-700' : 'bg-blue-500 hover:bg-blue-700'} duration-500 mt-5 text-white rounded-md py-2 w-full inline-flex items-center justify-center`}>
-                               
-                                   { showPaymentBtn ? <BiSolidLockOpen className="mr-1 text-lg"/> : <BiSolidLock className="mr-1 text-lg" />}
+                              <button
+                                   className={`${
+                                        showPaymentBtn ? "bg-green-500 hover:bg-green-700" : "bg-blue-500 hover:bg-blue-700"
+                                   } duration-500 mt-5 text-white rounded-md py-2 w-full inline-flex items-center justify-center`}
+                              >
+                                   {showPaymentBtn ? (
+                                        <BiSolidLockOpen className="mr-1 text-lg" />
+                                   ) : (
+                                        <BiSolidLock className="mr-1 text-lg" />
+                                   )}
                                    Confirm Order
                               </button>
                          </div>

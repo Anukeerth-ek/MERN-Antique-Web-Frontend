@@ -7,7 +7,7 @@ const Accordian = () => {
 
      // FUNCTION FOR HANDLING THE FAQ SECTION
      const handleFAQSection = (id) => {
-          setToggleItemId(id);
+          setToggleItemId(toggleItemId === id ? null : id)
      };
 
      return (
@@ -26,7 +26,7 @@ const Accordian = () => {
                                         <p>
                                              {index + 1}. <span className="ml-1">{item.title}</span>
                                         </p>
-                                        {toggleItemId === item.id ? <FaMinus /> : <FaPlus />}
+                                        {toggleItemId === item.id ? <FaMinus className=" duration-500"/> : <FaPlus  className="duration-500"/>}
                                    </div>
                                    {toggleItemId === item.id && <p className="py-3 bg-gray-50  pl-4 px-2 transition-all duration-[500ms] ease-[cubic-bezier(1,0,1,0)]">{item.body}</p>}
                               </li>
