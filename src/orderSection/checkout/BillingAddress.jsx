@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { statesList } from "../../utils/Data";
 import { cityList, countryList, payDetails } from "../../utils/userProfileData";
-import { selectTotalCartPrice } from "../../redux/AntiqueSlice";
+import { cartReducer, selectCartItems, selectTotalCartPrice } from "../../redux/AntiqueSlice";
 import { useSelector } from "react-redux";
 import { BiSolidLock } from "react-icons/bi";
 import { BiSolidLockOpen } from "react-icons/bi";
+import {loadStripe} from '@stripe/stripe-js';
+const apiUrl = import.meta.env.VITE_API_URL;
 const BillingAddress = () => {
      const totalCartPrice = useSelector(selectTotalCartPrice);
      const [showPaymentBtn, setShowPaymentBtn] = useState(false);
+
+     const cart = useSelector(selectCartItems);
+     console.log(cart)
+     
+  
 
      const [formData, setFormData] = useState({
           email: "",
@@ -63,6 +70,29 @@ const BillingAddress = () => {
           if (!formData.mobilePhone) newErrors.mobilePhone = "Mobile Phone is required";
           return newErrors;
      };
+
+     // function for handling the payment
+     const handlePayment = async()=> {
+         const stripe = await loadStripe("pk_test_51OUmsmSEK2ICB9oRHFofNhmINI7Jb6UpLkACS7vEXk0rogjmHXikLKeDHjUmjHWMCLPRjzHM9Clk9ZiFD1eKU9VO00NVlsuO5J")
+         const body = {
+            products: cart
+         }
+         const headers = {
+          "Content-Type": "application/json"
+         }
+         const response = await fetch(`${apiUrl}/create-checkout-session`, {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(body)
+         })
+         const session = await response.json()
+         const result = stripe.redirectToCheckout({
+          sessionId:session.id
+         })
+         if(result.error) {
+          console.error(result.error)
+         }
+     }
      return (
           <section>
                <div className="mx-4 lg:mx-20 my-6 lg:flex">
@@ -274,6 +304,7 @@ const BillingAddress = () => {
                                    className={`${
                                         showPaymentBtn ? "bg-green-500 hover:bg-green-700" : "bg-blue-500 hover:bg-blue-700"
                                    } duration-500 mt-5 text-white rounded-md py-2 w-full inline-flex items-center justify-center`}
+                                   onClick={handlePayment}
                               >
                                    {showPaymentBtn ? (
                                         <BiSolidLockOpen className="mr-1 text-lg" />
