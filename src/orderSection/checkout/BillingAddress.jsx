@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { BiSolidLock } from "react-icons/bi";
 import { BiSolidLockOpen } from "react-icons/bi";
 import {loadStripe} from '@stripe/stripe-js';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 const BillingAddress = () => {
      const totalCartPrice = useSelector(selectTotalCartPrice);
@@ -13,7 +14,6 @@ const BillingAddress = () => {
 
      const cart = useSelector(selectCartItems);
      console.log(cart)
-     
   
 
      const [formData, setFormData] = useState({
@@ -80,7 +80,7 @@ const BillingAddress = () => {
          const headers = {
           "Content-Type": "application/json"
          }
-         const response = await fetch(`${apiUrl}/create-checkout-session`, {
+         const response = await fetch("https://antique-web.onrender.com/create-checkout-session", {
           method: "POST",
           headers: headers,
           body: JSON.stringify(body)
@@ -88,6 +88,7 @@ const BillingAddress = () => {
          const session = await response.json()
          const result = stripe.redirectToCheckout({
           sessionId:session.id
+         
          })
          if(result.error) {
           console.error(result.error)
