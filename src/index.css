@@ -49,21 +49,34 @@
   0% {
       filter: blur(8px);
   }
-
+ 50% {
+     filter: blur(3px);
+ }
   100%{
-    filter: blur((0px));
+    filter: blur(0px);
   }
 }
 
 .blur-on-hover {
   animation: blurEffect 1.2s forwards;
-  transition-duration: 500ms;
+  transition-duration: 600ms;
   
 }
 
+@keyframes limitblurEffect {
+  0% {
+      filter:blur(4px);
+  }
 
+  100%{
+    filter:blur(0px);
+  }
+}
 
-
+.light-blur {
+  animation: limitblurEffect 1.2s forwards;
+  transition-duration: 500ms;
+}
 
 
 
