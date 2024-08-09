@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { addUploadedAntique, antiqueReducer } from "../redux/AntiqueSlice";
 
 
-const ManageAntiques = () => {
+const Admin = () => {
      const [allAntiques, setAllAntiques] = useState([]);
      const uploadedAntiques = useSelector((state) => state.antiques);
 
@@ -54,11 +54,11 @@ const ManageAntiques = () => {
                                    </th>
                               </tr>
                          </thead>
-                         <tbody >
+                         <tbody className="group">
                               {allAntiques.map((item, index) => {
                                    
                                    return (
-                                        <tr className=" border-b bg-gray-600 dark:border-gray-700 group cursor-pointer">
+                                        <tr className=" border-b bg-gray-600 dark:border-gray-700">
                                              <th
                                                   scope="row"
                                                   className="px-6 py-4 font-medium  whitespace-nowrap text-white"
@@ -67,7 +67,7 @@ const ManageAntiques = () => {
                                              </th>
                                              <th
                                                   scope="row"
-                                                  className="px-6 py-4 font-medium whitespace-nowrap text-white group-hover:text-blue-600 "
+                                                  className="px-6 py-4 font-medium whitespace-nowrap text-white group-hover:text-blue-600"
                                              >
                                                   {item.title}
                                              </th>
@@ -98,4 +98,4 @@ const ManageAntiques = () => {
      );
 };
 
-export default ManageAntiques;
+export default Admin;

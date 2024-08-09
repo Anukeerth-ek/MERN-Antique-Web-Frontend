@@ -72,28 +72,40 @@ const BillingAddress = () => {
      };
 
      // function for handling the payment
-     const handlePayment = async()=> {
-         const stripe = await loadStripe("pk_test_51OUmsmSEK2ICB9oRHFofNhmINI7Jb6UpLkACS7vEXk0rogjmHXikLKeDHjUmjHWMCLPRjzHM9Clk9ZiFD1eKU9VO00NVlsuO5J")
-         const body = {
-            products: cart
-         }
-         const headers = {
-          "Content-Type": "application/json"
-         }
-         const response = await fetch("https://antique-web.onrender.com/create-checkout-session", {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify(body)
-         })
-         const session = await response.json()
-         const result = stripe.redirectToCheckout({
-          sessionId:session.id
-         
-         })
-         if(result.error) {
-          console.error(result.error)
-         }
-     }
+     const handlePayment = async () => {
+          try {
+            const stripe = await loadStripe('pk_test_51OUmsmSEK2ICB9oRHFofNhmINI7Jb6UpLkACS7vEXk0rogjmHXikLKeDHjUmjHWMCLPRjzHM9Clk9ZiFD1eKU9VO00NVlsuO5J');
+        
+            // Make sure `cart` is formatted correctly as per your server expectations
+            const body = {
+              products: cart,
+            };
+        
+            const response = await fetch('https://antique-web.onrender.com/create-checkout-session', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(body),
+            });
+        
+            if (!response.ok) {
+              throw new Error('Failed to create checkout session');
+            }
+        
+            const { id: sessionId } = await response.json();
+        
+            // Redirect to Stripe Checkout
+            const result = await stripe.redirectToCheckout({ sessionId });
+        
+            if (result.error) {
+              console.error('Error redirecting to checkout:', result.error);
+            }
+          } catch (error) {
+            console.error('Error handling payment:', error);
+          }
+        };
+        
      return (
           <section>
                <div className="mx-4 lg:mx-20 my-6 lg:flex">

@@ -3,7 +3,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CartTotal = ({totalCartPrice}) => {
- console.log(totalCartPrice)
+
     const navigate = useNavigate()
      return (
           <div className="flex justify-between mt-10 ">
