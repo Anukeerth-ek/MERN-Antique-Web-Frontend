@@ -7,7 +7,6 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { useContext, useEffect, useState } from "react";
 import ArtCard from "../../components/ArtCard";
 import { fetchAntiqueByCategory } from "./fetchSimilarProducts";
-import { AiOutlineThunderbolt } from "react-icons/ai";
 import { GiShoppingCart } from "react-icons/gi";
 import { addToCart } from "../../redux/AntiqueSlice";
 import { useDispatch } from "react-redux";

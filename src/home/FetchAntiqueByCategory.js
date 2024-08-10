@@ -1,7 +1,5 @@
 // loaders/artworksLoader.js
 
-import { json } from 'react-router-dom';
-
 export const fetchAntiqueByCategory = async ({ params }) => {
 
   try {

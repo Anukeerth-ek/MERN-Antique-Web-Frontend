@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
 import ArtCard from "../components/ArtCard"
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
 import { TbCategory } from "react-icons/tb";
 const FreshRecommendation = () => {
   const icon = TbCategory

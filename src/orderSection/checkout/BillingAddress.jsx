@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { statesList } from "../../utils/Data";
 import { cityList, countryList, payDetails } from "../../utils/userProfileData";
-import { cartReducer, selectCartItems, selectTotalCartPrice } from "../../redux/AntiqueSlice";
+import { selectCartItems, selectTotalCartPrice } from "../../redux/AntiqueSlice";
 import { useSelector } from "react-redux";
 import { BiSolidLock } from "react-icons/bi";
 import { BiSolidLockOpen } from "react-icons/bi";

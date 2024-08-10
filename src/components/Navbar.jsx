@@ -11,11 +11,8 @@ import { CiMenuFries } from "react-icons/ci";
 import { GiTireIronCross } from "react-icons/gi";
 import { BsSearch } from "react-icons/bs";
 import { GiNightVision } from "react-icons/gi";
-import { GiShoppingCart } from "react-icons/gi";
-import { FaRegCircleUser } from "react-icons/fa6";
 import UserDetails from "./userDetails/UserDetails";
 import { SearchContext } from "../contexts/SearchContext";
-import { MdFavorite } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
 import { WishlistContext } from "../contexts/WishlistContext";
 
