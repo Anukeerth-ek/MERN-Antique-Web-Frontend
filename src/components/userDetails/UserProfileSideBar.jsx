@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { FaRegUserCircle } from "react-icons/fa";
 import { userProfileSideBarData } from "../../utils/userProfileData";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { BsBoxSeam } from "react-icons/bs";

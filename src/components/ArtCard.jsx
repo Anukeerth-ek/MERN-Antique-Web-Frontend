@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -12,17 +12,17 @@ import { CiHeart } from "react-icons/ci";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
-import { Oval, ThreeDots } from "react-loader-spinner";
-import { ShimmerPostItem, ShimmerPostList, ShimmerSimpleGallery } from "react-shimmer-effects";
+import {  ThreeDots } from "react-loader-spinner";
+import {  ShimmerSimpleGallery } from "react-shimmer-effects";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/AntiqueSlice";
 
 import { MdFavorite } from "react-icons/md";
-import { MdFavoriteBorder } from "react-icons/md";
+
 import { GiShoppingCart } from "react-icons/gi";
 import { WishlistContext } from "../contexts/WishlistContext";
 
-const ArtCard = ({ arts, headline, headlineIcon }) => {
+const ArtCard = ({ arts, headline }) => {
      const dispatch = useDispatch();
      // Redirect to cart page when active
      const navigate = useNavigate();
@@ -34,7 +34,7 @@ const ArtCard = ({ arts, headline, headlineIcon }) => {
      const [spinnerBtnId, setSpinnerBtnId] = useState();
      const [showShimmer, setShowShimmer] = useState(true);
 
-     const { addToWishlist } = useContext(WishlistContext);
+
 
      const { showFavIcon, handleFavIcon } = useContext(WishlistContext);
 

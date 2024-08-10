@@ -8,7 +8,7 @@ const Logout = () => {
      const location = useLocation();
      const navigate = useNavigate();
      const from = location.state?.from?.pathname || "/";
-  
+
      Swal.fire({
           title: "Confirm Logout",
           text: "Are you sure want to Log out?",
@@ -24,14 +24,11 @@ const Logout = () => {
                     text: "You have been sucessfully logged out",
                     icon: "success",
                });
-               logout()
-                    .then(() => {
-                         navigate(from, { replace: true });
-                    })
-                    
-          }
-          else {
-            navigate(from, {replace:true})
+               logout().then(() => {
+                    navigate(from, { replace: true });
+               });
+          } else {
+               navigate(from, { replace: true });
           }
      });
      return <></>;
