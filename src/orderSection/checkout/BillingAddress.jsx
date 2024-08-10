@@ -55,7 +55,7 @@ const BillingAddress = () => {
                setShowPaymentBtn(false);
           }
      };
-
+                                             
      // Validate form fields
      const validate = () => {
           const newErrors = {};

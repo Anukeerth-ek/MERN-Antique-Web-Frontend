@@ -22,15 +22,13 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { GiShoppingCart } from "react-icons/gi";
 import { WishlistContext } from "../contexts/WishlistContext";
 
-const ArtCard = ({ arts, headline, headlineIcon}) => {
-
+const ArtCard = ({ arts, headline, headlineIcon }) => {
      const dispatch = useDispatch();
      // Redirect to cart page when active
      const navigate = useNavigate();
 
      // Get the current state of the item
      const cartItems = useSelector((state) => state.cart.items);
-
 
      const [showSpinner, setShowSpinner] = useState(false);
      const [spinnerBtnId, setSpinnerBtnId] = useState();
@@ -66,7 +64,6 @@ const ArtCard = ({ arts, headline, headlineIcon}) => {
 
      // check wheather user is logged in or not
      const { user, loading } = useContext(AuthContext);
-
 
      return (
           <div className="mx-4 lg:mx-10">
@@ -111,7 +108,11 @@ const ArtCard = ({ arts, headline, headlineIcon}) => {
                                              <Link to={`/art/${items._id}`}>
                                                   <div className="min-w-[250px] md:w-full ">
                                                        <img
+                                                            alt={items.title}
+                                                            loading="lazy"
                                                             src={items.image}
+                                                            // srcSet={`${items.image}?w=400 400w, ${items.image}?w=800 800w`}
+                                                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
                                                             className="w-full h-auto sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg blur-on-hover "
                                                        />
                                                   </div>
