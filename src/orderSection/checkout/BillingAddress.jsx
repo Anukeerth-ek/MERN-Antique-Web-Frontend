@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { BiSolidLock } from "react-icons/bi";
 import { BiSolidLockOpen } from "react-icons/bi";
 import {loadStripe} from '@stripe/stripe-js';
+import axios from 'axios'
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const BillingAddress = () => {
@@ -73,37 +74,54 @@ const BillingAddress = () => {
 
      // function for handling the payment
      const handlePayment = async () => {
+
           try {
-            const stripe = await loadStripe('pk_test_51OUmsmSEK2ICB9oRHFofNhmINI7Jb6UpLkACS7vEXk0rogjmHXikLKeDHjUmjHWMCLPRjzHM9Clk9ZiFD1eKU9VO00NVlsuO5J');
+               const response = await axios.post('https://antique-web.onrender.com/create-checkout-session', {
+                   // include any required data here
+               });
+               if (response && response.status === 200) {
+                   console.log(response.data);
+               } else {
+                   console.log("Unexpected response status:", response.status);
+               }
+           } catch (error) {
+               console.error("Error during payment:", error.response?.data || error.message);
+           }
+          // try {
+          //   const stripe = await loadStripe('pk_test_51OUmsmSEK2ICB9oRHFofNhmINI7Jb6UpLkACS7vEXk0rogjmHXikLKeDHjUmjHWMCLPRjzHM9Clk9ZiFD1eKU9VO00NVlsuO5J');
         
-            // Make sure `cart` is formatted correctly as per your server expectations
-            const body = {
-              products: cart,
-            };
+          //   // Make sure `cart` is formatted correctly as per your server expectations
+          //   const body = {
+          //     products: cart,
+          //   };
         
-            const response = await fetch('https://antique-web.onrender.com/create-checkout-session', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(body),
-            });
+          //   const response = await fetch('https://antique-web.onrender.com/create-checkout-session', {
+          //     method: 'POST',
+          //     headers: {
+          //       'Content-Type': 'application/json',
+          //     },
+          //     body: JSON.stringify(body),
+          //   });
         
-            if (!response.ok) {
-              throw new Error('Failed to create checkout session');
-            }
+          //   if (!response.ok) {
+          //     throw new Error('Failed to create checkout session');
+          //   }
         
-            const { id: sessionId } = await response.json();
+          //   const { id: sessionId } = await response.json();
         
-            // Redirect to Stripe Checkout
-            const result = await stripe.redirectToCheckout({ sessionId });
+          //   // Redirect to Stripe Checkout
+          //   const result = await stripe.redirectToCheckout({ sessionId });
         
-            if (result.error) {
-              console.error('Error redirecting to checkout:', result.error);
-            }
-          } catch (error) {
-            console.error('Error handling payment:', error);
-          }
+          //   if (result.error) {
+          //     console.error('Error redirecting to checkout:', result.error);
+          //   }
+
+          //   if(!showPaymentBtn) {
+          //           alert("Please fill the form ")
+          //   }
+          // } catch (error) {
+          //   console.error('Error handling payment:', error);
+          // }
         };
         
      return (
