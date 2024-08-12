@@ -25,8 +25,11 @@ const ProductDetailsPage = React.lazy(()=> import("../orderSection/ProductDetail
 const Cart = React.lazy(()=> import("../orderSection/cart/Cart"))
 const WishList = React.lazy(()=> import("../orderSection/wishlist/WishList"))
 const Checkout = React.lazy(()=> import("../orderSection/checkout/Checkout"))
+const SuccessPage = React.lazy(()=> import ('../orderSection/checkout/SuccessPage'))
+const ErrorPage = React.lazy(()=> import ('../orderSection/checkout/UnSuccessfulPage'))
 
 import UserProfile from "../components/userDetails/UserProfile";
+
 
 
 const router = createBrowserRouter([
@@ -61,6 +64,14 @@ const router = createBrowserRouter([
                {
                     path: "/checkout",
                     element: <Suspense fallback={<div>Loading...</div>}><Checkout /></Suspense>,
+               },
+               {
+                    path: "/success",
+                    element: <Suspense fallback={<div>Loading...</div>}><SuccessPage /></Suspense>,
+               },
+               {
+                    path: "/unsuccess",
+                    element: <Suspense fallback={<div>Loading...</div>}><ErrorPage /></Suspense>,
                },
                {
                     path:'/userProfile',
