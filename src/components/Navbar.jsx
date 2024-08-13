@@ -101,7 +101,7 @@ const Navbar = () => {
                          {/* Login button */}
                          <Link to={user ? authenticationPath.logoutPath : authenticationPath.loginPath}>
                               <div className="border px-5 md:px-12 py-1 md:py-2 bg-white md:text-blue-600  cursor-pointer  duration-500 border-blue-700 md:hover:border-blue-500 md:hover:bg-blue-700 md:hover:text-white  rounded-lg md:block">
-                                   <button className="  cursor-pointer ">{user ? "Logout" : "Login"}</button>
+                                   <button name="login/logout-btn" className="  cursor-pointer ">{user ? "Logout" : "Login"}</button>
                               </div>
                          </Link>
                          {/* user icon (it will show only if user has logged in)*/}
@@ -140,7 +140,7 @@ const Navbar = () => {
                                              ? "absolute md:relative right-6 md:right-0 top-10 md:top-3 lg:top-0 text-black "
                                              : ""
                                    }`}
-                              >
+                              name="hamburger-btn">
                                    {isMenuOpen ? <GiTireIronCross /> : <CiMenuFries />}
                               </button>
                          </div>

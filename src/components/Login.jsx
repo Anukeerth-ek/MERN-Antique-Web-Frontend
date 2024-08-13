@@ -77,7 +77,7 @@ const Login = () => {
               placeholder="********"
               
          />
-         <button className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">
+         <button name="login-btn" className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">
                {showLoader ?  <ThreeDots
                                                      visible={true}
                                                      height="20"

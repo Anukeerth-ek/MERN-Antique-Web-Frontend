@@ -95,7 +95,7 @@ const handlePasswordStrength = (event)=> {
                          onChange={(event)=> handlePasswordStrength(event)}
                     />
                     {checkPasswordInputValue ? checkPasswordStrength.length < 8 ? <p className="text-red-500"> Your Password is too weak</p> : <p className="text-green-500"> Your Password is strong</p> : ''}
-                    <button className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">
+                    <button name="signup-btn" className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">
                          {showLoader ? <ThreeDots
                                                      visible={true}
                                                      height="20"
@@ -121,7 +121,7 @@ const handlePasswordStrength = (event)=> {
                          {" "}
                          <hr />{" "}
                     </span>
-                    <button className="flex items-center justify-center mt-6 border px-10 py-2" onClick={handleRegister}>
+                    <button className="flex items-center justify-center mt-6 border px-10 py-2" onClick={handleRegister} name="register-btn">
                          <img src={googleIcon} className="w-6 mr-2" />
                          <span className="font-semibold">signup with google</span>
                     </button>

@@ -68,7 +68,7 @@ const ArtCard = ({ arts, headline }) => {
                <div className="flex justify-between mb-4 ">
                     <h2 className="text-xl lg:text-[28px] font-semibold">{headline}</h2>
                     <div>
-                         <button>
+                         <button name="down-icon">
                               <AiFillCaretDown />
                          </button>
                     </div>
@@ -167,7 +167,7 @@ const ArtCard = ({ arts, headline }) => {
                                                                    )
                                                                  : navigate("/login")
                                                        }
-                                                  >
+                                                   name="cart-btn">
                                                        {showSpinner && spinnerBtnId == items._id ? (
                                                             <ThreeDots
                                                                  visible={true}
