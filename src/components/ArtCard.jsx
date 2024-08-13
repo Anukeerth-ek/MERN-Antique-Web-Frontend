@@ -12,8 +12,8 @@ import { CiHeart } from "react-icons/ci";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
-import {  ThreeDots } from "react-loader-spinner";
-import {  ShimmerSimpleGallery } from "react-shimmer-effects";
+import { ThreeDots } from "react-loader-spinner";
+import { ShimmerSimpleGallery } from "react-shimmer-effects";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/AntiqueSlice";
 
@@ -33,8 +33,6 @@ const ArtCard = ({ arts, headline }) => {
      const [showSpinner, setShowSpinner] = useState(false);
      const [spinnerBtnId, setSpinnerBtnId] = useState();
      const [showShimmer, setShowShimmer] = useState(true);
-
-
 
      const { showFavIcon, handleFavIcon } = useContext(WishlistContext);
 
@@ -106,14 +104,20 @@ const ArtCard = ({ arts, headline }) => {
                                    <SwiperSlide key={items._id}>
                                         <div className="px-3 py-2 bg-white border-gray-200 w-auto group shadow-lg">
                                              <Link to={`/art/${items._id}`}>
-                                                  <div className="min-w-[250px] md:w-full ">
+                                                  <div className="min-w-[250px] md:w-full relative">
                                                        <img
                                                             alt={items.title}
                                                             loading="lazy"
                                                             src={items.image}
+                                                            data-src={items.image}
                                                             // srcSet={`${items.image}?w=400 400w, ${items.image}?w=800 800w`}
                                                             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
-                                                            className="w-full h-auto sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg blur-on-hover "
+                                                            className="w-full h-auto sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover group-hover:scale-105 duration-500 rounded-lg"
+                                                            onLoad={(e) => {
+                                                                 const img = e.target;
+                                                                 img.src = img.dataset.src; // Replace placeholder with the actual image
+                                                            }}
+                                                            style={{ backgroundColor: "#e0e0e0" }} // Light grey placeholder background
                                                        />
                                                   </div>
 
