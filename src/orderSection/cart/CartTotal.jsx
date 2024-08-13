@@ -22,7 +22,7 @@ const CartTotal = ({totalCartPrice}) => {
                     <strong>Total Price</strong>
                     <strong>${totalCartPrice}</strong>
                 </div>
-               <button className="w-full flex items-center justify-center bg-blue-500 hover:bg-blue-800 duration-300 mt-10 text-white py-[10px] rounded-md" onClick={()=> navigate('/checkout')}>Proceed to Checkout <FaLongArrowAltRight className="ml-2"/></button>
+               <button name="cart-qty-btn" className="w-full flex items-center justify-center bg-blue-500 hover:bg-blue-800 duration-300 mt-10 text-white py-[10px] rounded-md" onClick={()=> navigate('/checkout')}>Proceed to Checkout <FaLongArrowAltRight className="ml-2"/></button>
                </div>
           </div>
      );

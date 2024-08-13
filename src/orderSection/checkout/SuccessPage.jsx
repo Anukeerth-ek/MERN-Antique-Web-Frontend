@@ -16,7 +16,7 @@ const SuccessPage = () => {
                          <h2 className="text-lg">Hey {userName},</h2>
                          <h1 className="text-2xl font-extrabold my-2">Your Order is Confirmed!!</h1>
                          <p>We'll send you the shipping confirmation email as soon as your order ships</p>
-                         <button className="bg-blue-600 py-3 px-10 rounded-md text-white mt-5">Check Status</button>
+                         <button name="check-status-btn" className="bg-blue-600 py-3 px-10 rounded-md text-white mt-5">Check Status</button>
                     </div>
                </div>
           </section>

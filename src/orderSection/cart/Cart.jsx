@@ -133,7 +133,7 @@ const Cart = () => {
                                                        <td className="px-6 py-4">{cartState[item.id]?.quantity}</td>
                                                        <td className="px-6 py-4">${cartState[item.id]?.totalPrice}</td>
                                                        <td className="px-6 py-4">
-                                                            <button
+                                                            <button name="add-quantity-btn"
                                                                  className={`border border-black px-2 py-2 mr-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300 ${
                                                                       cartState[item.id]?.quantity === 1
                                                                            ? "cursor-not-allowed hover:bg-gray-200 hover:border-gray-200"
@@ -144,7 +144,7 @@ const Cart = () => {
                                                             >
                                                                  <FaMinus />
                                                             </button>
-                                                            <button
+                                                            <button name="minus-quantity-btn"
                                                                  className="border border-black px-2 py-2 hover:border-blue-700 hover:bg-blue-600 hover:text-white duration-300"
                                                                  onClick={() => handleIncreaseProduct(item.id, item?.price)}
                                                             >

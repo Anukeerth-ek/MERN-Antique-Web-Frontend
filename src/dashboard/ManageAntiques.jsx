@@ -82,7 +82,7 @@ const ManageAntiques = () => {
                                                   <button
                                                        onClick={() => handleDelete(item._id)}
                                                        className=" ml-6 bg-red-600 px-4 py-1 text-white rounded-md hover:bg-red-700 hover:underline"
-                                                  >
+                                                  name="delete-antique-btn">
                                                        Delete
                                                   </button>
                                              </td>

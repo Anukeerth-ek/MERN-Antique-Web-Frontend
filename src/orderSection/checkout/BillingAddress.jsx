@@ -301,7 +301,7 @@ const BillingAddress = () => {
                                    </div>
                               </div>
                          </form>
-                         <button
+                         <button name="billing-submit-btn"
                               type="submit"
                               className="bg-blue-500 hover:bg-blue-800 duration-500 w-full py-2 mt-8 lg:mt-5 text-lg rounded-md text-white"
                               onClick={handleSubmit}
@@ -333,7 +333,7 @@ const BillingAddress = () => {
                                         <li className=" font-bold text-2xl ">${totalAfterDiscount}</li>
                                    </ul>
                               </div>
-                              <button
+                              <button name="show-payment-btn"
                                    className={`${
                                         showPaymentBtn ? "bg-green-500 hover:bg-green-700" : "bg-blue-500 hover:bg-blue-700"
                                    } duration-500 mt-5 text-white rounded-md py-2 w-full inline-flex items-center justify-center`}

@@ -147,7 +147,7 @@ const ProductDetailsPage = () => {
                               <div className="flex  md:mt-3 ">
                                    {/* Add to cart */}
                                    <div className="mt-5 mr-2 md:mr-3 flex w-[170px] md:w-full ">
-                                        <button
+                                        <button name="redirect-cart-btn"
                                              className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-800 duration-300 py-2 md:w-full rounded-md text-white"
                                              onClick={() =>
                                                   user ? handleRedirectToCart( _id, image, title, price ) : navigate("/login")

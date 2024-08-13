@@ -19,7 +19,7 @@ const PromoBanner = () => {
                               <img src={mobilePromo} className="w-full object-cover" />
                          </div>
                          <Link to="/about" className="flex justify-center md:float-none md:justify-normal">
-                              <button className="border mt-8 bg-blue-700 py-3 px-10 rounded-md text-white transition-all duration-500 hover:custom-ease-class hover:bg-transparent hover:text-black hover:border hover:border-blue-700">
+                              <button name="about-us-btn" className="border mt-8 bg-blue-700 py-3 px-10 rounded-md text-white transition-all duration-500 hover:custom-ease-class hover:bg-transparent hover:text-black hover:border hover:border-blue-700">
                                    About US
                               </button>
                          </Link>

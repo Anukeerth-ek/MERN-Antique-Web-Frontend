@@ -27,7 +27,7 @@ const SellerLogin = () => {
               placeholder="********"
               
          />
-         <button className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">
+         <button name='seller-login-btn' className="flex items-center justify-center h-12 px-6 w-full bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">
                Login
          </button>
          <div className="flex flex-col  mt-6 justify-center text-xs">
@@ -47,7 +47,7 @@ const SellerLogin = () => {
               {" "}
               <hr />{" "}
          </span>
-         <button className="flex items-center justify-center mt-6 border px-10 py-2" >
+         <button className="flex items-center justify-center mt-6 border px-10 py-2" name='login-with-google-btn'>
               <img src={googleIcon} className="w-6 mr-2" />
               <span className="font-semibold">Login with google</span>
          </button>

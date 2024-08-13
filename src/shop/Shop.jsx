@@ -129,7 +129,7 @@ const Shop = () => {
                                                        onClick={(e) => handleFavIcon(e, item._id, item)}
                                                   />
                                              )}
-                                             <button
+                                             <button name="shop-btn"
                                                   className={`py-[5px] flex justify-center items-center w-[89%] border border-gray-900 rounded-sm ${
                                                        spinnerBtnId == item._id && "bg-blue-600 border-blue-600 rounded-lg"
                                                   } hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:rounded-md duration-300`}

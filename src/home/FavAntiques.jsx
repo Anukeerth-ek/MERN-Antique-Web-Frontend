@@ -35,7 +35,7 @@ const FavAntiques = () => {
                          </div>
                     </div>
                     <Link to="/shop" className=' flex justify-center md:flex-none md:justify-normal'>
-                     <button className='border mt-5 bg-blue-700 py-3 px-10 rounded-md text-white transition-all duration-500 hover:custom-ease-class hover:bg-transparent hover:text-black hover:border hover:border-blue-700'>Explore more</button>
+                     <button name='fav-antique-btn' className='border mt-5 bg-blue-700 py-3 px-10 rounded-md text-white transition-all duration-500 hover:custom-ease-class hover:bg-transparent hover:text-black hover:border hover:border-blue-700'>Explore more</button>
                     </Link>
                </div>
           </div>
