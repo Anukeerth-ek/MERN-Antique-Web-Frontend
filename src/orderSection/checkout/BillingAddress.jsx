@@ -73,56 +73,47 @@ const BillingAddress = () => {
 
      // function for handling the payment
      const handlePayment = async () => {
-          // try {
-          //      const response = await axios.post('http://localhost:5000/payment', {
-          //          // include any required data here
-          //      });
-          //      if (response && response.status === 200) {
-          //           window.location.href = response.data.url
-          //          console.log(response.data);
-          //      } else {
-          //          console.log("Unexpected response status:", response.status);
-          //      }
-          //  } catch (error) {
-          //      console.error("Error during payment:", error.response?.data || error.message);
-          //  }
-          try {
-               const stripe = await loadStripe(
-                    "pk_test_51OUmsmSEK2ICB9oRHFofNhmINI7Jb6UpLkACS7vEXk0rogjmHXikLKeDHjUmjHWMCLPRjzHM9Clk9ZiFD1eKU9VO00NVlsuO5J"
-               );
+          if (showPaymentBtn) {
+               try {
+                    const stripe = await loadStripe(
+                         "pk_test_51OUmsmSEK2ICB9oRHFofNhmINI7Jb6UpLkACS7vEXk0rogjmHXikLKeDHjUmjHWMCLPRjzHM9Clk9ZiFD1eKU9VO00NVlsuO5J"
+                    );
 
-               // Make sure `cart` is formatted correctly as per your server expectations
-               const body = {
-                    products: cart,
-                    // productPrice: totalAfterDiscount
-               };
+                    // Make sure `cart` is formatted correctly as per your server expectations
+                    const body = {
+                         products: cart,
+                         // productPrice: totalAfterDiscount
+                    };
 
-               const response = await fetch("http://localhost:5000/payment", {
-                    method: "POST",
-                    headers: {
-                         "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(body),
-               });
+                    const response = await fetch("http://localhost:5000/payment", {
+                         method: "POST",
+                         headers: {
+                              "Content-Type": "application/json",
+                         },
+                         body: JSON.stringify(body),
+                    });
 
-               if (!response.ok) {
-                    throw new Error("Failed to create checkout session");
+                    if (!response.ok) {
+                         throw new Error("Failed to create checkout session");
+                    }
+
+                    const { id: sessionId } = await response.json();
+
+                    // Redirect to Stripe Checkout
+                    const result = await stripe.redirectToCheckout({ sessionId });
+
+                    if (result.error) {
+                         console.error("Error redirecting to checkout:", result.error);
+                    }
+
+                    // if (!showPaymentBtn) {
+                    //      alert("Please fill the form ");
+                    // }
+               } catch (error) {
+                    console.error("Error handling payment:", error);
                }
-
-               const { id: sessionId } = await response.json();
-
-               // Redirect to Stripe Checkout
-               const result = await stripe.redirectToCheckout({ sessionId });
-
-               if (result.error) {
-                    console.error("Error redirecting to checkout:", result.error);
-               }
-
-               // if (!showPaymentBtn) {
-               //      alert("Please fill the form ");
-               // }
-          } catch (error) {
-               console.error("Error handling payment:", error);
+          } else {
+               alert("Please fill the form");
           }
      };
 
@@ -301,7 +292,8 @@ const BillingAddress = () => {
                                    </div>
                               </div>
                          </form>
-                         <button name="billing-submit-btn"
+                         <button
+                              name="billing-submit-btn"
                               type="submit"
                               className="bg-blue-500 hover:bg-blue-800 duration-500 w-full py-2 mt-8 lg:mt-5 text-lg rounded-md text-white"
                               onClick={handleSubmit}
@@ -333,7 +325,8 @@ const BillingAddress = () => {
                                         <li className=" font-bold text-2xl ">${totalAfterDiscount}</li>
                                    </ul>
                               </div>
-                              <button name="show-payment-btn"
+                              <button
+                                   name="show-payment-btn"
                                    className={`${
                                         showPaymentBtn ? "bg-green-500 hover:bg-green-700" : "bg-blue-500 hover:bg-blue-700"
                                    } duration-500 mt-5 text-white rounded-md py-2 w-full inline-flex items-center justify-center`}
